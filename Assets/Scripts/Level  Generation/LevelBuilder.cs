@@ -5,9 +5,11 @@ using UnityEngine;
 public class LevelBuilder : MonoBehaviour
 {
     Grid grid;
+    Dictionary<Vector3Int, GameObject> gridPts = new();
 
     public int numRooms = 9;
-    public List<GameObject> placedTiles;
+    public List<TileData> placedTiles;
+    int index = 0;
 
     [Header("Hallway")]
     public GameObject hallway;
@@ -20,6 +22,7 @@ public class LevelBuilder : MonoBehaviour
 
     [Header("Large Rooms")]
     public List<GameObject> largeRooms;
+    
 
     void Awake()
     {
@@ -27,29 +30,65 @@ public class LevelBuilder : MonoBehaviour
         GenerateLevel();
     }
 
+    private void Update()
+    {
+        if (placedTiles.Count < numRooms)
+            GenerateLevel();
+    }
+
     private void GenerateLevel()
     {
-        for (int i = 0; i < numRooms; i++)
-        {
-            int roomChoice = Random.Range(0, 3);
-            GameObject tile = null;
+        int loopBreak = 0;
+        int connection;
+        bool validTile = false;
 
-            switch (roomChoice)
+        do
+        {
+            if (placedTiles[index].connections.Count == 0)
+                index--;
+
+            if (index <= 0)
+                index = placedTiles.Count - 1;
+
+            connection = Random.Range(0, placedTiles[index].connections.Count - 1);
+            Vector3Int tmp = grid.WorldToCell(placedTiles[index].connections[connection].alignPt.position);
+
+            switch (placedTiles[index].connections[connection].direction)
             {
-                case 0:
-                    tile = Instantiate(smallRooms[0]);
+                case dir.right:
+                    validTile = CreateTile(new Vector3Int(tmp.x + 5, tmp.z));
                     break;
-                case 1:
-                    tile = Instantiate(mediumRooms[0]);
+                case dir.left:
+                    validTile = CreateTile(new Vector3Int(tmp.x - 5, tmp.z));
                     break;
-                case 2:
-                    tile = Instantiate(largeRooms[0]);
+                case dir.front:
+                    validTile = CreateTile(new Vector3Int(tmp.x, tmp.z + 5));
+                    break;
+                case dir.back:
+                    validTile = CreateTile(new Vector3Int(tmp.x, tmp.z - 5));
                     break;
             }
 
-            if (tile != null)
-                tile.transform.position = grid.WorldToCell(placedTiles[placedTiles.Count - 1].transform.position);
+            loopBreak++;
+            if (loopBreak > 100)
+            {
+                Debug.Log("Infinite Loop!!");
+                Debug.Break();
+            }
 
-        }
+        } while (!validTile);
+    }
+
+    bool CreateTile(Vector3Int pos)
+    {
+        Debug.Log(pos);
+        if (gridPts.ContainsKey(pos))
+            return false;
+
+        GameObject tmp = new GameObject();
+        tmp.transform.position = grid.CellToWorld(pos);
+        gridPts[pos] = tmp;
+
+        return true;
     }
 }

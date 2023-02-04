@@ -333,7 +333,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   numRooms: 9
   placedTiles:
-  - {fileID: 7939635031611494894}
+  - {fileID: 7939635031611494895}
   hallway: {fileID: 308476084578560956, guid: 4b9b37cbe626a4b4680348af68c14ea2, type: 3}
   smallRooms:
   - {fileID: 817559557622800784, guid: 7ae82a0dc0e76164ab7a4dd182431046, type: 3}
@@ -375,6 +375,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 866727559567071149, guid: 9a5aef559b35afd4497e7847f0e7a283, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 5582301183447046640, guid: 9a5aef559b35afd4497e7847f0e7a283, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -425,8 +429,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9a5aef559b35afd4497e7847f0e7a283, type: 3}
---- !u!1 &7939635031611494894 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5582301183447046641, guid: 9a5aef559b35afd4497e7847f0e7a283, type: 3}
+--- !u!114 &7939635031611494895 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 140976301739343070, guid: 9a5aef559b35afd4497e7847f0e7a283, type: 3}
   m_PrefabInstance: {fileID: 2546625779281283103}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7ab3ef5024b6ae4d9d64ad12d95c694, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
