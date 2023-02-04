@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LevelBuilder : MonoBehaviour
 {
@@ -27,13 +28,19 @@ public class LevelBuilder : MonoBehaviour
     void Awake()
     {
         grid = GetComponent<Grid>();
-        GenerateLevel();
+        gridPts.Add(Vector3Int.FloorToInt(placedTiles[0].transform.position), placedTiles[0].gameObject);
+        //GenerateLevel();
     }
 
     private void Update()
     {
-        if (placedTiles.Count < numRooms)
+        if (Input.GetKeyDown(KeyCode.Space) && placedTiles.Count < numRooms)
             GenerateLevel();
+
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
     }
 
     private void GenerateLevel()
@@ -52,20 +59,24 @@ public class LevelBuilder : MonoBehaviour
 
             connection = Random.Range(0, placedTiles[index].connections.Count - 1);
             Vector3Int tmp = grid.WorldToCell(placedTiles[index].connections[connection].alignPt.position);
-
+            
             switch (placedTiles[index].connections[connection].direction)
             {
                 case dir.right:
-                    validTile = CreateTile(new Vector3Int(tmp.x + 5, tmp.z));
+                    Debug.Log("Right");
+                    validTile = CreateTile(new Vector3Int(tmp.x + 1, tmp.z));
                     break;
                 case dir.left:
-                    validTile = CreateTile(new Vector3Int(tmp.x - 5, tmp.z));
+                    Debug.Log("Left");
+                    validTile = CreateTile(new Vector3Int(tmp.x - 1, tmp.z));
                     break;
                 case dir.front:
-                    validTile = CreateTile(new Vector3Int(tmp.x, tmp.z + 5));
+                    Debug.Log("Front");
+                    validTile = CreateTile(new Vector3Int(tmp.x, tmp.z + 1));
                     break;
                 case dir.back:
-                    validTile = CreateTile(new Vector3Int(tmp.x, tmp.z - 5));
+                    Debug.Log("Back");
+                    validTile = CreateTile(new Vector3Int(tmp.x, tmp.z - 1));
                     break;
             }
 
@@ -81,13 +92,18 @@ public class LevelBuilder : MonoBehaviour
 
     bool CreateTile(Vector3Int pos)
     {
-        Debug.Log(pos);
         if (gridPts.ContainsKey(pos))
+        {
+            index--;
             return false;
+        }
 
-        GameObject tmp = new GameObject();
-        tmp.transform.position = grid.CellToWorld(pos);
-        gridPts[pos] = tmp;
+        GameObject newTile = Instantiate(hallway);
+        newTile.transform.position = grid.CellToWorld(pos);
+        gridPts[pos] = newTile.gameObject;
+        placedTiles.Add(newTile.GetComponent<TileData>());
+        index = placedTiles.Count - 1;
+        //Debug.Log("Index: " + index + " Pos: " + pos);
 
         return true;
     }
