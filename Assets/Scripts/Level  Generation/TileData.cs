@@ -5,10 +5,12 @@ using UnityEngine;
 public enum dir { left, right, front, back };
 
 [System.Serializable]
-public struct Connection
+public class Connection
 {
     public Transform alignPt;
     public dir direction;
+    [HideInInspector]
+    public Transform connection;
 }
 
 public class TileData : MonoBehaviour
