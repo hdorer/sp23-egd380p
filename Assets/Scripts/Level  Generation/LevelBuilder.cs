@@ -10,33 +10,27 @@ public class LevelBuilder : MonoBehaviour
 
     public int numRooms = 9;
     public int startSeperation;
+    public int tileShift;
     public List<TileData> placedTiles;
     int index = 0;
 
     [Header("Hallway")]
     public GameObject hallway;
 
-    [Header("Small Rooms")]
-    public List<GameObject> smallRooms;
-
-    [Header("Medium Rooms")]
-    public List<GameObject> mediumRooms;
-
-    [Header("Large Rooms")]
-    public List<GameObject> largeRooms;
-    
+    public List<GameObject> placeableTiles;
 
     void Awake()
     {
         grid = GetComponent<Grid>();
         gridPts.Add(Vector3Int.FloorToInt(placedTiles[0].transform.position), placedTiles[0].gameObject);
-        //GenerateLevel();
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && placedTiles.Count < numRooms)
+        if (placedTiles.Count < numRooms && placeableTiles.Count != 0)
             GenerateLevel();
+        else
+            CheckOverlap();
 
         if (Input.GetKeyDown(KeyCode.Q))
         {
@@ -69,7 +63,9 @@ public class LevelBuilder : MonoBehaviour
 
             connection = Random.Range(0, placedTiles[index].connections.Count);
             Vector3Int tmp = grid.WorldToCell(placedTiles[index].connections[connection].alignPt.position);
-            
+            tmp.x += Random.Range(-tileShift, tileShift + 1);
+            tmp.y += Random.Range(-tileShift, tileShift + 1);
+
             switch (placedTiles[index].connections[connection].direction)
             {
                 case dir.right:
@@ -101,13 +97,15 @@ public class LevelBuilder : MonoBehaviour
 
     bool CreateTile(Vector3Int pos, dir direction, Connection connector)
     {
-        if (gridPts.ContainsKey(pos))
+        if (gridPts.ContainsKey(pos) || connector.connection != null)
         {
             index--;
             return false;
         }
-
-        GameObject newTile = Instantiate(hallway);
+        
+        int tileChoice = Random.Range(0, placeableTiles.Count);
+        GameObject newTile = Instantiate(placeableTiles[tileChoice]);
+        placeableTiles.Remove(placeableTiles[tileChoice]);
         newTile.transform.position = grid.CellToWorld(pos);
         gridPts[pos] = newTile.gameObject;
         placedTiles.Add(newTile.GetComponent<TileData>());
@@ -127,5 +125,18 @@ public class LevelBuilder : MonoBehaviour
 
         }
         return true;
+    }
+
+    private void CheckOverlap()
+    {
+        foreach (TileData tile in placedTiles)
+        {
+            if (tile.overlap != null)
+            {
+                Vector3 sep = tile.transform.position - tile.overlap.transform.position;
+                sep.Normalize();
+                tile.transform.position += sep;
+            }
+        }
     }
 }

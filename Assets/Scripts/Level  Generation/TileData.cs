@@ -17,15 +17,17 @@ public class TileData : MonoBehaviour
 {
     public List<Connection> connections;
 
-    // Start is called before the first frame update
-    void Start()
+    [HideInInspector]
+    public Collider overlap = null;
+
+    private void OnTriggerEnter(Collider other)
     {
         
+        overlap = other;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerExit(Collider other)
     {
-        
+        overlap = null;
     }
 }

@@ -333,15 +333,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   numRooms: 9
   startSeperation: 10
+  tileShift: 3
   placedTiles:
   - {fileID: 7939635031611494895}
-  hallway: {fileID: 308476084578560956, guid: 4b9b37cbe626a4b4680348af68c14ea2, type: 3}
-  smallRooms:
-  - {fileID: 817559557622800784, guid: 7ae82a0dc0e76164ab7a4dd182431046, type: 3}
-  mediumRooms:
-  - {fileID: 4532993330944040418, guid: 7425a01942802744090a02ad66e9e609, type: 3}
-  largeRooms:
+  hallway: {fileID: 2382284882741248557, guid: 3bd768b899be4f44fa162138dec93cfc, type: 3}
+  placeableTiles:
   - {fileID: 2382284882741248557, guid: 3bd768b899be4f44fa162138dec93cfc, type: 3}
+  - {fileID: 4532993330944040418, guid: 7425a01942802744090a02ad66e9e609, type: 3}
+  - {fileID: 817559557622800784, guid: 7ae82a0dc0e76164ab7a4dd182431046, type: 3}
+  - {fileID: 2382284882741248557, guid: 3bd768b899be4f44fa162138dec93cfc, type: 3}
+  - {fileID: 4532993330944040418, guid: 7425a01942802744090a02ad66e9e609, type: 3}
+  - {fileID: 817559557622800784, guid: 7ae82a0dc0e76164ab7a4dd182431046, type: 3}
+  - {fileID: 817559557622800784, guid: 7ae82a0dc0e76164ab7a4dd182431046, type: 3}
+  - {fileID: 4532993330944040418, guid: 7425a01942802744090a02ad66e9e609, type: 3}
 --- !u!156049354 &2092609222
 Grid:
   m_ObjectHideFlags: 0
