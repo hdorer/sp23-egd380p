@@ -133,9 +133,28 @@ public class LevelBuilder : MonoBehaviour
         {
             if (tile.overlap != null)
             {
-                Vector3 sep = tile.transform.position - tile.overlap.transform.position;
-                sep.Normalize();
-                tile.transform.position += sep;
+                Vector3Int gridPt = grid.WorldToCell(tile.transform.position);
+                Vector3Int[] neighborGridpts = new Vector3Int[8] {new Vector3Int(gridPt.x + 1, gridPt.y),
+                                                                    new Vector3Int(gridPt.x + 1, gridPt.y + 1),
+                                                                    new Vector3Int(gridPt.x, gridPt.y + 1),
+                                                                    new Vector3Int(gridPt.x - 1, gridPt.y + 1),
+                                                                    new Vector3Int(gridPt.x - 1, gridPt.y),
+                                                                    new Vector3Int(gridPt.x - 1, gridPt.y - 1),
+                                                                    new Vector3Int(gridPt.x, gridPt.y - 1),
+                                                                    new Vector3Int(gridPt.x + 1, gridPt.y - 1),
+                                                                    };
+
+                float dist = 0, tmp;
+
+                for (int i = 0; i < neighborGridpts.Length; i++)
+                {
+                    tmp = Vector3Int.Distance(neighborGridpts[i], grid.WorldToCell(tile.overlap.transform.position));
+                    if (tmp > dist)
+                    {
+                        dist = tmp;
+                        tile.transform.position = Vector3Int.FloorToInt(grid.CellToWorld(neighborGridpts[i]));
+                    }
+                }
             }
         }
     }

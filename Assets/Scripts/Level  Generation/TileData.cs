@@ -22,7 +22,6 @@ public class TileData : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        
         overlap = other;
     }
 
