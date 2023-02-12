@@ -216,7 +216,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1321672873}
-  - component: {fileID: 1321672872}
+  - component: {fileID: 1321672874}
   m_Layer: 0
   m_Name: Twitch
   m_TagString: Untagged
@@ -224,32 +224,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1321672872
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1321672871}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b273dcbdb39fcc4ab442b61d920b4ee, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  address: irc.chat.twitch.tv
-  port: 6667
-  useAnonymousLogin: 0
-  oauth: 
-  username: 
-  channel: 
-  singleton: 1
-  connectOnStart: 1
-  showIRCDebug: 1
-  showThreadDebug: 1
-  useRandomColorForUndefined: 0
-  readInterval: 50
-  readBufferSize: 1024
-  writeInterval: 50
 --- !u!4 &1321672873
 Transform:
   m_ObjectHideFlags: 0
@@ -265,3 +239,29 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1321672874
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1321672871}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b273dcbdb39fcc4ab442b61d920b4ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  address: irc.chat.twitch.tv
+  port: 6667
+  useAnonymousLogin: 1
+  oauth: 
+  username: 
+  channel: captowtest
+  singleton: 1
+  connectOnStart: 1
+  showIRCDebug: 1
+  showThreadDebug: 1
+  useRandomColorForUndefined: 0
+  readInterval: 50
+  readBufferSize: 1024
+  writeInterval: 50
