@@ -7,8 +7,15 @@ using UnityEngine.UI;
 
 public class PollDisplay : MonoBehaviour {
     [SerializeField] private Text timerText;
+    [SerializeField] private Text[] optionTexts;
     [SerializeField] private Slider[] voteSliders;
 
+    public void updateOptionText(Poll poll) {
+        for(int i = 0; i < optionTexts.Length; i++) {
+            optionTexts[i].text = poll.optionNames[i];
+        }
+    }
+    
     public void updateUi(Poll poll, float pollTimer) {
         timerText.text = "Time Left: " + Mathf.Ceil(pollTimer);
 

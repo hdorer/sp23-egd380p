@@ -892,6 +892,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timerText: {fileID: 1489612602}
+  optionTexts:
+  - {fileID: 146224609}
+  - {fileID: 1615819215}
+  - {fileID: 257942634}
+  - {fileID: 1579016598}
   voteSliders:
   - {fileID: 1116134407}
   - {fileID: 1943958889}
@@ -2080,6 +2085,11 @@ MonoBehaviour:
   pollTime: 60
   pollDowntime: 5
   startActive: 0
+  optionLabels:
+  - Increase Health Regen
+  - Increase Enemy Spawn Rate
+  - Decrease Fire Rate
+  - Decrease Damage Taken
   listener: {fileID: 975340209}
   onUiUpdate:
     m_PersistentCalls:
@@ -2103,6 +2113,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 786253166}
+        m_TargetAssemblyTypeName: PollDisplay, Assembly-CSharp
+        m_MethodName: updateOptionText
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

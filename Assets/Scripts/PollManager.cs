@@ -1,16 +1,21 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
 public struct Poll {
+    public string[] optionNames;
     public string[] voteStrings;
     public int[] votes;
 
-    public Poll(string[] voteStrings) {
-        this.voteStrings = voteStrings;
-        this.votes = new int[voteStrings.Length];
+    public Poll(string[] optionNames) {
+        this.optionNames = optionNames;
+        voteStrings = new string[optionNames.Length];
+        votes = new int[optionNames.Length];
+
+        for(int i = 0; i < optionNames.Length; i++) {
+            voteStrings[i] = i.ToString();
+        }
     }
 }
 
@@ -22,6 +27,8 @@ public class PollManager : MonoBehaviour {
     private float nextUiUpdate;
     [SerializeField] private bool startActive = false;
     private bool pollActive;
+
+    [SerializeField] private string[] optionLabels;
     
     private Poll activePoll;
 
@@ -29,8 +36,9 @@ public class PollManager : MonoBehaviour {
 
     [System.Serializable] public class UiUpdateEvent : UnityEvent<Poll, float> { }
     public UiUpdateEvent onUiUpdate;
-    
-    public UnityEvent onPollStart;
+
+    [System.Serializable] public class PollStartEvent : UnityEvent<Poll> { }
+    public PollStartEvent onPollStart;
 
     [System.Serializable] public class PollEndEvent : UnityEvent<Poll> { }
     public PollEndEvent onPollEnd;
@@ -82,12 +90,12 @@ public class PollManager : MonoBehaviour {
         pollActive = true;
         pollTimer = pollTime;
 
-        activePoll = new Poll(new string[4] { "1", "2", "3", "4" });
+        activePoll = new Poll(optionLabels);
         
         listener.gameObject.SetActive(true);
         listener.ValidMessages = activePoll.voteStrings;
 
-        onPollStart?.Invoke();
+        onPollStart?.Invoke(activePoll);
         onUiUpdate?.Invoke(activePoll, pollTimer);
     }
 
