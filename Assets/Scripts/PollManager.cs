@@ -14,7 +14,7 @@ public struct Poll {
         votes = new int[optionNames.Length];
 
         for(int i = 0; i < optionNames.Length; i++) {
-            voteStrings[i] = i.ToString();
+            voteStrings[i] = (i + 1).ToString();
         }
     }
 }
@@ -71,7 +71,6 @@ public class PollManager : MonoBehaviour {
 
             if(pollTimer <= 0f) {
                 endPoll();
-                logPollResults();
             }
         } else {
             pollDownTimer -= Time.deltaTime;
