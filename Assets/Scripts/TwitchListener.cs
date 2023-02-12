@@ -1,4 +1,5 @@
 using Lexone.UnityTwitchChat;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,8 +7,10 @@ using UnityEngine;
 public class TwitchListener : MonoBehaviour {
     [SerializeField] IRC twitchIrc;
 
-    private int[] votes = new int[4];
-    private string[] voteStrings = new string[4] { "1", "2", "3", "4" };
+    private string[] validMessages;
+    public string[] ValidMessages { get => validMessages; set => validMessages = value; }
+
+    public event Action<string> onValidMessageRecieved;
     
     private void OnEnable() {
         twitchIrc.OnChatMessage += parseChatMessage;
@@ -18,17 +21,8 @@ public class TwitchListener : MonoBehaviour {
     }
 
     private void parseChatMessage(Chatter chatter) {
-        for(int i = 0; i < voteStrings.Length; i++) {
-            if(chatter.message == voteStrings[i]) {
-                votes[i]++;
-            }
+        if(Array.Exists(validMessages, element => element == chatter.message)) {
+            onValidMessageRecieved?.Invoke(chatter.message);
         }
-
-        string logOutput = "";
-        for(int i = 0; i < voteStrings.Length; i++) {
-            logOutput += voteStrings[i] + ": " + votes[i] + ", ";
-        }
-
-        Debug.Log(logOutput);
     }
 }
