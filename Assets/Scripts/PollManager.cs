@@ -20,15 +20,22 @@ public struct Poll {
 }
 
 public class PollManager : MonoBehaviour {
-    [SerializeField] private float pollTime = 20f;
-    private float pollTimer;
-    [SerializeField] private float pollDowntime = 60f;
-    private float pollDownTimer;
-    private float nextUiUpdate;
+    [Header("General")]
     [SerializeField] private bool startActive = false;
     private bool pollActive;
 
+    [SerializeField] bool oneVotePerChatter;
+    private List<string> voterUsernames;
+
     [SerializeField] private string[] optionLabels;
+
+    [Header("Timers")]
+    [SerializeField] private float pollTime = 20f;
+    private float pollTimer;
+    
+    [SerializeField] private float pollDowntime = 60f;
+    private float pollDownTimer;
+    private float nextUiUpdate;
     
     private Poll activePoll;
 
@@ -48,6 +55,8 @@ public class PollManager : MonoBehaviour {
     }
 
     private void Start() {
+        voterUsernames = new List<string>();
+
         pollTimer = pollTime;
         nextUiUpdate = pollTimer - 1f;
 
@@ -107,12 +116,18 @@ public class PollManager : MonoBehaviour {
         onPollEnd?.Invoke(activePoll);
     }
 
-    private void parseMessage(string message) { 
+    private void parseMessage(string message, string username) {
+        if(oneVotePerChatter && voterUsernames.Contains(username)) {
+            return;
+        }
+        
         for(int i = 0; i < activePoll.voteStrings.Length; i++) {
             if(message == activePoll.voteStrings[i]) {
                 activePoll.votes[i]++;
             }
         }
+
+        voterUsernames.Add(username);
     }
 
     private void logPollResults() {

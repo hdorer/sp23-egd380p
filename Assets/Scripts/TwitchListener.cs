@@ -10,7 +10,7 @@ public class TwitchListener : MonoBehaviour {
     private string[] validMessages;
     public string[] ValidMessages { get => validMessages; set => validMessages = value; }
 
-    public event Action<string> onValidMessageRecieved;
+    public event Action<string, string> onValidMessageRecieved;
     
     private void OnEnable() {
         twitchIrc.OnChatMessage += parseChatMessage;
@@ -22,7 +22,7 @@ public class TwitchListener : MonoBehaviour {
 
     private void parseChatMessage(Chatter chatter) {
         if(Array.Exists(validMessages, element => element == chatter.message)) {
-            onValidMessageRecieved?.Invoke(chatter.message);
+            onValidMessageRecieved?.Invoke(chatter.message, chatter.login);
         }
     }
 }

@@ -2126,14 +2126,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a16a27a8a262a8c4f8fd3a1f82f1e0f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pollTime: 10
-  pollDowntime: 5
   startActive: 0
+  oneVotePerChatter: 1
   optionLabels:
   - Increase Health Regen
   - Increase Enemy Spawn Rate
   - Decrease Fire Rate
   - Decrease Damage Taken
+  pollTime: 10
+  pollDowntime: 5
   listener: {fileID: 975340209}
   onUiUpdate:
     m_PersistentCalls:
