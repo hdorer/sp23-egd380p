@@ -10,6 +10,8 @@ public class MovementScript : MonoBehaviour
     float horiz;
     float vert;
 
+    public Camera cam;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -30,6 +32,12 @@ public class MovementScript : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rb.velocity = new Vector3(horiz*runSpeed,0,vert*runSpeed);
+        
+        Vector2 temp = new Vector2(horiz,vert);
+        //Debug.Log(temp);
+        if(cam.transform.eulerAngles.x != 90)
+            temp = Quaternion.Euler(cam.transform.eulerAngles.x,cam.transform.eulerAngles.y,cam.transform.eulerAngles.z)*temp;
+        //Debug.Log(temp);
+        rb.velocity = new Vector3(temp.x*runSpeed,0,temp.y*runSpeed);
     }
 }
