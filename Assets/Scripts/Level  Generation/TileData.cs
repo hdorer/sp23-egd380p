@@ -19,6 +19,13 @@ public class TileData : MonoBehaviour
 
     [HideInInspector]
     public Collider overlap = null;
+    [HideInInspector]
+    public BoxCollider boxCollider;
+
+    private void Awake()
+    {
+        boxCollider = GetComponent<BoxCollider>();
+    }
 
     private void OnTriggerEnter(Collider other)
     {
