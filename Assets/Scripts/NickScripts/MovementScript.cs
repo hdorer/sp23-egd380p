@@ -33,11 +33,12 @@ public class MovementScript : MonoBehaviour
     private void FixedUpdate()
     {
         
-        Vector2 temp = new Vector2(horiz,vert);
-        //Debug.Log(temp);
-        if(cam.transform.eulerAngles.x != 90)
-            temp = Quaternion.Euler(cam.transform.eulerAngles.x,cam.transform.eulerAngles.y,cam.transform.eulerAngles.z)*temp;
-        //Debug.Log(temp);
-        rb.velocity = new Vector3(temp.x*runSpeed,0,temp.y*runSpeed);
+        Vector3 movement = new Vector3(horiz, 0, vert);
+        movement = Quaternion.Euler(0,cam.transform.eulerAngles.y,0)*movement;
+
+        float mag = Mathf.Clamp01(movement.magnitude)*runSpeed;
+        movement.Normalize();
+
+        rb.velocity = movement*mag;
     }
 }
