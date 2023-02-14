@@ -30,9 +30,8 @@ public class MovementScript : MonoBehaviour
         vert = Input.GetAxisRaw("Vertical");
     }
 
-    private void FixedUpdate()
+    void MovePlayer()
     {
-        
         Vector3 movement = new Vector3(horiz, 0, vert);
         movement = Quaternion.Euler(0,cam.transform.eulerAngles.y,0)*movement;
 
@@ -40,5 +39,10 @@ public class MovementScript : MonoBehaviour
         movement.Normalize();
 
         rb.velocity = movement*mag;
+    }
+
+    private void FixedUpdate()
+    {
+        MovePlayer();
     }
 }
