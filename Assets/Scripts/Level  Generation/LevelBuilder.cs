@@ -20,6 +20,9 @@ public class LevelBuilder : MonoBehaviour
     public List<GameObject> placeableTiles;
 
     private PathFinding pathFinding = new PathFinding();
+    private bool overlapChecked = false;
+    private bool hallwaysGen = false;
+
 
     void Awake()
     {
@@ -31,22 +34,24 @@ public class LevelBuilder : MonoBehaviour
     {
         if (placedTiles.Count < numRooms && placeableTiles.Count != 0)
             GenerateLevel();
-        else
+        else if (overlapChecked == false)
             CheckOverlap();
+        else if (hallwaysGen == false)
+            GenerateHallways();
 
         if (Input.GetKeyDown(KeyCode.Q))
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
 
-        foreach (TileData tile in placedTiles)
-        {
-            foreach (Connection con in tile.connections)
-            {
-                if (con.connection != null)
-                    Debug.DrawLine(con.alignPt.position, con.connection.position, Color.red);
-            }
-        }
+        //foreach (TileData tile in placedTiles)
+        //{
+        //    foreach (Connection con in tile.connections)
+        //    {
+        //        if (con.connection != null)
+        //            Debug.DrawLine(con.alignPt.position, con.connection.position, Color.red);
+        //    }
+        //}
     }
 
     private void GenerateLevel()
@@ -131,10 +136,12 @@ public class LevelBuilder : MonoBehaviour
 
     private void CheckOverlap()
     {
+        overlapChecked = true;
         foreach (TileData tile in placedTiles)
         {
             if (tile.overlap != null)
             {
+                overlapChecked = false;
                 Vector3Int gridPt = grid.WorldToCell(tile.transform.position);
                 Vector3Int[] neighborGridpts = new Vector3Int[8] {new Vector3Int(gridPt.x + 1, gridPt.y),
                                                                     new Vector3Int(gridPt.x + 1, gridPt.y + 1),
@@ -158,18 +165,27 @@ public class LevelBuilder : MonoBehaviour
                     }
                 }
             }
-            else
-            {
-                List<Vector3Int> path = pathFinding.GeneratePath(placedTiles, grid, grid.WorldToCell(placedTiles[0].connections[0].alignPt.position), grid.WorldToCell(placedTiles[0].connections[0].connection.transform.position));
-                
-                foreach (Vector3Int p in path)
-                {
-                    GameObject tmp = Instantiate(hallway);
-                    tmp.transform.position = grid.CellToWorld(p);
-                }
+        }
+    }
 
-                Debug.Break();
-                break;
+    private void GenerateHallways()
+    {
+        hallwaysGen = true;
+
+        foreach (TileData tile in placedTiles)
+        {
+            foreach (Connection con in tile.connections)
+            {
+                if (con.connection != null)
+                {
+                    List<Vector3Int> path = pathFinding.GeneratePath(placedTiles, grid, grid.WorldToCell(con.alignPt.position), grid.WorldToCell(con.connection.transform.position));
+
+                    foreach (Vector3Int p in path)
+                    {
+                        GameObject tmp = Instantiate(hallway);
+                        tmp.transform.position = grid.CellToWorld(p);
+                    }
+                }
             }
         }
     }
