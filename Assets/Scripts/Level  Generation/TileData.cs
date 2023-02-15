@@ -27,6 +27,11 @@ public class TileData : MonoBehaviour
         boxCollider = GetComponent<BoxCollider>();
     }
 
+    public bool CheckContains(Vector3 pt)
+    {
+        return boxCollider.bounds.Contains(pt);
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         overlap = other;

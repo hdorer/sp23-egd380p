@@ -172,12 +172,15 @@ public class LevelBuilder : MonoBehaviour
     {
         hallwaysGen = true;
 
+        Dictionary<Vector3Int, bool> visited = new Dictionary<Vector3Int, bool>();
+
         foreach (TileData tile in placedTiles)
         {
             foreach (Connection con in tile.connections)
             {
-                if (con.connection != null)
+                if (con.connection != null && visited.ContainsKey(grid.WorldToCell(con.connection.position)) != true)
                 {
+                    visited.Add(grid.WorldToCell(con.alignPt.position), true);
                     List<Vector3Int> path = pathFinding.GeneratePath(placedTiles, grid, grid.WorldToCell(con.alignPt.position), grid.WorldToCell(con.connection.transform.position));
 
                     foreach (Vector3Int p in path)

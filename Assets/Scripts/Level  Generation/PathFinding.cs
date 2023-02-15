@@ -17,7 +17,7 @@ public struct Node
 public class PathFinding
 {
     Vector3Int[] neighborPts = new Vector3Int[4] { new Vector3Int(1, 0, 0), new Vector3Int(0, 1, 0), new Vector3Int(-1, 0, 0), new Vector3Int(0, -1, 0) };
-
+    Vector3Int up = new Vector3Int(0, 2, 0);
 
     public List<Vector3Int> GeneratePath(List<TileData> rooms, Grid grid, Vector3Int start, Vector3Int target)
     {
@@ -33,28 +33,28 @@ public class PathFinding
         int loopBreak = 0;
         while (tmp.position != target)
         {
-            if (visited.ContainsKey(tmp.position + neighborPts[0]) != true)
+            if (visited.ContainsKey(tmp.position + neighborPts[0]) != true && CheckValid(rooms, grid.CellToWorld(tmp.position + neighborPts[0]) + up) != false)
             {
                 path.Add(new Node(tmp.position + neighborPts[0], tmp.position));
                 from.Add(tmp.position + neighborPts[0], tmp);
                 visited.Add(tmp.position + neighborPts[0] , true);
             }
 
-            if (visited.ContainsKey(tmp.position + neighborPts[1]) != true)
+            if (visited.ContainsKey(tmp.position + neighborPts[1]) != true && CheckValid(rooms, grid.CellToWorld(tmp.position + neighborPts[1]) + up) != false)
             {
                 path.Add(new Node(tmp.position + neighborPts[1], tmp.position));
                 from.Add(tmp.position + neighborPts[1], tmp);
                 visited.Add(tmp.position + neighborPts[1], true);
             }
 
-            if (visited.ContainsKey(tmp.position + neighborPts[2]) != true)
+            if (visited.ContainsKey(tmp.position + neighborPts[2]) != true && CheckValid(rooms, grid.CellToWorld(tmp.position + neighborPts[2]) + up) != false)
             {
                 path.Add(new Node(tmp.position + neighborPts[2], tmp.position));
                 from.Add(tmp.position + neighborPts[2], tmp);
                 visited.Add(tmp.position + neighborPts[2], true);
             }
 
-            if (visited.ContainsKey(tmp.position + neighborPts[3]) != true)
+            if (visited.ContainsKey(tmp.position + neighborPts[3]) != true && CheckValid(rooms, grid.CellToWorld(tmp.position + neighborPts[3]) + up) != false)
             {
                 path.Add(new Node(tmp.position + neighborPts[3], tmp.position));
                 from.Add(tmp.position + neighborPts[3], tmp);
@@ -64,13 +64,14 @@ public class PathFinding
             SortList(ref path, target);
 
             path.Remove(tmp);
-            tmp = path[0];
 
-            if (path.Count == 0)
+            if (path.Count <= 0)
             {
                 Debug.Log("NO PATH FOUND");
                 break;
             }
+
+            tmp = path[0];
 
             loopBreak++;
             if (loopBreak > 100)
@@ -96,8 +97,14 @@ public class PathFinding
         return finishedPath;
     }
 
-    public void SortList(ref List<Node> path, Vector3Int target)
+    private void SortList(ref List<Node> path, Vector3Int target)
     {
+        if (path.Count - 1 <= 0)
+        {
+            Debug.Log("PATH EMPTY");
+            return;
+        }
+
         for (int i = 0; i < path.Count - 1; i++)
         {
             for (int j = i; j < path.Count; j++)
@@ -110,5 +117,21 @@ public class PathFinding
                 }
             }
         }
+    }
+
+    private bool CheckValid(List<TileData> rooms, Vector3 point)
+    {
+        bool valid = false;
+
+        for (int i = 0; i < rooms.Count; i++)
+        {
+            //Debug.Log(rooms[i].CheckContains(point));
+            valid = rooms[i].CheckContains(point);
+
+            if (valid == true)
+                break;
+        }
+        Debug.Log(valid);
+        return valid;
     }
 }
