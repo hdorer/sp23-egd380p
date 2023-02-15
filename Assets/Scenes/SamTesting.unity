@@ -336,7 +336,7 @@ MonoBehaviour:
   tileShift: 3
   placedTiles:
   - {fileID: 7939635031611494895}
-  hallway: {fileID: 2382284882741248557, guid: 3bd768b899be4f44fa162138dec93cfc, type: 3}
+  hallway: {fileID: 308476084578560956, guid: 4b9b37cbe626a4b4680348af68c14ea2, type: 3}
   placeableTiles:
   - {fileID: 2382284882741248557, guid: 3bd768b899be4f44fa162138dec93cfc, type: 3}
   - {fileID: 4532993330944040418, guid: 7425a01942802744090a02ad66e9e609, type: 3}

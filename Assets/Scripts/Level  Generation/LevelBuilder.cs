@@ -19,6 +19,8 @@ public class LevelBuilder : MonoBehaviour
 
     public List<GameObject> placeableTiles;
 
+    private PathFinding pathFinding = new PathFinding();
+
     void Awake()
     {
         grid = GetComponent<Grid>();
@@ -155,6 +157,19 @@ public class LevelBuilder : MonoBehaviour
                         tile.transform.position = Vector3Int.FloorToInt(grid.CellToWorld(neighborGridpts[i]));
                     }
                 }
+            }
+            else
+            {
+                List<Vector3Int> path = pathFinding.GeneratePath(placedTiles, grid, grid.WorldToCell(placedTiles[0].connections[0].alignPt.position), grid.WorldToCell(placedTiles[0].connections[0].connection.transform.position));
+                
+                foreach (Vector3Int p in path)
+                {
+                    GameObject tmp = Instantiate(hallway);
+                    tmp.transform.position = grid.CellToWorld(p);
+                }
+
+                Debug.Break();
+                break;
             }
         }
     }

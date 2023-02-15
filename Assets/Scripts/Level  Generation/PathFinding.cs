@@ -2,26 +2,113 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PathFinding : MonoBehaviour
+public struct Node
 {
-    Vector3[] neighborPts = new Vector3[4] { new Vector3(1, 0, 0), new Vector3(0, 1, 0), new Vector3(-1, 0, 0), new Vector3(0, -1, 0) };
+    public Vector3Int position;
+    public Vector3Int from;
 
-    List<Vector3> GeneratePath(List<TileData> rooms, Grid grid, Transform start, Transform target)
+    public Node(Vector3Int pos, Vector3Int f)
     {
-        StartCoroutine(FindPath(rooms, grid, start, target));
+        position = pos;
+        from = f;
+    }
+}
 
-        return null;
+public class PathFinding
+{
+    Vector3Int[] neighborPts = new Vector3Int[4] { new Vector3Int(1, 0, 0), new Vector3Int(0, 1, 0), new Vector3Int(-1, 0, 0), new Vector3Int(0, -1, 0) };
+
+
+    public List<Vector3Int> GeneratePath(List<TileData> rooms, Grid grid, Vector3Int start, Vector3Int target)
+    {
+        Dictionary<Vector3Int, bool> visited = new Dictionary<Vector3Int, bool>();
+        Dictionary<Vector3Int, Node> from = new Dictionary<Vector3Int, Node>();
+        List<Node> path = new List<Node>();
+
+        Node tmp = new Node();
+        tmp.position = start;
+        path.Add(tmp);
+        visited.Add(tmp.position, true);
+
+        int loopBreak = 0;
+        while (tmp.position != target)
+        {
+            if (visited.ContainsKey(tmp.position + neighborPts[0]) != true)
+            {
+                path.Add(new Node(tmp.position + neighborPts[0], tmp.position));
+                from.Add(tmp.position + neighborPts[0], tmp);
+                visited.Add(tmp.position + neighborPts[0] , true);
+            }
+
+            if (visited.ContainsKey(tmp.position + neighborPts[1]) != true)
+            {
+                path.Add(new Node(tmp.position + neighborPts[1], tmp.position));
+                from.Add(tmp.position + neighborPts[1], tmp);
+                visited.Add(tmp.position + neighborPts[1], true);
+            }
+
+            if (visited.ContainsKey(tmp.position + neighborPts[2]) != true)
+            {
+                path.Add(new Node(tmp.position + neighborPts[2], tmp.position));
+                from.Add(tmp.position + neighborPts[2], tmp);
+                visited.Add(tmp.position + neighborPts[2], true);
+            }
+
+            if (visited.ContainsKey(tmp.position + neighborPts[3]) != true)
+            {
+                path.Add(new Node(tmp.position + neighborPts[3], tmp.position));
+                from.Add(tmp.position + neighborPts[3], tmp);
+                visited.Add(tmp.position + neighborPts[3], true);
+            }
+
+            SortList(ref path, target);
+
+            path.Remove(tmp);
+            tmp = path[0];
+
+            if (path.Count == 0)
+            {
+                Debug.Log("NO PATH FOUND");
+                break;
+            }
+
+            loopBreak++;
+            if (loopBreak > 100)
+            {
+                Debug.Log("LOOP BREAK");
+                Debug.Break();
+                break;
+            }
+        }
+
+        Vector3Int backTrack = target;
+        Node oneBefore = path[0];
+
+        List<Vector3Int> finishedPath = new List<Vector3Int>();
+
+        while (backTrack != start)
+        {
+            backTrack = oneBefore.position;
+            finishedPath.Add(backTrack);
+            from.TryGetValue(oneBefore.position, out oneBefore);
+        }
+
+        return finishedPath;
     }
 
-    IEnumerator FindPath(List<TileData> rooms, Grid grid, Transform start, Transform target)
+    public void SortList(ref List<Node> path, Vector3Int target)
     {
-        Vector3Int tmp = grid.WorldToCell(start.position);
-
-        yield return null;
-
-        while (tmp != grid.WorldToCell(target.position))
+        for (int i = 0; i < path.Count - 1; i++)
         {
-
+            for (int j = i; j < path.Count; j++)
+            {
+                if (Vector3Int.Distance(path[i].position, target) > Vector3Int.Distance(path[j].position, target))
+                {
+                    Node tmp = path[i];
+                    path[i] = path[j];
+                    path[j] = tmp;
+                }
+            }
         }
     }
 }
