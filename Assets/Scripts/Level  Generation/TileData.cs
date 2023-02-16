@@ -16,7 +16,7 @@ public class Connection
 public class TileData : MonoBehaviour
 {
     public List<Connection> connections;
-
+    public GameObject sphere;
     [HideInInspector]
     public Collider overlap = null;
     [HideInInspector]
@@ -27,9 +27,27 @@ public class TileData : MonoBehaviour
         boxCollider = GetComponent<BoxCollider>();
     }
 
+    private void OnDrawGizmos()
+    {
+        if (boxCollider != null)
+            Gizmos.DrawWireCube(boxCollider.bounds.center, boxCollider.bounds.size);
+    }
+
     public bool CheckContains(Vector3 pt)
     {
-        return boxCollider.bounds.Contains(pt);
+        if (boxCollider.bounds.Contains(pt) == true)
+        {
+            //GameObject tmp = Instantiate(sphere);
+            //tmp.transform.position = pt;
+            //Debug.Log(pt);
+            return true;
+        }
+        else
+        {
+            GameObject tmp = Instantiate(sphere);
+            tmp.transform.position = pt;
+            return false;
+        }
     }
 
     private void OnTriggerEnter(Collider other)

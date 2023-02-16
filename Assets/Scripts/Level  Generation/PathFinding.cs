@@ -33,29 +33,33 @@ public class PathFinding
         int loopBreak = 0;
         while (tmp.position != target)
         {
-            if (visited.ContainsKey(tmp.position + neighborPts[0]) != true && CheckValid(rooms, grid.CellToWorld(tmp.position + neighborPts[0]) + up) != false)
+            if (visited.ContainsKey(tmp.position + neighborPts[0]) != true /*&& CheckValid(rooms, grid.CellToWorld(tmp.position + neighborPts[0]) + up) == false*/)
             {
+                CheckValid(rooms, grid.CellToWorld(tmp.position + neighborPts[0]) + up);
                 path.Add(new Node(tmp.position + neighborPts[0], tmp.position));
                 from.Add(tmp.position + neighborPts[0], tmp);
                 visited.Add(tmp.position + neighborPts[0] , true);
             }
 
-            if (visited.ContainsKey(tmp.position + neighborPts[1]) != true && CheckValid(rooms, grid.CellToWorld(tmp.position + neighborPts[1]) + up) != false)
+            if (visited.ContainsKey(tmp.position + neighborPts[1]) != true /*&& CheckValid(rooms, grid.CellToWorld(tmp.position + neighborPts[1]) + up) == false*/)
             {
+                CheckValid(rooms, grid.CellToWorld(tmp.position + neighborPts[1]) + up);
                 path.Add(new Node(tmp.position + neighborPts[1], tmp.position));
                 from.Add(tmp.position + neighborPts[1], tmp);
                 visited.Add(tmp.position + neighborPts[1], true);
             }
 
-            if (visited.ContainsKey(tmp.position + neighborPts[2]) != true && CheckValid(rooms, grid.CellToWorld(tmp.position + neighborPts[2]) + up) != false)
+            if (visited.ContainsKey(tmp.position + neighborPts[2]) != true /*&& CheckValid(rooms, grid.CellToWorld(tmp.position + neighborPts[2]) + up) == false*/)
             {
+                CheckValid(rooms, grid.CellToWorld(tmp.position + neighborPts[2]) + up);
                 path.Add(new Node(tmp.position + neighborPts[2], tmp.position));
                 from.Add(tmp.position + neighborPts[2], tmp);
                 visited.Add(tmp.position + neighborPts[2], true);
             }
 
-            if (visited.ContainsKey(tmp.position + neighborPts[3]) != true && CheckValid(rooms, grid.CellToWorld(tmp.position + neighborPts[3]) + up) != false)
+            if (visited.ContainsKey(tmp.position + neighborPts[3]) != true /*&& CheckValid(rooms, grid.CellToWorld(tmp.position + neighborPts[3]) + up) == false*/)
             {
+                CheckValid(rooms, grid.CellToWorld(tmp.position + neighborPts[3]) + up);
                 path.Add(new Node(tmp.position + neighborPts[3], tmp.position));
                 from.Add(tmp.position + neighborPts[3], tmp);
                 visited.Add(tmp.position + neighborPts[3], true);
@@ -121,17 +125,17 @@ public class PathFinding
 
     private bool CheckValid(List<TileData> rooms, Vector3 point)
     {
-        bool valid = false;
+        // true == point is inside of collider
+        bool check = false;
 
-        for (int i = 0; i < rooms.Count; i++)
+        foreach (TileData room in rooms)
         {
-            //Debug.Log(rooms[i].CheckContains(point));
-            valid = rooms[i].CheckContains(point);
+            check = room.CheckContains(point);
 
-            if (valid == true)
+            if (check == true)
                 break;
         }
-        Debug.Log(valid);
-        return valid;
+        
+        return check;
     }
 }

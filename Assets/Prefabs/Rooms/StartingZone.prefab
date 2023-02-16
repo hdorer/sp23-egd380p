@@ -201,6 +201,7 @@ MonoBehaviour:
   - alignPt: {fileID: 866727559567071149}
     direction: 2
     connection: {fileID: 0}
+  sphere: {fileID: 6232629169168735279, guid: 643d53cc82af79542a505b61e8aef0a3, type: 3}
   overlap: {fileID: 0}
   boxCollider: {fileID: 0}
 --- !u!65 &4081297365773054618
@@ -211,7 +212,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5582301183447046641}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 3.8, y: 2.8, z: 3.8}

@@ -21,7 +21,7 @@ public class LevelBuilder : MonoBehaviour
 
     private PathFinding pathFinding = new PathFinding();
     private bool overlapChecked = false;
-    private bool hallwaysGen = false;
+    private bool hallwaysGen = true;
 
 
     void Awake()
@@ -30,14 +30,26 @@ public class LevelBuilder : MonoBehaviour
         gridPts.Add(Vector3Int.FloorToInt(placedTiles[0].transform.position), placedTiles[0].gameObject);
     }
 
+    //private void LateUpdate()
+    //{
+    //    if (hallwaysGen == false && overlapChecked == true)
+    //    {
+    //        GenerateHallways();
+    //        Debug.Break();
+    //    }
+    //}
+
     private void Update()
     {
         if (placedTiles.Count < numRooms && placeableTiles.Count != 0)
             GenerateLevel();
         else if (overlapChecked == false)
             CheckOverlap();
-        else if (hallwaysGen == false)
+        else if (hallwaysGen == false && overlapChecked == true)
+        {
             GenerateHallways();
+            Debug.Break();
+        }
 
         if (Input.GetKeyDown(KeyCode.Q))
         {
@@ -111,7 +123,7 @@ public class LevelBuilder : MonoBehaviour
         }
         
         int tileChoice = Random.Range(0, placeableTiles.Count);
-        GameObject newTile = Instantiate(placeableTiles[tileChoice]);
+        GameObject newTile = Instantiate(placeableTiles[tileChoice], new Vector3(0, 10, 0), transform.rotation);
         placeableTiles.Remove(placeableTiles[tileChoice]);
         newTile.transform.position = grid.CellToWorld(pos);
         gridPts[pos] = newTile.gameObject;
@@ -137,11 +149,13 @@ public class LevelBuilder : MonoBehaviour
     private void CheckOverlap()
     {
         overlapChecked = true;
+        hallwaysGen = false;
         foreach (TileData tile in placedTiles)
         {
             if (tile.overlap != null)
             {
                 overlapChecked = false;
+                hallwaysGen = true;
                 Vector3Int gridPt = grid.WorldToCell(tile.transform.position);
                 Vector3Int[] neighborGridpts = new Vector3Int[8] {new Vector3Int(gridPt.x + 1, gridPt.y),
                                                                     new Vector3Int(gridPt.x + 1, gridPt.y + 1),
