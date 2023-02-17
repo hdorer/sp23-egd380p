@@ -37,17 +37,18 @@ public class TileData : MonoBehaviour
     {
         if (boxCollider.bounds.Contains(pt) == true)
         {
-            //GameObject tmp = Instantiate(sphere);
-            //tmp.transform.position = pt;
-            //Debug.Log(pt);
             return true;
         }
         else
         {
-            GameObject tmp = Instantiate(sphere);
-            tmp.transform.position = pt;
             return false;
         }
+    }
+
+    public void Sphere(Vector3 pt)
+    {
+        GameObject tmp = Instantiate(sphere);
+        tmp.transform.position = pt;
     }
 
     private void OnTriggerEnter(Collider other)

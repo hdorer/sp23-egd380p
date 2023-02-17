@@ -23,7 +23,6 @@ public class LevelBuilder : MonoBehaviour
     private bool overlapChecked = false;
     private bool hallwaysGen = true;
 
-
     void Awake()
     {
         grid = GetComponent<Grid>();
@@ -48,22 +47,13 @@ public class LevelBuilder : MonoBehaviour
         else if (hallwaysGen == false && overlapChecked == true)
         {
             GenerateHallways();
-            Debug.Break();
+            //Debug.Break();
         }
 
         if (Input.GetKeyDown(KeyCode.Q))
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
-
-        //foreach (TileData tile in placedTiles)
-        //{
-        //    foreach (Connection con in tile.connections)
-        //    {
-        //        if (con.connection != null)
-        //            Debug.DrawLine(con.alignPt.position, con.connection.position, Color.red);
-        //    }
-        //}
     }
 
     private void GenerateLevel()
