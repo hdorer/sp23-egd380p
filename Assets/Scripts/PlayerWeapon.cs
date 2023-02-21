@@ -1,24 +1,39 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerWeapon : MonoBehaviour {
     [SerializeField] private Weapon weapon;
     [SerializeField] private Transform bulletSpawnPoint;
 
     private int bulletsInClip;
-    
+
+    private bool firing = false;
     private bool fireCooldown = false;
     private bool reloading = false;
+
+    [SerializeField] private InputAction fireInput;
+
+    private void OnEnable() {
+        fireInput.Enable();
+
+        fireInput.performed += context => firing = true;
+        fireInput.canceled += context => firing = false;
+    }
 
     private void Start() {
         bulletsInClip = weapon.ClipSize;
     }
 
     private void Update() {
-        if(Input.GetMouseButton(0)) {
+        if(firing) {
             fire();
         }
+    }
+
+    private void OnDisable() {
+        fireInput.Disable();
     }
 
     private void fire() {

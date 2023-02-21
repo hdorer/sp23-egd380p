@@ -1115,3 +1115,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weapon: {fileID: 11400000, guid: a9e8a63cd0ee9f4498fc5b52b5b56ba2, type: 2}
   bulletSpawnPoint: {fileID: 639396009}
+  fireInput:
+    m_Name: Fire Input
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 70638c1a-4708-4f55-9318-6f8da09a1348
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 192e8024-5a4d-40da-9be4-ac81247d20a0
+      m_Path: <Mouse>/leftButton
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Fire Input
+      m_Flags: 0
+    m_Flags: 0
