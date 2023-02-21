@@ -26,6 +26,7 @@ public class PollDisplay : MonoBehaviour {
             try {
                 voteSliders[i].value = poll.votes[i];
             } catch(Exception e) {
+                Debug.Log(e.ToString());
                 voteSliders[i].value = 0;
             }
         }
