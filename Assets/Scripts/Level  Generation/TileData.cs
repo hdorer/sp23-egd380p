@@ -8,6 +8,7 @@ public enum dir { left, right, front, back };
 public class Connection
 {
     public Transform alignPt;
+    public GameObject wall;
     public dir direction;
     [HideInInspector]
     public Transform connection;

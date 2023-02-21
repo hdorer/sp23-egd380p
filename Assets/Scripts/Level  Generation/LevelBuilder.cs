@@ -12,6 +12,7 @@ public class LevelBuilder : MonoBehaviour
     public int startSeperation;
     public int tileShift;
     public List<TileData> placedTiles;
+    public List<Hallways> hallways;
     int index = 0;
 
     [Header("Hallway")]
@@ -138,7 +139,9 @@ public class LevelBuilder : MonoBehaviour
                 (con.direction == dir.back && direction == dir.front))
             {
                 con.connection = connector.alignPt;
+                Destroy(con.wall);
                 connector.connection = con.alignPt;
+                Destroy(connector.wall);
                 break;
             }
 
@@ -201,9 +204,30 @@ public class LevelBuilder : MonoBehaviour
                     {
                         GameObject tmp = Instantiate(hallway);
                         tmp.transform.position = grid.CellToWorld(p);
+                        hallways.Add(tmp.GetComponent<Hallways>());
                     }
                 }
             }
+        }
+
+        StartCoroutine(DeleteWalls());
+    }
+
+    IEnumerator DeleteWalls()
+    {
+        yield return new WaitForSeconds(0.1f);
+
+        foreach (TileData tile in placedTiles)
+        {
+            foreach (Connection con in tile.connections)
+            {
+
+            }
+        }
+
+        foreach (Hallways hall in hallways)
+        {
+            hall.ConnectHallways();
         }
     }
 }
