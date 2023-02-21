@@ -5,7 +5,7 @@ using UnityEngine;
 public class MovementScript : MonoBehaviour
 {
     Rigidbody rb;
-    public float runSpeed = 10.0f;
+    private float runSpeed = 10.0f;
     float horiz;
     float vert;
     public Camera cam;
@@ -21,6 +21,7 @@ public class MovementScript : MonoBehaviour
         RotatePlayer(); //Rotates the player to the mouse position
     }
 
+    //Can use same code for shooting weapons
     void RotatePlayer()
     {
         Ray cameraRay = cam.ScreenPointToRay(Input.mousePosition);
