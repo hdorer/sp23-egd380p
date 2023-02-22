@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 public class PlayerWeapon : MonoBehaviour {
@@ -14,6 +15,9 @@ public class PlayerWeapon : MonoBehaviour {
     private bool reloading = false;
 
     [SerializeField] private InputAction fireInput;
+
+    [System.Serializable] public class UiUpdateEvent : UnityEvent<int, int> { }
+    public UiUpdateEvent onUiUpdate;
 
     private void OnEnable() {
         fireInput.Enable();
@@ -43,6 +47,7 @@ public class PlayerWeapon : MonoBehaviour {
 
         weapon.fire(bulletSpawnPoint);
         bulletsInClip--;
+        onUiUpdate?.Invoke(bulletsInClip, weapon.ClipSize);
 
         if(bulletsInClip <= 0) {
             StartCoroutine(reload());
@@ -61,6 +66,7 @@ public class PlayerWeapon : MonoBehaviour {
         reloading = true;
         yield return new WaitForSeconds(weapon.ReloadTime);
         bulletsInClip = weapon.ClipSize;
+        onUiUpdate?.Invoke(bulletsInClip, weapon.ClipSize);
         reloading = false;
     }
 }
