@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+    public bool isAllyBullet;
     public float speed = 10;
     void Update()
     {
-        transform.position += transform.right * Time.deltaTime * speed;
+        transform.position += transform.forward * Time.deltaTime * speed;
     }
 }
