@@ -8,8 +8,8 @@ public class Weapon : ScriptableObject {
     [SerializeField] private float fireRate;
     public float FireRate { get => fireRate; }
     [SerializeField] private float damagePerBullet;
-    //[SerializeField] private float bulletsPerShot; // I'm gonna do this later
-    //[SerializeField] private float bulletSpread;
+    [SerializeField] private float bulletsPerShot; // I'm gonna do this later
+    [SerializeField] private float bulletSpread;
     public float DamagePerBullet { get => damagePerBullet; }
     [SerializeField] private int clipSize;
     public int ClipSize { get => clipSize; }
@@ -25,7 +25,16 @@ public class Weapon : ScriptableObject {
     [SerializeField] string flavorText;
 
     public void fire(Transform bulletSpawnPoint) {
-        Bullet bullet = Instantiate(bulletPrefab, bulletSpawnPoint.position, bulletSpawnPoint.rotation).GetComponent<Bullet>();
-        bullet.setDamage(damagePerBullet);
+        float startingRotation = -((bulletsPerShot - 1) / 2 * bulletSpread);
+        for(int i = 0; i < bulletsPerShot; i++) {
+            float bulletRotationX = bulletSpawnPoint.rotation.eulerAngles.x;
+            float bulletRotationY = bulletSpawnPoint.rotation.eulerAngles.y + startingRotation + bulletSpread * i;
+            float bulletRotationZ = bulletSpawnPoint.rotation.eulerAngles.z;
+
+            Quaternion bulletRotation = Quaternion.Euler(bulletRotationX, bulletRotationY, bulletRotationZ);
+            
+            Bullet bullet = Instantiate(bulletPrefab, bulletSpawnPoint.position, bulletRotation).GetComponent<Bullet>();
+            bullet.setDamage(damagePerBullet);
+        }
     }
 }

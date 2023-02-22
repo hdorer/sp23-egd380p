@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "AttackActions")]
+[CreateAssetMenu(menuName = "ScriptableObjects/AttackAction")]
 public class AttackAction : ScriptableObject
 {
     public string attackAnimation;
