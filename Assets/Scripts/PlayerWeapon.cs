@@ -15,15 +15,19 @@ public class PlayerWeapon : MonoBehaviour {
     private bool reloading = false;
 
     [SerializeField] private InputAction fireInput;
+    [SerializeField] private InputAction reloadInput;
 
     [System.Serializable] public class UiUpdateEvent : UnityEvent<int, int> { }
     public UiUpdateEvent onUiUpdate;
 
     private void OnEnable() {
         fireInput.Enable();
+        reloadInput.Enable();
 
         fireInput.performed += context => firing = true;
         fireInput.canceled += context => firing = false;
+
+        reloadInput.performed += context => StartCoroutine(reload());
     }
 
     private void Start() {
@@ -38,6 +42,7 @@ public class PlayerWeapon : MonoBehaviour {
 
     private void OnDisable() {
         fireInput.Disable();
+        reloadInput.Disable();
     }
 
     private void fire() {

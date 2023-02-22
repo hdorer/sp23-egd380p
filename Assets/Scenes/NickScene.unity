@@ -1472,6 +1472,23 @@ MonoBehaviour:
       m_Action: Fire Input
       m_Flags: 0
     m_Flags: 0
+  reloadInput:
+    m_Name: Reload Input
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 00e88a8c-3efc-4ba2-b1c1-cfa9caac83ca
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: fbb45ec2-9757-4f9e-9dbc-c869466bfe66
+      m_Path: <Keyboard>/r
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Reload Input
+      m_Flags: 0
+    m_Flags: 0
   onUiUpdate:
     m_PersistentCalls:
       m_Calls:
