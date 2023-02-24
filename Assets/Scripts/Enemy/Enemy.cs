@@ -19,10 +19,12 @@ public class Enemy : Character
     public float currentRecoveryTime = 0;
     public Transform bulletSpawnPosition;
     public GameObject gun;
+    public bool isMelee;
 
     private void Start()
     {
         agent.speed = moveSpeed;
+        target = FindObjectOfType<PlayerMovement>();
         anim = GetComponent<Animator>();
     }
     public void Update()
@@ -58,9 +60,9 @@ public class Enemy : Character
             isActing = false;
         }
     }
-    public void PlayAnimation(string animName)
+    public void PlayAnimation(string animName, int animLayer)
     {
-        anim.CrossFade(animName, 0.2f);
+        anim.CrossFade(animName, 0.2f, animLayer);
     }
     public bool GetAttack()
     {

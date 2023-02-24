@@ -51,7 +51,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: blendShape.Shoot
-    path: Enemy1/Cube
+    path: Enemy1/HeadAim/Head
     classID: 137
     script: {fileID: 0}
   m_PPtrCurves: []
@@ -63,7 +63,7 @@ AnimationClip:
   m_ClipBindingConstant:
     genericBindings:
     - serializedVersion: 2
-      path: 442726844
+      path: 821321089
       attribute: 2978337722
       script: {fileID: 0}
       typeID: 137
@@ -125,7 +125,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: blendShape.Shoot
-    path: Enemy1/Cube
+    path: Enemy1/HeadAim/Head
     classID: 137
     script: {fileID: 0}
   m_EulerEditorCurves: []
