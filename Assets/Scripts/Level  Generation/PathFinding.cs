@@ -72,6 +72,8 @@ public class PathFinding
         Node oneBefore = new Node(target);
         List<Vector3Int> finishedPath = new List<Vector3Int>();
 
+        finishedPath.Add(backTrack);
+
         while (backTrack != start)
         {
             // Move along the from Dictionary until the start location is reached

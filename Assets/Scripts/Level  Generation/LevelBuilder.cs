@@ -30,28 +30,31 @@ public class LevelBuilder : MonoBehaviour
         gridPts.Add(Vector3Int.FloorToInt(placedTiles[0].transform.position), placedTiles[0].gameObject);
     }
 
-    //private void LateUpdate()
-    //{
-    //    if (hallwaysGen == false && overlapChecked == true)
-    //    {
-    //        GenerateHallways();
-    //        Debug.Break();
-    //    }
-    //}
+    private void LateUpdate()
+    {
+        if (hallwaysGen == false && overlapChecked == true)
+        {
+            GenerateHallways();
+            //Debug.Break();
+        }
+    }
 
     private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+    }
+
+    private void FixedUpdate()
     {
         if (placedTiles.Count < numRooms && placeableTiles.Count != 0)
             GenerateLevel();
         else if (overlapChecked == false)
             CheckOverlap();
-        else if (hallwaysGen == false && overlapChecked == true)
-            GenerateHallways();
-
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        }
+        //else if (hallwaysGen == false && overlapChecked == true)
+        //    GenerateHallways();
     }
 
     private void GenerateLevel()
@@ -140,29 +143,23 @@ public class LevelBuilder : MonoBehaviour
     {
         overlapChecked = true;
         hallwaysGen = false;
-
         foreach (TileData tile in placedTiles)
         {
-            if (tile.overlap != null)
+            if (tile.overlap != null && !tile.CheckContains(placedTiles))
             {
                 overlapChecked = false;
                 hallwaysGen = true;
                 Vector3Int gridPt = grid.WorldToCell(tile.transform.position);
-                Vector3Int[] neighborGridpts = new Vector3Int[8] {new Vector3Int(gridPt.x + 1, gridPt.y),
-                                                                    new Vector3Int(gridPt.x + 1, gridPt.y + 1),
-                                                                    new Vector3Int(gridPt.x, gridPt.y + 1),
-                                                                    new Vector3Int(gridPt.x - 1, gridPt.y + 1),
-                                                                    new Vector3Int(gridPt.x - 1, gridPt.y),
-                                                                    new Vector3Int(gridPt.x - 1, gridPt.y - 1),
-                                                                    new Vector3Int(gridPt.x, gridPt.y - 1),
-                                                                    new Vector3Int(gridPt.x + 1, gridPt.y - 1),
+                Vector3Int[] neighborGridpts = new Vector3Int[8] {new Vector3Int(gridPt.x - 1, gridPt.y + 1), new Vector3Int(gridPt.x, gridPt.y + 1), new Vector3Int(gridPt.x + 1, gridPt.y + 1),
+                                                                    new Vector3Int(gridPt.x - 1, gridPt.y), /*CENTER,*/ new Vector3Int(gridPt.x + 1, gridPt.y),
+                                                                    new Vector3Int(gridPt.x - 1, gridPt.y), new Vector3Int(gridPt.x, gridPt.y - 1), new Vector3Int(gridPt.x + 1, gridPt.y - 1)
                                                                     };
 
                 float dist = 0, tmp;
 
                 for (int i = 0; i < neighborGridpts.Length; i++)
                 {
-                    tmp = Vector3Int.Distance(neighborGridpts[i], grid.WorldToCell(tile.overlap.transform.position));
+                    tmp = Vector3.Distance(neighborGridpts[i], grid.WorldToCell(tile.overlap.transform.position));
                     if (tmp > dist)
                     {
                         dist = tmp;
@@ -188,11 +185,21 @@ public class LevelBuilder : MonoBehaviour
                     visited.Add(grid.WorldToCell(con.alignPt.position), true);
                     List<Vector3Int> path = pathFinding.GeneratePath(placedTiles, grid, grid.WorldToCell(con.alignPt.position), grid.WorldToCell(con.connection.transform.position));
 
-                    foreach (Vector3Int p in path)
+                    //if there is an error generating the level restart
+                    if (path == null)
                     {
-                        GameObject tmp = Instantiate(hallway);
-                        tmp.transform.position = grid.CellToWorld(p);
-                        hallways.Add(tmp.GetComponent<Hallways>());
+                        Debug.Log("ERROR: RELOADING LEVEL");
+                        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                    }
+
+                    if (path != null)
+                    {
+                        foreach (Vector3Int p in path)
+                        {
+                            GameObject tmp = Instantiate(hallway);
+                            tmp.transform.position = grid.CellToWorld(p);
+                            hallways.Add(tmp.GetComponent<Hallways>());
+                        }
                     }
                 }
             }

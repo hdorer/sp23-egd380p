@@ -38,6 +38,20 @@ public class TileData : MonoBehaviour
         return false;
     }
 
+    public bool CheckContains(List<TileData> tiles)
+    {
+        foreach (TileData tile in tiles)
+        {
+            foreach (Connection c in connections)
+            {
+                if (tile.CheckContains(c.alignPt.position))
+                    return true;
+            }
+        }
+
+        return false;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         overlap = other;

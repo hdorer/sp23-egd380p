@@ -332,7 +332,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   numRooms: 9
-  startSeperation: 10
+  startSeperation: 5
   tileShift: 3
   placedTiles:
   - {fileID: 7939635031611494895}
