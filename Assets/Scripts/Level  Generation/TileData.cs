@@ -17,39 +17,25 @@ public class Connection
 public class TileData : MonoBehaviour
 {
     public List<Connection> connections;
-    public GameObject sphere;
     [HideInInspector]
     public Collider overlap = null;
-    [HideInInspector]
-    public BoxCollider boxCollider;
-
-    private void Awake()
-    {
-        boxCollider = GetComponent<BoxCollider>();
-    }
+    public BoxCollider[] boxColliders;
 
     private void OnDrawGizmos()
     {
-        if (boxCollider != null)
-            Gizmos.DrawWireCube(boxCollider.bounds.center, boxCollider.bounds.size);
+        foreach (BoxCollider col in boxColliders)
+            Gizmos.DrawWireCube(col.bounds.center, col.bounds.size);
     }
 
     public bool CheckContains(Vector3 pt)
     {
-        if (boxCollider.bounds.Contains(pt) == true)
+        foreach (BoxCollider col in boxColliders)
         {
-            return true;
+            if (col.bounds.Contains(pt) == true)
+                return true;
         }
-        else
-        {
-            return false;
-        }
-    }
 
-    public void Sphere(Vector3 pt)
-    {
-        GameObject tmp = Instantiate(sphere);
-        tmp.transform.position = pt;
+        return false;
     }
 
     private void OnTriggerEnter(Collider other)

@@ -202,9 +202,9 @@ MonoBehaviour:
     wall: {fileID: 5582301183769362679}
     direction: 2
     connection: {fileID: 0}
-  sphere: {fileID: 6232629169168735279, guid: 643d53cc82af79542a505b61e8aef0a3, type: 3}
   overlap: {fileID: 0}
-  boxCollider: {fileID: 0}
+  boxColliders:
+  - {fileID: 4081297365773054618}
 --- !u!65 &4081297365773054618
 BoxCollider:
   m_ObjectHideFlags: 0

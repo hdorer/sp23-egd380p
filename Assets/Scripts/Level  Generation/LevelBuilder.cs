@@ -46,10 +46,7 @@ public class LevelBuilder : MonoBehaviour
         else if (overlapChecked == false)
             CheckOverlap();
         else if (hallwaysGen == false && overlapChecked == true)
-        {
             GenerateHallways();
-            //Debug.Break();
-        }
 
         if (Input.GetKeyDown(KeyCode.Q))
         {
@@ -143,6 +140,7 @@ public class LevelBuilder : MonoBehaviour
     {
         overlapChecked = true;
         hallwaysGen = false;
+
         foreach (TileData tile in placedTiles)
         {
             if (tile.overlap != null)
