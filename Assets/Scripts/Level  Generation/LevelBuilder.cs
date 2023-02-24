@@ -32,11 +32,12 @@ public class LevelBuilder : MonoBehaviour
 
     private void LateUpdate()
     {
-        if (hallwaysGen == false && overlapChecked == true)
-        {
+        if (placedTiles.Count < numRooms && placeableTiles.Count != 0)
+            GenerateLevel();
+        else if (overlapChecked == false)
+            CheckOverlap();
+        else if (hallwaysGen == false && overlapChecked == true)
             GenerateHallways();
-            //Debug.Break();
-        }
     }
 
     private void Update()
@@ -45,16 +46,6 @@ public class LevelBuilder : MonoBehaviour
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
-    }
-
-    private void FixedUpdate()
-    {
-        if (placedTiles.Count < numRooms && placeableTiles.Count != 0)
-            GenerateLevel();
-        else if (overlapChecked == false)
-            CheckOverlap();
-        //else if (hallwaysGen == false && overlapChecked == true)
-        //    GenerateHallways();
     }
 
     private void GenerateLevel()
@@ -143,6 +134,8 @@ public class LevelBuilder : MonoBehaviour
     {
         overlapChecked = true;
         hallwaysGen = false;
+
+        //check each placed tiles
         foreach (TileData tile in placedTiles)
         {
             if (tile.overlap != null && !tile.CheckContains(placedTiles))
