@@ -19,7 +19,35 @@ public class TileData : MonoBehaviour
     public List<Connection> connections;
     [HideInInspector]
     public Collider overlap = null;
+    public List<GameObject> enemies;
     public BoxCollider[] boxColliders;
+    public SlidingDoor[] doors;
+
+    GameObject player;
+
+    private void Start()
+    {
+        player = FindObjectOfType<PlayerMovement>().gameObject;
+        foreach (SlidingDoor door in doors)
+        {
+            door.room = this;
+            door.player = player.transform;
+        }
+    }
+
+    private void Update()
+    {
+        for (int i = enemies.Count - 1; i >= 0; i--)
+            if (enemies[i] == null)
+                enemies.Remove(enemies[i]);
+
+        if (enemies.Count <= 0)
+            foreach (SlidingDoor door in doors)
+                door.locked = false;
+        //else
+        //    foreach (SlidingDoor door in doors)
+        //        door.locked = true;
+    }
 
     private void OnDrawGizmos()
     {
@@ -55,6 +83,10 @@ public class TileData : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         overlap = other;
+
+        if (other.CompareTag("Player") && enemies.Count > 0)
+            foreach (SlidingDoor door in doors)
+                door.locked = true;
     }
 
     private void OnTriggerExit(Collider other)
