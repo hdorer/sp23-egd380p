@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: BasicGunFire
   m_EditorClassIdentifier: 
   attackAnimation: FireGun
+  animationLayer: 1
   attackScore: 3
   recoveryTime: 2
   minDistance: 1

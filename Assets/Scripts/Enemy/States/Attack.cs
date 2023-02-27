@@ -13,14 +13,13 @@ public class Attack : State
         }
         if(enemy.currentAttack != null)
         {
-            Debug.Log("yello?");
             if(enemy.distanceFromTarget < enemy.currentAttack.maxDistance)
             {
                 if(enemy.currentRecoveryTime <= 0 && !enemy.isActing)
                 {
                     enemy.isActing = true;
                     enemy.currentRecoveryTime = enemy.currentAttack.recoveryTime;
-                    enemy.PlayAnimation(enemy.currentAttack.attackAnimation);
+                    enemy.PlayAnimation(enemy.currentAttack.attackAnimation, enemy.currentAttack.animationLayer);
                     enemy.currentAttack = null;
                     return combat;
                 }

@@ -5,12 +5,10 @@ using UnityEngine;
 public struct Node
 {
     public Vector3Int position;
-    public Vector3Int from;
 
-    public Node(Vector3Int pos, Vector3Int f)
+    public Node(Vector3Int pos)
     {
         position = pos;
-        from = f;
     }
 }
 
@@ -19,76 +17,66 @@ public class PathFinding
     Vector3Int[] neighborPts = new Vector3Int[4] { new Vector3Int(1, 0, 0), new Vector3Int(0, 1, 0), new Vector3Int(-1, 0, 0), new Vector3Int(0, -1, 0) };
     Vector3Int up = new Vector3Int(0, 2, 0);
 
+    Dictionary<Vector3Int, bool> visited = new Dictionary<Vector3Int, bool>();
+    Dictionary<Vector3Int, Node> from = new Dictionary<Vector3Int, Node>();
+    PriorityQueue<Node, float> queue = new PriorityQueue<Node, float>();
+
+    int maxPathDepth = 100;
+
     public List<Vector3Int> GeneratePath(List<TileData> rooms, Grid grid, Vector3Int start, Vector3Int target)
     {
-        Dictionary<Vector3Int, bool> visited = new Dictionary<Vector3Int, bool>();
-        Dictionary<Vector3Int, Node> from = new Dictionary<Vector3Int, Node>();
-        List<Node> path = new List<Node>();
+        // clear previous values from data structures
+        visited.Clear();
+        from.Clear();
+        queue.Clear();
 
         Node tmp = new Node();
         tmp.position = start;
-        path.Add(tmp);
+        queue.Enqueue(tmp, Vector3.Distance(tmp.position, target));
         visited.Add(tmp.position, true);
 
+        CheckValid(rooms, grid.CellToWorld(tmp.position) + up);
+
         int loopBreak = 0;
+        Vector3Int tmpPos;
+
         while (tmp.position != target)
         {
-            if (visited.ContainsKey(tmp.position + neighborPts[0]) != true && CheckValid(rooms, grid.CellToWorld(tmp.position + neighborPts[0]) + up) != false)
+            for (int i = 0; i < neighborPts.Length; i++)
             {
-                path.Add(new Node(tmp.position + neighborPts[0], tmp.position));
-                from.Add(tmp.position + neighborPts[0], tmp);
-                visited.Add(tmp.position + neighborPts[0] , true);
+                tmpPos = tmp.position + neighborPts[i];
+                if (visited.ContainsKey(tmpPos) != true && CheckValid(rooms, grid.CellToWorld(tmpPos) + up) == false)
+                {
+                    queue.Enqueue(new Node(tmpPos), Vector3.Distance(tmpPos, target));
+                    from.Add(tmpPos, tmp);
+                    visited.Add(tmpPos, true);
+                }
             }
 
-            if (visited.ContainsKey(tmp.position + neighborPts[1]) != true && CheckValid(rooms, grid.CellToWorld(tmp.position + neighborPts[1]) + up) != false)
-            {
-                path.Add(new Node(tmp.position + neighborPts[1], tmp.position));
-                from.Add(tmp.position + neighborPts[1], tmp);
-                visited.Add(tmp.position + neighborPts[1], true);
-            }
+            //check if loop should continue
+            if (CheckLoop(ref loopBreak, maxPathDepth))
+                return null;
 
-            if (visited.ContainsKey(tmp.position + neighborPts[2]) != true && CheckValid(rooms, grid.CellToWorld(tmp.position + neighborPts[2]) + up) != false)
-            {
-                path.Add(new Node(tmp.position + neighborPts[2], tmp.position));
-                from.Add(tmp.position + neighborPts[2], tmp);
-                visited.Add(tmp.position + neighborPts[2], true);
-            }
-
-            if (visited.ContainsKey(tmp.position + neighborPts[3]) != true && CheckValid(rooms, grid.CellToWorld(tmp.position + neighborPts[3]) + up) != false)
-            {
-                path.Add(new Node(tmp.position + neighborPts[3], tmp.position));
-                from.Add(tmp.position + neighborPts[3], tmp);
-                visited.Add(tmp.position + neighborPts[3], true);
-            }
-
-            SortList(ref path, target);
-
-            path.Remove(tmp);
-
-            if (path.Count <= 0)
-            {
-                Debug.Log("NO PATH FOUND");
-                break;
-            }
-
-            tmp = path[0];
-
-            loopBreak++;
-            if (loopBreak > 100)
-            {
-                Debug.Log("LOOP BREAK");
-                Debug.Break();
-                break;
-            }
+            //pop the top
+            tmp = queue.Dequeue();
         }
 
-        Vector3Int backTrack = target;
-        Node oneBefore = path[0];
+        return BackTrack(start, target);
+    }
 
+    // Start at the target location and work backwards towards the start
+    private List<Vector3Int> BackTrack(Vector3Int start, Vector3Int target)
+    {
+        // start at the target
+        Vector3Int backTrack = target;
+        Node oneBefore = new Node(target);
         List<Vector3Int> finishedPath = new List<Vector3Int>();
+
+        finishedPath.Add(backTrack);
 
         while (backTrack != start)
         {
+            // Move along the from Dictionary until the start location is reached
             backTrack = oneBefore.position;
             finishedPath.Add(backTrack);
             from.TryGetValue(oneBefore.position, out oneBefore);
@@ -97,41 +85,43 @@ public class PathFinding
         return finishedPath;
     }
 
-    private void SortList(ref List<Node> path, Vector3Int target)
-    {
-        if (path.Count - 1 <= 0)
-        {
-            Debug.Log("PATH EMPTY");
-            return;
-        }
-
-        for (int i = 0; i < path.Count - 1; i++)
-        {
-            for (int j = i; j < path.Count; j++)
-            {
-                if (Vector3Int.Distance(path[i].position, target) > Vector3Int.Distance(path[j].position, target))
-                {
-                    Node tmp = path[i];
-                    path[i] = path[j];
-                    path[j] = tmp;
-                }
-            }
-        }
-    }
-
     private bool CheckValid(List<TileData> rooms, Vector3 point)
     {
-        bool valid = false;
-
-        for (int i = 0; i < rooms.Count; i++)
+        // true == point is inside of collider
+        bool check = false;
+        
+        foreach (TileData room in rooms)
         {
-            //Debug.Log(rooms[i].CheckContains(point));
-            valid = rooms[i].CheckContains(point);
+            check = room.CheckContains(point);
 
-            if (valid == true)
+            if (check == true)
                 break;
         }
-        Debug.Log(valid);
-        return valid;
+
+        //if (check == false)
+        //    rooms[0].Sphere(point);
+
+        return check;
+    }
+
+    private bool CheckLoop(ref int loopBreak, int maxPathDepth)
+    {
+        //check if queue is empty
+        if (queue.Count <= 0)
+        {
+            Debug.Log("NO PATH FOUND");
+            return true;
+        }
+
+        //check if loop might be infinite
+        loopBreak++;
+        if (loopBreak > maxPathDepth)
+        {
+            Debug.Log("LOOP BREAK");
+            Debug.Break();
+            return true;
+        }
+
+        return false;
     }
 }
