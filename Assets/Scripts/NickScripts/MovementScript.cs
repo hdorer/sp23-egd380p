@@ -5,11 +5,27 @@ using UnityEngine.InputSystem;
 
 public class MovementScript : MonoBehaviour
 {
+    [SerializeField] private InputAction dodgeRoll;
+
     Rigidbody rb;
     private float runSpeed = 10.0f;
     float horiz;
     float vert;
 
+    bool invincible = false;
+
+    void OnEnable()
+    {
+        dodgeRoll.Enable();
+
+        dodgeRoll.performed += onRoll;
+    }
+    void OnDisable()
+    {
+        dodgeRoll.performed -= onRoll;
+
+        dodgeRoll.Disable();
+    }
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -54,9 +70,20 @@ public class MovementScript : MonoBehaviour
 
         rb.velocity = movement*mag;
     }
-
     private void FixedUpdate()
     {
         MovePlayer();
+    }
+    private void onRoll(InputAction.CallbackContext context)
+    {
+
+    }
+    private void OnTriggerEnter(Collider col)
+    {
+        if(invincible)
+        {
+            return;
+        }
+        
     }
 }
