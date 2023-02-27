@@ -32,6 +32,8 @@ public class PlayerWeapon : MonoBehaviour {
 
     private void Start() {
         bulletsInClip = weapon.ClipSize;
+
+        onUiUpdate?.Invoke(bulletsInClip, weapon.ClipSize);
     }
 
     private void Update() {
