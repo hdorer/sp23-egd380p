@@ -6,14 +6,15 @@ using UnityEngine.InputSystem;
 public class MovementScript : Character
 {
     [SerializeField] private InputAction dodgeRoll;
-    [SerializeField] private float damageInvin = 1.0f;
-    [SerializeField] private float rollInvin = 0.5f;
+    //Made public so items can increase invincibility time
+    [SerializeField] public float damageInvin = 1.0f;
+    [SerializeField] public float rollInvin = 0.5f;
 
-    Rigidbody rb;
+    private Rigidbody rb;
     private IEnumerator invincibleIE;
     private float horiz;
     private float vert;
-    bool invincible = false;
+    private bool invincible = false;
 
     void OnEnable()
     {
@@ -58,13 +59,11 @@ public class MovementScript : Character
             transform.LookAt(new Vector3(pointToLook.x, transform.position.y, pointToLook.z));
         }
     }
-
     void GetInputs() //Where you would put player input checks
     {
         horiz = Input.GetAxisRaw("Horizontal");
         vert = Input.GetAxisRaw("Vertical");
     }
-
     void MovePlayer()   //Moves player based on y rotation, so away from camera is always W and so on so forth.
     {
         Vector3 movement = new Vector3(horiz, 0, vert);
@@ -79,7 +78,6 @@ public class MovementScript : Character
     {
         MovePlayer();
     }
-
     private IEnumerator Invincibility(float duration)
     {
         invincible = true;
@@ -88,7 +86,6 @@ public class MovementScript : Character
         
         StopCoroutine("Invincibility");
     }
-
     private void onRoll(InputAction.CallbackContext context)
     {
         if(invincible)
@@ -112,10 +109,11 @@ public class MovementScript : Character
         
         if(col.CompareTag("Enemy Bullet"))
         {
-            health -= 25;
+            //This need to take the damage the bullet does rather than a flat rate
+            health -= 25; 
+            //Update ui health!
             Debug.Log("Damaged");
 
-            //Invincibility for 1 second
             invincibleIE = Invincibility(damageInvin);
             StartCoroutine(invincibleIE);
             Destroy(col.gameObject);
