@@ -108,6 +108,7 @@ GameObject:
   m_Component:
   - component: {fileID: 308476084578560957}
   - component: {fileID: 1195008404584030478}
+  - component: {fileID: 15384642}
   m_Layer: 0
   m_Name: Hallway
   m_TagString: Untagged
@@ -150,13 +151,36 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   connections:
   - alignPt: {fileID: 7416008872171066939}
+    wall: {fileID: 308476084801270458}
     direction: 2
+    connection: {fileID: 0}
   - alignPt: {fileID: 6886089138601008977}
+    wall: {fileID: 308476084135286701}
     direction: 1
+    connection: {fileID: 0}
   - alignPt: {fileID: 6092048190427744218}
+    wall: {fileID: 308476084930936249}
     direction: 3
+    connection: {fileID: 0}
   - alignPt: {fileID: 3354040326139661563}
+    wall: {fileID: 308476084868411898}
     direction: 0
+    connection: {fileID: 0}
+  sphere: {fileID: 0}
+  overlap: {fileID: 0}
+  boxCollider: {fileID: 0}
+--- !u!114 &15384642
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 308476084578560956}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b015b5a5210f7c1409c2a62807cb1182, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &308476084694757139
 GameObject:
   m_ObjectHideFlags: 0
