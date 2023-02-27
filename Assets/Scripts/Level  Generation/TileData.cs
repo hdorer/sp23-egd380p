@@ -27,7 +27,7 @@ public class TileData : MonoBehaviour
 
     private void Start()
     {
-        player = FindObjectOfType<PlayerMovement>().gameObject;
+        player = FindObjectOfType<MovementScript>().gameObject;
         foreach (SlidingDoor door in doors)
         {
             door.room = this;
