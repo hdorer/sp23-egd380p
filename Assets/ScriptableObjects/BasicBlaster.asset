@@ -18,6 +18,6 @@ MonoBehaviour:
   bulletSpread: 0
   clipSize: 30
   reloadTime: 1
-  bulletPrefab: {fileID: 4127692203258555895, guid: bde711c509248cc46ac1e721badede1c, type: 3}
+  bulletPrefab: {fileID: 4127692203258555895, guid: b20e1de082063a7429b5e3ea2f8b9a03, type: 3}
   gunName: Basic Blaster
   flavorText: The most basic weapon in the game.
