@@ -3,15 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class MovementScript : MonoBehaviour
+public class MovementScript : Character
 {
     [SerializeField] private InputAction dodgeRoll;
+    [SerializeField] private float damageInvin = 1.0f;
+    [SerializeField] private float rollInvin = 0.5f;
 
     Rigidbody rb;
-    private float runSpeed = 10.0f;
-    float horiz;
-    float vert;
-
+    private IEnumerator invincibleIE;
+    private float horiz;
+    private float vert;
     bool invincible = false;
 
     void OnEnable()
@@ -36,9 +37,14 @@ public class MovementScript : MonoBehaviour
         GetInputs();    //Simple get inputs
 
         RotatePlayer(); //Rotates the player to the mouse position
-    }
 
-    //Can use same code for shooting weapons
+        if(Input.GetKeyDown(KeyCode.H))
+        {
+            Debug.Log("Curent Health: " + health);
+        }
+
+        Debug.Log(invincible);
+    }
     void RotatePlayer()
     {
         Ray cameraRay = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -53,7 +59,6 @@ public class MovementScript : MonoBehaviour
         }
     }
 
-    //Change/Delete Using new input system!
     void GetInputs() //Where you would put player input checks
     {
         horiz = Input.GetAxisRaw("Horizontal");
@@ -65,7 +70,7 @@ public class MovementScript : MonoBehaviour
         Vector3 movement = new Vector3(horiz, 0, vert);
         movement = Quaternion.Euler(0,Camera.main.transform.eulerAngles.y,0)*movement;
 
-        float mag = Mathf.Clamp01(movement.magnitude)*runSpeed;
+        float mag = Mathf.Clamp01(movement.magnitude)*moveSpeed;
         movement.Normalize();
 
         rb.velocity = movement*mag;
@@ -74,9 +79,29 @@ public class MovementScript : MonoBehaviour
     {
         MovePlayer();
     }
+
+    private IEnumerator Invincibility(float duration)
+    {
+        invincible = true;
+        yield return new WaitForSeconds(duration);
+        invincible = false;
+        
+        StopCoroutine("Invincibility");
+    }
+
     private void onRoll(InputAction.CallbackContext context)
     {
+        if(invincible)
+        {
+            return;
+        }
 
+        invincibleIE = Invincibility(rollInvin);
+        StartCoroutine(invincibleIE);
+
+        //Play Animation
+
+        //Maybe, cooldown on roll?
     }
     private void OnTriggerEnter(Collider col)
     {
@@ -85,5 +110,15 @@ public class MovementScript : MonoBehaviour
             return;
         }
         
+        if(col.CompareTag("Enemy Bullet"))
+        {
+            health -= 25;
+            Debug.Log("Damaged");
+
+            //Invincibility for 1 second
+            invincibleIE = Invincibility(damageInvin);
+            StartCoroutine(invincibleIE);
+            Destroy(col.gameObject);
+        }
     }
 }
