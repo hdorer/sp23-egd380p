@@ -43,8 +43,6 @@ public class MovementScript : Character
         {
             Debug.Log("Curent Health: " + health);
         }
-
-        Debug.Log(invincible);
     }
     void RotatePlayer()
     {
@@ -116,7 +114,6 @@ public class MovementScript : Character
 
             invincibleIE = Invincibility(damageInvin);
             StartCoroutine(invincibleIE);
-            Destroy(col.gameObject);
         }
     }
 }
