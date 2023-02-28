@@ -7,32 +7,33 @@ public class MovementScript : Character
 {
     [SerializeField] private InputAction dodgeRoll;
     //Made public so items can increase invincibility time
-    [SerializeField] public float damageInvin = 1.0f;
-    [SerializeField] public float rollInvin = 0.5f;
+    [SerializeField] private float damageInvin = 1.0f;
+    [SerializeField] private float rollInvin = 0.5f;
 
     private Rigidbody rb;
-    private IEnumerator invincibleIE;
     private float horiz;
     private float vert;
     private bool invincible = false;
 
-    void OnEnable()
+    private float moveSpeedModifier = 1.0f;
+
+    private void OnEnable()
     {
         dodgeRoll.Enable();
 
         dodgeRoll.performed += onRoll;
     }
-    void OnDisable()
+    private void OnDisable()
     {
         dodgeRoll.performed -= onRoll;
 
         dodgeRoll.Disable();
     }
-    void Start()
+    private void Start()
     {
         rb = GetComponent<Rigidbody>();
     }
-    void Update()
+    private void Update()
     {
         //Change inputs as new input system will be used.
         GetInputs();    //Simple get inputs
@@ -44,7 +45,7 @@ public class MovementScript : Character
             Debug.Log("Curent Health: " + health);
         }
     }
-    void RotatePlayer()
+    private void RotatePlayer()
     {
         Ray cameraRay = Camera.main.ScreenPointToRay(Input.mousePosition);
         Plane ground = new Plane(Vector3.up, Vector3.zero);
@@ -57,17 +58,17 @@ public class MovementScript : Character
             transform.LookAt(new Vector3(pointToLook.x, transform.position.y, pointToLook.z));
         }
     }
-    void GetInputs() //Where you would put player input checks
+    private void GetInputs() //Where you would put player input checks
     {
         horiz = Input.GetAxisRaw("Horizontal");
         vert = Input.GetAxisRaw("Vertical");
     }
-    void MovePlayer()   //Moves player based on y rotation, so away from camera is always W and so on so forth.
+    private void MovePlayer()   //Moves player based on y rotation, so away from camera is always W and so on so forth.
     {
         Vector3 movement = new Vector3(horiz, 0, vert);
         movement = Quaternion.Euler(0,Camera.main.transform.eulerAngles.y,0)*movement;
 
-        float mag = Mathf.Clamp01(movement.magnitude)*moveSpeed;
+        float mag = Mathf.Clamp01(movement.magnitude) * (moveSpeed * moveSpeedModifier);
         movement.Normalize();
 
         rb.velocity = movement*mag;
@@ -91,8 +92,7 @@ public class MovementScript : Character
             return;
         }
 
-        invincibleIE = Invincibility(rollInvin);
-        StartCoroutine(invincibleIE);
+        StartCoroutine(Invincibility(rollInvin));
 
         //Play Animation
 
@@ -112,8 +112,15 @@ public class MovementScript : Character
             //Update ui health!
             Debug.Log("Damaged");
 
-            invincibleIE = Invincibility(damageInvin);
-            StartCoroutine(invincibleIE);
+            StartCoroutine(Invincibility(damageInvin));
         }
+    }
+
+    public void setMoveSpeedModifier(float modifier) {
+        moveSpeedModifier = modifier;
+    }
+
+    public void resetMoveSpeedModifier() {
+        moveSpeedModifier = 1.0f;
     }
 }

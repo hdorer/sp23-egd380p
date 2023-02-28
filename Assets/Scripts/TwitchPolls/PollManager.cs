@@ -1,14 +1,22 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
 public struct Poll {
+    public PollEffectID[] effects;
     public string[] optionNames;
     public string[] voteStrings;
     public int[] votes;
 
     public Poll(string[] optionNames) {
+        effects = new PollEffectID[] {
+            PollEffectID.FIRE_RATE_DOWN,
+            PollEffectID.FIRE_RATE_UP,
+            PollEffectID.MOVE_SPEED_DOWN,
+            PollEffectID.MOVE_SPEED_UP
+        }; // temp
         this.optionNames = optionNames;
         voteStrings = new string[optionNames.Length];
         votes = new int[optionNames.Length];
@@ -36,10 +44,11 @@ public class PollManager : MonoBehaviour {
     [SerializeField] private float pollDowntime = 60f;
     private float pollDownTimer;
     private float nextUiUpdate;
+
+    private const int NUM_OPTIONS = 4;
     
     private Poll activePoll;
 
-    [SerializeField] private PlayerWeapon pWeapons;
     [SerializeField] private TwitchListener listener;
 
     [System.Serializable] public class UiUpdateEvent : UnityEvent<Poll, float> { }
@@ -59,7 +68,6 @@ public class PollManager : MonoBehaviour {
         voterUsernames = new List<string>();
 
         pollTimer = pollTime;
-        nextUiUpdate = pollTimer - 1f;
 
         pollDownTimer = pollDowntime;
 
@@ -68,8 +76,6 @@ public class PollManager : MonoBehaviour {
         if(startActive) {
             startPoll();
         }
-
-        StartCoroutine(PollEffects.ChangeFireRate(pWeapons, 5.0f, 0.6f));
     }
 
     private void Update() {
@@ -106,6 +112,8 @@ public class PollManager : MonoBehaviour {
         listener.gameObject.SetActive(true);
         listener.ValidMessages = activePoll.voteStrings;
 
+        nextUiUpdate = pollTimer - 1;
+
         onPollStart?.Invoke(activePoll);
         onUiUpdate?.Invoke(activePoll, pollTimer);
     }
@@ -113,6 +121,8 @@ public class PollManager : MonoBehaviour {
     private void endPoll() {
         pollActive = false;
         pollDownTimer = pollDowntime;
+
+        voterUsernames.Clear();
 
         listener.gameObject.SetActive(false);
 
@@ -141,4 +151,6 @@ public class PollManager : MonoBehaviour {
 
         Debug.Log(output);
     }
+
+    // TODO: after more effects are added, create a function to generate a poll populated with randomly selected effects/effect texts
 }

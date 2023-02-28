@@ -80,7 +80,7 @@ public class PlayerWeapon : MonoBehaviour {
     private IEnumerator doFireCooldown() {
         fireCooldown = true;
         float fireRate = weapon.FireRate / fireRateModifier;
-        Debug.Log("Setting fire rate: " + weapon.FireRate + " / " + fireRateModifier + " == " + fireRate);
+        // Debug.Log("Setting fire rate: " + weapon.FireRate + " / " + fireRateModifier + " == " + fireRate);
         yield return new WaitForSeconds(fireRate);
         fireCooldown = false;
     }

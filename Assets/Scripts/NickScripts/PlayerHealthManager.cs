@@ -12,16 +12,16 @@ public class PlayerHealthManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        pHealth = playerCharacter.GetComponent<MovementScript>().health;
+        pHealth = playerCharacter.GetComponent<MovementScript>().Health;
         pHealth = pHealth/100;
-        pHealthMax = playerCharacter.GetComponent<MovementScript>().maxHealth;
+        pHealthMax = playerCharacter.GetComponent<MovementScript>().MaxHealth;
         pHealthMax = pHealthMax/100;
     }
 
     // Update is called once per frame
     void Update()
     {
-        pHealth = playerCharacter.GetComponent<MovementScript>().health;
+        pHealth = playerCharacter.GetComponent<MovementScript>().Health;
         pHealth = pHealth/100;
 
         healthFill.fillAmount = Mathf.Clamp(pHealth/pHealthMax, 0.0f, 1.0f);

@@ -22,6 +22,7 @@ public class TwitchListener : MonoBehaviour {
 
     private void parseChatMessage(Chatter chatter) {
         if(Array.Exists(validMessages, element => element == chatter.message)) {
+            Debug.Log(chatter.message);
             onValidMessageRecieved?.Invoke(chatter.message, chatter.login);
         }
     }
