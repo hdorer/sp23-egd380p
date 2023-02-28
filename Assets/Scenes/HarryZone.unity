@@ -391,6 +391,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 61295073}
   m_CullTransparentMesh: 1
+--- !u!114 &78201095 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -5632172482557135582, guid: cf3abc9ef325a6d43bc3060558178d31, type: 3}
+  m_PrefabInstance: {fileID: 412428395}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57444955ed180c34f92402b7badd411d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &83187444
 GameObject:
   m_ObjectHideFlags: 0
@@ -2766,7 +2777,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &2098474055
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2788,6 +2799,7 @@ MonoBehaviour:
   - Decrease Damage Taken
   pollTime: 10
   pollDowntime: 5
+  pWeapons: {fileID: 78201095}
   listener: {fileID: 975340209}
   onUiUpdate:
     m_PersistentCalls:

@@ -39,6 +39,7 @@ public class PollManager : MonoBehaviour {
     
     private Poll activePoll;
 
+    [SerializeField] private PlayerWeapon pWeapons;
     [SerializeField] private TwitchListener listener;
 
     [System.Serializable] public class UiUpdateEvent : UnityEvent<Poll, float> { }
@@ -67,6 +68,8 @@ public class PollManager : MonoBehaviour {
         if(startActive) {
             startPoll();
         }
+
+        StartCoroutine(PollEffects.ChangeFireRate(pWeapons, 5.0f, 0.6f));
     }
 
     private void Update() {

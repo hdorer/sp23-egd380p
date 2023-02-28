@@ -14,6 +14,8 @@ public class PlayerWeapon : MonoBehaviour {
     private bool fireCooldown = false;
     private bool reloading = false;
 
+    private float fireRateModifier = 1.0f;
+
     [SerializeField] private InputAction fireInput;
     [SerializeField] private InputAction reloadInput;
 
@@ -34,6 +36,8 @@ public class PlayerWeapon : MonoBehaviour {
         bulletsInClip = weapon.ClipSize;
 
         onUiUpdate?.Invoke(bulletsInClip, weapon.ClipSize);
+
+        Debug.Log("Fire rate modifier is " + fireRateModifier);
     }
 
     private void Update() {
@@ -45,6 +49,16 @@ public class PlayerWeapon : MonoBehaviour {
     private void OnDisable() {
         fireInput.Disable();
         reloadInput.Disable();
+    }
+
+    public void setFireRateModifier(float fireRateModifier) {
+        this.fireRateModifier = fireRateModifier;
+        Debug.Log("Fire rate modifier is " + fireRateModifier);
+    }
+
+    public void resetFireRateModifier() {
+        fireRateModifier = 1.0f;
+        Debug.Log("Fire rate modifier is " + fireRateModifier);
     }
 
     private void fire() {
@@ -65,7 +79,9 @@ public class PlayerWeapon : MonoBehaviour {
 
     private IEnumerator doFireCooldown() {
         fireCooldown = true;
-        yield return new WaitForSeconds(weapon.FireRate);
+        float fireRate = weapon.FireRate / fireRateModifier;
+        Debug.Log("Setting fire rate: " + weapon.FireRate + " / " + fireRateModifier + " == " + fireRate);
+        yield return new WaitForSeconds(fireRate);
         fireCooldown = false;
     }
 
