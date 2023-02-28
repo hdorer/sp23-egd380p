@@ -97,6 +97,7 @@ GameObject:
   - component: {fileID: 4649844427195963960}
   - component: {fileID: 4649844427195963961}
   - component: {fileID: 4649844427195963963}
+  - component: {fileID: 662201855496712338}
   m_Layer: 0
   m_Name: MeleeEnemy
   m_TagString: Untagged
@@ -164,7 +165,7 @@ MonoBehaviour:
   moveSpeed: 1.6
   currentState: {fileID: 5496354238823778399}
   agent: {fileID: 4649844427195963960}
-  target: {fileID: 0}
+  target: {fileID: 5493555933616117597, guid: cf3abc9ef325a6d43bc3060558178d31, type: 3}
   isActing: 0
   possibleAttacks:
   - {fileID: 11400000, guid: 6a3d901d6ad88a44f9d9e9899e2efa59, type: 2}
@@ -195,6 +196,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+--- !u!65 &662201855496712338
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4649844427195963910}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.08, y: 2.33, z: 1.57}
+  m_Center: {x: 0, y: 1.67, z: 0}
 --- !u!1 &4942439137570325311
 GameObject:
   m_ObjectHideFlags: 0
@@ -664,9 +678,10 @@ GameObject:
   - component: {fileID: 2304348969077001895}
   - component: {fileID: 4929089817192718577}
   - component: {fileID: 5591930610637931972}
+  - component: {fileID: 4256959843336898133}
   m_Layer: 0
   m_Name: Sword
-  m_TagString: Untagged
+  m_TagString: Enemy Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -738,3 +753,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &4256959843336898133
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8280337986247006402}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.002, y: 0.014853977, z: 0.05347308}
+  m_Center: {x: 0.000000003958121, y: 9.36153e-10, z: 0.01129265}

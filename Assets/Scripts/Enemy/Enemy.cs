@@ -7,7 +7,7 @@ public class Enemy : Character
 {
     public State currentState;
     public NavMeshAgent agent;
-    public PlayerMovement target;
+    public MovementScript target;
     public bool isActing = false;
     public List<AttackAction> possibleAttacks = new List<AttackAction>();
     Animator anim;
@@ -24,7 +24,7 @@ public class Enemy : Character
     private void Start()
     {
         agent.speed = moveSpeed;
-        target = FindObjectOfType<PlayerMovement>();
+        target = FindObjectOfType<MovementScript>();
         anim = GetComponent<Animator>();
     }
     public void Update()
@@ -100,4 +100,19 @@ public class Enemy : Character
         }
         return true;
     }
+
+    //Delete this crap later only here for prototype
+    private void OnTriggerEnter(Collider col)
+    {
+        if(col.CompareTag("Player Bullet"))
+        {
+            Debug.Log("Hello We Reached Here");
+            Destroy(gameObject);
+        }
+        else
+        {
+            Debug.Log("Help");
+        }
+    }
+
 }

@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 1488432421446736164}
   - component: {fileID: 1488432421446736167}
   - component: {fileID: 1488432421446736166}
+  - component: {fileID: 5865532560622597503}
   m_Layer: 0
   m_Name: Basic Enemy
   m_TagString: Untagged
@@ -128,18 +129,31 @@ MonoBehaviour:
   moveSpeed: 1.8
   currentState: {fileID: 1488432422137680321}
   agent: {fileID: 1488432421446736164}
-  target: {fileID: 0}
+  target: {fileID: 5493555933616117597, guid: cf3abc9ef325a6d43bc3060558178d31, type: 3}
   isActing: 0
   possibleAttacks:
   - {fileID: 11400000, guid: 4afc586507968f54e98a411ae7452838, type: 2}
   distanceFromTarget: 0
   currentAttack: {fileID: 0}
   projectiles:
-  - {fileID: 798192242076072870, guid: 1a87a583fc4d8194284b8a66a193920f, type: 3}
+  - {fileID: 798192242076072870, guid: dd93cb722cc14614cb80c7e5b8fefb5b, type: 3}
   currentRecoveryTime: 0
   bulletSpawnPosition: {fileID: 1488432421912041422}
   gun: {fileID: 1488432420879113837}
-  isMelee: 1
+  isMelee: 0
+--- !u!65 &5865532560622597503
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1488432421446736163}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.39, y: 2.22, z: 1.53}
+  m_Center: {x: 0, y: 1.95, z: 0}
 --- !u!1 &1488432421912041421
 GameObject:
   m_ObjectHideFlags: 0

@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SamTesting.unity
     guid: 9a2857a0193f9ec44878e10aa7e447bc
+  - enabled: 1
+    path: Assets/Scenes/TestGameOverScreen.unity
+    guid: 4e9844e127eadb041ac515d00ac2a52d
   m_configObjects: {}
