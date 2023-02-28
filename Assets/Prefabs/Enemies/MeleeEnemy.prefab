@@ -164,7 +164,7 @@ MonoBehaviour:
   moveSpeed: 1.6
   currentState: {fileID: 5496354238823778399}
   agent: {fileID: 4649844427195963960}
-  target: {fileID: 0}
+  target: {fileID: 5493555933616117597, guid: cf3abc9ef325a6d43bc3060558178d31, type: 3}
   isActing: 0
   possibleAttacks:
   - {fileID: 11400000, guid: 6a3d901d6ad88a44f9d9e9899e2efa59, type: 2}

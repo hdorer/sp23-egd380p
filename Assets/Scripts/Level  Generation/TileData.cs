@@ -86,7 +86,10 @@ public class TileData : MonoBehaviour
 
         if (other.CompareTag("Player") && enemies.Count > 0)
             foreach (SlidingDoor door in doors)
+            {
                 door.locked = true;
+                GetComponent<EnableEnemies>().enemies.SetActive(true);
+            }
     }
 
     private void OnTriggerExit(Collider other)
