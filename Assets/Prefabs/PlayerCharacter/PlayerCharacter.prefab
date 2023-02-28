@@ -205,7 +205,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57138fd22d8ac9c4b9244c82595eebd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 0}
+  health: 100
+  maxHealth: 100
+  moveSpeed: 10
+  dodgeRoll:
+    m_Name: Dodge Roll
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: d9b8823a-8b5a-4486-98ec-c8c8be4d964a
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 95435364-f2ee-4b41-911d-66dcf6904a42
+      m_Path: <Keyboard>/leftShift
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Dodge Roll
+      m_Flags: 0
+    m_Flags: 0
+  damageInvin: 1
+  rollInvin: 0.5
 --- !u!1 &5600947893947467712
 GameObject:
   m_ObjectHideFlags: 0
