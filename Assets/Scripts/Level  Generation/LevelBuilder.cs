@@ -37,7 +37,12 @@ public class LevelBuilder : MonoBehaviour
         else if (overlapChecked == false)
             CheckOverlap();
         else if (hallwaysGen == false && overlapChecked == true)
+        {
             GenerateHallways();
+
+            //enable player in the starting area
+            placedTiles[0].GetComponent<EnablePlayer>().col.enabled = true;
+        }
     }
 
     private void Update()

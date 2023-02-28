@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c9ac18730757294c9022b53ae3bad24, type: 3}
+  m_Name: BasicBlaster
+  m_EditorClassIdentifier: 
+  fireRate: 0.1
+  damagePerBullet: 8
+  bulletsPerShot: 1
+  bulletSpread: 0
+  clipSize: 30
+  reloadTime: 1
+  bulletPrefab: {fileID: 4127692203258555895, guid: b20e1de082063a7429b5e3ea2f8b9a03, type: 3}
+  gunName: Basic Blaster
+  flavorText: The most basic weapon in the game.

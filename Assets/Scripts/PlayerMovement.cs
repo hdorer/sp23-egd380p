@@ -2,19 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
-{
+public class PlayerMovement : MonoBehaviour {
     public float speed = 1f;
     public GameObject bullet;
-    void Update()
-    {
+    void Update() {
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
 
         transform.position += new Vector3(horizontal, 0, vertical).normalized * Time.deltaTime * speed;
 
-        if (Input.GetMouseButtonDown(0))
-        {
+        if(Input.GetMouseButtonDown(0)) {
             Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             float rot = Mathf.Atan2(pos.y - transform.position.y, pos.x - transform.position.x);
             float angle = (180 / Mathf.PI) * rot;
