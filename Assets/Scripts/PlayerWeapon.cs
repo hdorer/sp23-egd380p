@@ -30,6 +30,9 @@ public class PlayerWeapon : MonoBehaviour {
     [System.Serializable] public class UiUpdateEvent : UnityEvent<HeldWeapon> { }
     public UiUpdateEvent onUiUpdate;
 
+    [System.Serializable] public class WeaponSwitchEvent : UnityEvent<HeldWeapon[], int> { }
+    public WeaponSwitchEvent onWeaponSwitch;
+
     private void OnEnable() {
         fireInput.Enable();
         reloadInput.Enable();
@@ -49,6 +52,7 @@ public class PlayerWeapon : MonoBehaviour {
         }
 
         onUiUpdate?.Invoke(weapons[currentWeapon]);
+        onWeaponSwitch?.Invoke(weapons, currentWeapon);
 
         Debug.Log("Fire rate modifier is " + fireRateModifier);
     }
@@ -120,5 +124,7 @@ public class PlayerWeapon : MonoBehaviour {
         if(currentWeapon >= weapons.Length) {
             currentWeapon = 0;
         }
+
+        onWeaponSwitch?.Invoke(weapons, currentWeapon);
     }
 }
