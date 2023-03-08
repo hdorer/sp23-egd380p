@@ -1,14 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Transactions;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
-public class PlayerWeapon : MonoBehaviour {
-    [SerializeField] private Weapon weapon;
-    [SerializeField] private Transform bulletSpawnPoint;
+[System.Serializable]
+public struct HeldWeapon {
+    public Weapon weapon;
+    [HideInInspector] public int bulletsInClip;
+}
 
-    private int bulletsInClip;
+public class PlayerWeapon : MonoBehaviour {
+    [SerializeField] private HeldWeapon[] weapons;
+    private int currentWeapon = 0;
+    
+    [SerializeField] private Transform bulletSpawnPoint;
 
     private bool firing = false;
     private bool fireCooldown = false;
@@ -18,24 +25,30 @@ public class PlayerWeapon : MonoBehaviour {
 
     [SerializeField] private InputAction fireInput;
     [SerializeField] private InputAction reloadInput;
+    [SerializeField] private InputAction changeWeaponsInput;
 
-    [System.Serializable] public class UiUpdateEvent : UnityEvent<int, int> { }
+    [System.Serializable] public class UiUpdateEvent : UnityEvent<HeldWeapon> { }
     public UiUpdateEvent onUiUpdate;
 
     private void OnEnable() {
         fireInput.Enable();
         reloadInput.Enable();
+        changeWeaponsInput.Enable();
 
         fireInput.performed += context => firing = true;
         fireInput.canceled += context => firing = false;
 
         reloadInput.performed += context => StartCoroutine(reload());
+
+        changeWeaponsInput.performed += changeWeapons;
     }
 
     private void Start() {
-        bulletsInClip = weapon.ClipSize;
+        for(int i = 0; i < weapons.Length; i++) {
+            weapons[i].bulletsInClip = weapons[i].weapon.ClipSize;
+        }
 
-        onUiUpdate?.Invoke(bulletsInClip, weapon.ClipSize);
+        onUiUpdate?.Invoke(weapons[currentWeapon]);
 
         Debug.Log("Fire rate modifier is " + fireRateModifier);
     }
@@ -47,8 +60,11 @@ public class PlayerWeapon : MonoBehaviour {
     }
 
     private void OnDisable() {
+        changeWeaponsInput.performed -= changeWeapons;
+
         fireInput.Disable();
         reloadInput.Disable();
+        changeWeaponsInput.Disable();
     }
 
     public void setFireRateModifier(float fireRateModifier) {
@@ -66,11 +82,12 @@ public class PlayerWeapon : MonoBehaviour {
             return;
         }
 
-        weapon.fire(bulletSpawnPoint);
-        bulletsInClip--;
-        onUiUpdate?.Invoke(bulletsInClip, weapon.ClipSize);
+        weapons[currentWeapon].weapon.fire(bulletSpawnPoint);
+        weapons[currentWeapon].bulletsInClip--;
+        
+        onUiUpdate?.Invoke(weapons[currentWeapon]);
 
-        if(bulletsInClip <= 0) {
+        if(weapons[currentWeapon].bulletsInClip <= 0) {
             StartCoroutine(reload());
         } else {
             StartCoroutine(doFireCooldown());
@@ -79,7 +96,7 @@ public class PlayerWeapon : MonoBehaviour {
 
     private IEnumerator doFireCooldown() {
         fireCooldown = true;
-        float fireRate = weapon.FireRate / fireRateModifier;
+        float fireRate = weapons[currentWeapon].weapon.FireRate / fireRateModifier;
         // Debug.Log("Setting fire rate: " + weapon.FireRate + " / " + fireRateModifier + " == " + fireRate);
         yield return new WaitForSeconds(fireRate);
         fireCooldown = false;
@@ -87,9 +104,21 @@ public class PlayerWeapon : MonoBehaviour {
 
     private IEnumerator reload() {
         reloading = true;
-        yield return new WaitForSeconds(weapon.ReloadTime);
-        bulletsInClip = weapon.ClipSize;
-        onUiUpdate?.Invoke(bulletsInClip, weapon.ClipSize);
+        yield return new WaitForSeconds(weapons[currentWeapon].weapon.ReloadTime);
+        weapons[currentWeapon].bulletsInClip = weapons[currentWeapon].weapon.ClipSize;
+        onUiUpdate?.Invoke(weapons[currentWeapon]);
         reloading = false;
+    }
+
+    private void changeWeapons(InputAction.CallbackContext context) {
+        float delta = context.ReadValue<float>();
+
+        currentWeapon -= (int)Mathf.Sign(delta);
+        if(currentWeapon < 0) {
+            currentWeapon = weapons.Length - 1;
+        }
+        if(currentWeapon >= weapons.Length) {
+            currentWeapon = 0;
+        }
     }
 }

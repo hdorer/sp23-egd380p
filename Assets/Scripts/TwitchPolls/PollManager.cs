@@ -44,8 +44,6 @@ public class PollManager : MonoBehaviour {
     [SerializeField] private float pollDowntime = 60f;
     private float pollDownTimer;
     private float nextUiUpdate;
-
-    private const int NUM_OPTIONS = 4;
     
     private Poll activePoll;
 
@@ -68,13 +66,12 @@ public class PollManager : MonoBehaviour {
         voterUsernames = new List<string>();
 
         pollTimer = pollTime;
-
         pollDownTimer = pollDowntime;
-
-        listener.gameObject.SetActive(false);
 
         if(startActive) {
             startPoll();
+        } else {
+            listener.gameObject.SetActive(false);
         }
     }
 
