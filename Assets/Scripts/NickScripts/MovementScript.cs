@@ -14,6 +14,7 @@ public class MovementScript : Character
     private float horiz;
     private float vert;
     private bool invincible = false;
+    private bool onCooldown = false;
 
     private float moveSpeedModifier = 1.0f;
 
@@ -77,42 +78,58 @@ public class MovementScript : Character
     {
         MovePlayer();
     }
-    private IEnumerator Invincibility(float duration)
+    private IEnumerator DodgeRoll(float duration)
+    {
+        Debug.Log("Roll");
+        invincible = true;
+        onCooldown = true;
+        yield return new WaitForSeconds(duration);
+        invincible = false;
+        yield return new WaitForSeconds(1.0f);
+        onCooldown = false;
+        
+        StopCoroutine("DodgeRoll");
+    }
+    private IEnumerator DamageInv(float duration)
     {
         invincible = true;
         yield return new WaitForSeconds(duration);
         invincible = false;
         
-        StopCoroutine("Invincibility");
+        StopCoroutine("DamageInv");
     }
     private void onRoll(InputAction.CallbackContext context)
     {
-        if(invincible)
+        if(invincible || onCooldown)
         {
             return;
         }
 
-        StartCoroutine(Invincibility(rollInvin));
+        StartCoroutine(DodgeRoll(rollInvin));
 
         //Play Animation
 
         //Maybe, cooldown on roll?
     }
-    private void OnTriggerEnter(Collider col)
+    private void OnCollisionEnter(Collision col)
     {
         if(invincible)
         {
             return;
         }
         
-        if(col.CompareTag("Enemy Bullet"))
+        if(col.gameObject.CompareTag("Enemy Bullet")||col.gameObject.CompareTag("Enemy Melee"))
         {
             //This need to take the damage the bullet does rather than a flat rate
             health -= 25; 
             //Update ui health!
             Debug.Log("Damaged");
+            if(!col.gameObject.CompareTag("Enemy Melee"))
+            {
+                Destroy(col.gameObject);
+            }
 
-            StartCoroutine(Invincibility(damageInvin));
+            StartCoroutine(DamageInv(damageInvin));
         }
     }
 

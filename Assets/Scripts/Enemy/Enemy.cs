@@ -100,18 +100,15 @@ public class Enemy : Character
         }
         return true;
     }
-
     //Delete this crap later only here for prototype
-    private void OnTriggerEnter(Collider col)
+    private void OnCollisionEnter(Collision col)
     {
-        if(col.CompareTag("Player Bullet"))
+        if(col.gameObject.CompareTag("Player Bullet"))
         {
             Debug.Log("Hello We Reached Here");
+            Destroy(col.gameObject);
+            //Take Damage
             Destroy(gameObject);
-        }
-        else
-        {
-            Debug.Log("Help");
         }
     }
 
