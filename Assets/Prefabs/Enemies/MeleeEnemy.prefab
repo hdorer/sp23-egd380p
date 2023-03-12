@@ -114,7 +114,7 @@ Transform:
   m_GameObject: {fileID: 4649844427195963910}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.5837593, y: 0.14919686, z: 0.47520018}
-  m_LocalScale: {x: 0.50503, y: 0.50503, z: 0.50503}
+  m_LocalScale: {x: 0.9291036, y: 0.9291036, z: 0.9291036}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8472360304629181805}
@@ -165,7 +165,7 @@ MonoBehaviour:
   moveSpeed: 1.6
   currentState: {fileID: 5496354238823778399}
   agent: {fileID: 4649844427195963960}
-  target: {fileID: 5493555933616117597, guid: cf3abc9ef325a6d43bc3060558178d31, type: 3}
+  target: {fileID: 0}
   isActing: 0
   possibleAttacks:
   - {fileID: 11400000, guid: 6a3d901d6ad88a44f9d9e9899e2efa59, type: 2}
@@ -174,8 +174,9 @@ MonoBehaviour:
   projectiles: []
   currentRecoveryTime: 0
   bulletSpawnPosition: {fileID: 0}
-  gun: {fileID: 0}
-  isMelee: 0
+  gun: {fileID: 5496354240097584024}
+  isMelee: 1
+  shootAccAngle: 0
 --- !u!95 &4649844427195963963
 Animator:
   serializedVersion: 5

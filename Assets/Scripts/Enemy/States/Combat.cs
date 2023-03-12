@@ -16,7 +16,7 @@ public class Combat : State
             enemy.agent.enabled = false;
             return attack;
         }
-        if (enemy.currentRecoveryTime > 0 && enemy.GetAttack() && !enemy.isActing)
+        if (enemy.currentRecoveryTime > 0 && enemy.GetAttack() && (!enemy.isActing || !enemy.isMelee))
         {
             //move around the player like a gremlin 
             enemy.agent.enabled = true;
