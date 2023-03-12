@@ -23,6 +23,7 @@ public class LevelBuilder : MonoBehaviour
     private PathFinding pathFinding = new PathFinding();
     private bool overlapChecked = false;
     private bool hallwaysGen = true;
+    private bool wait = false;
 
     void Awake()
     {
@@ -34,7 +35,7 @@ public class LevelBuilder : MonoBehaviour
     {
         if (placedTiles.Count < numRooms && placeableTiles.Count != 0)
             GenerateLevel();
-        else if (overlapChecked == false)
+        else if (overlapChecked == false && wait == false)
             CheckOverlap();
         else if (hallwaysGen == false && overlapChecked == true)
         {
@@ -95,7 +96,7 @@ public class LevelBuilder : MonoBehaviour
             if (loopBreak > 100)
             {
                 Debug.Log("Infinite Loop!!");
-                Debug.Break();
+                //Debug.Break();
             }
 
         } while (!validTile);
@@ -137,6 +138,7 @@ public class LevelBuilder : MonoBehaviour
 
     private void CheckOverlap()
     {
+        wait = true;
         overlapChecked = true;
         hallwaysGen = false;
 
@@ -147,13 +149,14 @@ public class LevelBuilder : MonoBehaviour
             {
                 overlapChecked = false;
                 hallwaysGen = true;
-                Vector3Int gridPt = grid.WorldToCell(tile.transform.position);
-                Vector3Int[] neighborGridpts = new Vector3Int[8] {new Vector3Int(gridPt.x - 1, gridPt.y + 1), new Vector3Int(gridPt.x, gridPt.y + 1), new Vector3Int(gridPt.x + 1, gridPt.y + 1),
-                                                                    new Vector3Int(gridPt.x - 1, gridPt.y), /*CENTER,*/ new Vector3Int(gridPt.x + 1, gridPt.y),
-                                                                    new Vector3Int(gridPt.x - 1, gridPt.y), new Vector3Int(gridPt.x, gridPt.y - 1), new Vector3Int(gridPt.x + 1, gridPt.y - 1)
+                Vector3Int gridPt = /*grid.WorldToCell*/Vector3Int.FloorToInt(tile.transform.position);
+                Vector3Int[] neighborGridpts = new Vector3Int[8] {new Vector3Int(gridPt.x - 1, 0, gridPt.y + 1), new Vector3Int(gridPt.x, 0, gridPt.y + 1), new Vector3Int(gridPt.x + 1, 0, gridPt.y + 1),
+                                                                    new Vector3Int(gridPt.x - 1, 0, gridPt.y), /*CENTER,*/ new Vector3Int(gridPt.x + 1, 0, gridPt.y),
+                                                                    new Vector3Int(gridPt.x - 1, 0, gridPt.y), new Vector3Int(gridPt.x, 0, gridPt.y - 1), new Vector3Int(gridPt.x + 1, 0, gridPt.y - 1)
                                                                     };
 
                 float dist = 0, tmp;
+                Vector3 newPt = tile.transform.position;
 
                 for (int i = 0; i < neighborGridpts.Length; i++)
                 {
@@ -161,11 +164,15 @@ public class LevelBuilder : MonoBehaviour
                     if (tmp > dist)
                     {
                         dist = tmp;
-                        tile.transform.position = Vector3Int.FloorToInt(grid.CellToWorld(neighborGridpts[i]));
+                        newPt = Vector3Int.FloorToInt(grid.CellToWorld(neighborGridpts[i]));
                     }
                 }
+
+                tile.transform.position = newPt;
             }
         }
+
+        StartCoroutine(PauseGen());
     }
 
     private void GenerateHallways()
@@ -204,6 +211,13 @@ public class LevelBuilder : MonoBehaviour
         }
 
         StartCoroutine(DeleteWalls());
+    }
+
+    IEnumerator PauseGen()
+    {
+        yield return new WaitForSeconds(0.1f);
+
+        wait = false;
     }
 
     IEnumerator DeleteWalls()
