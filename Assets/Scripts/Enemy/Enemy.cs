@@ -20,6 +20,7 @@ public class Enemy : Character
     public Transform bulletSpawnPosition;
     public GameObject gun;
     public bool isMelee;
+    public float shootAccAngle = 0;
 
     private void Start()
     {
@@ -43,7 +44,17 @@ public class Enemy : Character
         Vector3 shootTarget = target.transform.position;
         shootTarget.y += 0.5f;
         Vector3 shootVelocity = shootTarget - transform.position;
-        Instantiate(projectiles[projectileType], bulletSpawnPosition.position, Quaternion.LookRotation(shootVelocity));
+        if(shootAccAngle != 0)
+        {
+            float randAngle = Random.Range(-shootAccAngle, shootAccAngle);
+            Vector3 angledVelocity = Quaternion.AngleAxis(randAngle, Vector3.forward) * shootVelocity;
+            angledVelocity.y = 0;
+            Instantiate(projectiles[projectileType], bulletSpawnPosition.position, Quaternion.LookRotation(angledVelocity));
+        }else
+        {
+            Instantiate(projectiles[projectileType], bulletSpawnPosition.position, Quaternion.LookRotation(shootVelocity));
+
+        }
     }
     public void EndAction()
     {
@@ -66,39 +77,48 @@ public class Enemy : Character
     }
     public bool GetAttack()
     {
-        int maxScore = 0;
-        for (int i = 0; i < possibleAttacks.Count; i++)
-        {
-            AttackAction attackAction = possibleAttacks[i];
-            if (distanceFromTarget <= attackAction.maxDistance && distanceFromTarget >= attackAction.minDistance)
-            {
-                maxScore += attackAction.attackScore;
-            }
-        }
-        if (maxScore == 0)
-        {
-            return false;
-        }
-        int randomValue = Random.Range(0, maxScore + 1);
-        int tempScore = 0;
-        for (int i = 0; i < possibleAttacks.Count; i++)
+        Vector3 forwardsVec = gun.transform.forward;
+        forwardsVec.y = 0;
+        Vector3 lookVec = target.transform.position - transform.position;
+        lookVec.y = 0;
+        if (Vector3.Angle(forwardsVec, lookVec) < 4f)
         {
 
-            AttackAction attackAction = possibleAttacks[i];
-            if (distanceFromTarget <= attackAction.maxDistance && distanceFromTarget >= attackAction.minDistance)
+            int maxScore = 0;
+            for (int i = 0; i < possibleAttacks.Count; i++)
             {
-                if (currentAttack != null)
+                AttackAction attackAction = possibleAttacks[i];
+                if (distanceFromTarget <= attackAction.maxDistance && distanceFromTarget >= attackAction.minDistance)
                 {
-                    return true;
-                }
-                tempScore += attackAction.attackScore;
-                if (tempScore > randomValue)
-                {
-                    currentAttack = attackAction;
+                    maxScore += attackAction.attackScore;
                 }
             }
+            if (maxScore == 0)
+            {
+                return false;
+            }
+            int randomValue = Random.Range(0, maxScore + 1);
+            int tempScore = 0;
+            for (int i = 0; i < possibleAttacks.Count; i++)
+            {
+
+                AttackAction attackAction = possibleAttacks[i];
+                if (distanceFromTarget <= attackAction.maxDistance && distanceFromTarget >= attackAction.minDistance)
+                {
+                    if (currentAttack != null)
+                    {
+                        return true;
+                    }
+                    tempScore += attackAction.attackScore;
+                    if (tempScore > randomValue)
+                    {
+                        currentAttack = attackAction;
+                    }
+                }
+            }
+            return true;
         }
-        return true;
+        return false;
     }
     //Delete this crap later only here for prototype
     private void OnCollisionEnter(Collision col)

@@ -61,7 +61,7 @@ Transform:
   m_GameObject: {fileID: 1488432421446736163}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.2110543, y: 0.1491971, z: 0.53671455}
-  m_LocalScale: {x: 0.48211625, y: 0.48211625, z: 0.48211625}
+  m_LocalScale: {x: 0.7676255, y: 0.7676255, z: 0.7676255}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1381831148233699317}
@@ -126,7 +126,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 100
   maxHealth: 100
-  moveSpeed: 1.8
+  moveSpeed: 1.9
   currentState: {fileID: 1488432422137680321}
   agent: {fileID: 1488432421446736164}
   target: {fileID: 5493555933616117597, guid: cf3abc9ef325a6d43bc3060558178d31, type: 3}
@@ -141,6 +141,7 @@ MonoBehaviour:
   bulletSpawnPosition: {fileID: 1488432421912041422}
   gun: {fileID: 1488432420879113837}
   isMelee: 0
+  shootAccAngle: 0
 --- !u!65 &5865532560622597503
 BoxCollider:
   m_ObjectHideFlags: 0

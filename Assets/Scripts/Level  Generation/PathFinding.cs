@@ -118,7 +118,7 @@ public class PathFinding
         if (loopBreak > maxPathDepth)
         {
             Debug.Log("LOOP BREAK");
-            Debug.Break();
+            //Debug.Break();
             return true;
         }
 

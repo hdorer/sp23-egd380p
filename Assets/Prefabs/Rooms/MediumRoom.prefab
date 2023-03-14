@@ -625,7 +625,7 @@ MonoBehaviour:
   player: {fileID: 0}
   locked: 0
   activationRange: 3
-  speed: 2.5
+  speed: 5
   doors:
   - door: {fileID: 1897290155532779889}
     closed: {fileID: 5633941908162490170}
@@ -1031,7 +1031,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 19.5, y: 2.5, z: 19.5}
+  m_Size: {x: 18, y: 2.8, z: 18}
   m_Center: {x: 0, y: 1.5, z: 0}
 --- !u!114 &2876256658257084274
 MonoBehaviour:
@@ -2407,7 +2407,7 @@ MonoBehaviour:
   player: {fileID: 0}
   locked: 0
   activationRange: 3
-  speed: 2.5
+  speed: 5
   doors:
   - door: {fileID: 5736135318423242934}
     closed: {fileID: 1475397880134453084}
@@ -2583,7 +2583,7 @@ MonoBehaviour:
   player: {fileID: 0}
   locked: 0
   activationRange: 3
-  speed: 2.5
+  speed: 5
   doors:
   - door: {fileID: 6490856314134399397}
     closed: {fileID: 5674260222679946216}
@@ -2645,7 +2645,7 @@ MonoBehaviour:
   player: {fileID: 0}
   locked: 0
   activationRange: 3
-  speed: 2.5
+  speed: 5
   doors:
   - door: {fileID: 6575952225845153560}
     closed: {fileID: 8574148935898695063}

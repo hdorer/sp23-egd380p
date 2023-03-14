@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fd3959cf1572da248928163a5ac0740d, type: 3}
-  m_Name: BasicGunFire
+  m_Name: MachineGunFire
   m_EditorClassIdentifier: 
   attackAnimation: FireGun
   animationLayer: 1
   attackScore: 3
   recoveryTime: 2
   minDistance: 1
-  maxDistance: 10
+  maxDistance: 8
   pushAmount: 0
