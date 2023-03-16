@@ -9,6 +9,7 @@ public class MovementScript : Character
     //Made public so items can increase invincibility time
     [SerializeField] private float damageInvin = 1.0f;
     [SerializeField] private float rollInvin = 0.5f;
+    [SerializeField] private float rollMod = 50.0f;
 
     private Rigidbody rb;
     private float horiz;
@@ -83,6 +84,13 @@ public class MovementScript : Character
         Debug.Log("Roll");
         invincible = true;
         onCooldown = true;
+        //Burst character in direction of movement
+
+        Vector3 dir = new Vector3 (horiz, 0, vert);
+        dir.Normalize();
+        dir *= rollMod;
+        rb.AddForce(dir, ForceMode.VelocityChange);
+
         yield return new WaitForSeconds(duration);
         invincible = false;
         yield return new WaitForSeconds(1.0f);
@@ -107,7 +115,7 @@ public class MovementScript : Character
 
         StartCoroutine(DodgeRoll(rollInvin));
 
-        //Play Animation
+        //Play Animation In coroutine?
 
         //Maybe, cooldown on roll?
     }
