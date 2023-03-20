@@ -1302,37 +1302,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1267082477}
   m_CullTransparentMesh: 1
---- !u!1 &1273001069
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1273001070}
-  m_Layer: 6
-  m_Name: BulletSpawn
-  m_TagString: Untagged
-  m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1273001070
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1273001069}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2, z: 1.36}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1525245495}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1309297153
 GameObject:
   m_ObjectHideFlags: 0
@@ -1670,6 +1639,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1525245497, guid: 9a5aef559b35afd4497e7847f0e7a283, type: 3}
+      propertyPath: onUiUpdate.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1158301562}
     - target: {fileID: 5582301183447046640, guid: 9a5aef559b35afd4497e7847f0e7a283, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -1718,30 +1691,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: StartingZone
       objectReference: {fileID: 0}
-    - target: {fileID: 7557286300325774033, guid: 9a5aef559b35afd4497e7847f0e7a283, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7557286300325774033, guid: 9a5aef559b35afd4497e7847f0e7a283, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7557286300325774033, guid: 9a5aef559b35afd4497e7847f0e7a283, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8028342144234513727, guid: 9a5aef559b35afd4497e7847f0e7a283, type: 3}
-      propertyPath: m_Size.y
-      value: 2.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8028342144234513727, guid: 9a5aef559b35afd4497e7847f0e7a283, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8028342144234513727, guid: 9a5aef559b35afd4497e7847f0e7a283, type: 3}
-      propertyPath: m_IsTrigger
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9a5aef559b35afd4497e7847f0e7a283, type: 3}
 --- !u!1 &1525245494 stripped
@@ -1765,69 +1714,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7ab3ef5024b6ae4d9d64ad12d95c694, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1525245497
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1525245494}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57444955ed180c34f92402b7badd411d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  weapon: {fileID: 11400000, guid: a9e8a63cd0ee9f4498fc5b52b5b56ba2, type: 2}
-  bulletSpawnPoint: {fileID: 1273001070}
-  fireInput:
-    m_Name: Fire Input
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 2de5a389-7ac6-43ca-abce-ffcfb6d6e0af
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: 9a1775d2-0bbf-4417-8713-d1b226b2c06c
-      m_Path: <Mouse>/leftButton
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Fire Input
-      m_Flags: 0
-    m_Flags: 0
-  reloadInput:
-    m_Name: Reload Input
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 5af172f9-aeda-4b39-ac5b-71b893016ccb
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: d318c011-c33c-4d6c-83d1-332896217f92
-      m_Path: <Keyboard>/r
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Reload Input
-      m_Flags: 0
-    m_Flags: 0
-  onUiUpdate:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1158301562}
-        m_TargetAssemblyTypeName: AmmoDisplay, Assembly-CSharp
-        m_MethodName: updateUiText
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1 &1526570916
 GameObject:
   m_ObjectHideFlags: 0
@@ -1858,8 +1744,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7aa659e0f5f859b4d8f54d1fab9ac518, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numRooms: 9
-  startSeperation: 5
+  numRooms: 15
+  startSeperation: 6
   tileShift: 3
   placedTiles:
   - {fileID: 1525245496}
@@ -1874,6 +1760,7 @@ MonoBehaviour:
   - {fileID: 4532993330944040418, guid: 7425a01942802744090a02ad66e9e609, type: 3}
   - {fileID: 2382284882741248557, guid: 3bd768b899be4f44fa162138dec93cfc, type: 3}
   - {fileID: 2382284882741248557, guid: 3bd768b899be4f44fa162138dec93cfc, type: 3}
+  - {fileID: 5540918809630485188, guid: 3ce761d8eeb5d5e4a9880036c65704b8, type: 3}
 --- !u!156049354 &1526570918
 Grid:
   m_ObjectHideFlags: 0
