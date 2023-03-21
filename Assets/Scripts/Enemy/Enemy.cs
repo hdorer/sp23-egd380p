@@ -56,6 +56,25 @@ public class Enemy : Character
 
         }
     }
+    public void FireRigidBullet(int projectileType)
+    {
+        Vector3 shootTarget = target.transform.position;
+        shootTarget.y += 0.5f;
+        Vector3 shootVelocity = shootTarget - transform.position;
+        if (shootAccAngle != 0)
+        {
+            float randAngle = Random.Range(-shootAccAngle, shootAccAngle);
+            Vector3 angledVelocity = Quaternion.AngleAxis(randAngle, Vector3.forward) * shootVelocity;
+            angledVelocity.y = 0;
+            Instantiate(projectiles[projectileType], bulletSpawnPosition.position, Quaternion.LookRotation(angledVelocity));
+        }
+        else
+        {
+            Instantiate(projectiles[projectileType], bulletSpawnPosition.position, Quaternion.LookRotation(shootVelocity)).GetComponent<PlasmaBall>().SetVelocity(shootVelocity);
+            
+
+        }
+    }
     public void EndAction()
     {
         isActing = false;
