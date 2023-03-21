@@ -19,5 +19,5 @@ MonoBehaviour:
   clipSize: 5
   reloadTime: 2
   bulletPrefab: {fileID: 4127692203258555895, guid: b20e1de082063a7429b5e3ea2f8b9a03, type: 3}
-  gunName: Basic Shotgun
+  weaponName: Basic Shotgun
   flavorText: Best at blowing enemies apart from short range.
