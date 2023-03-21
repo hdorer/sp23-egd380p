@@ -21,7 +21,8 @@ public class Weapon : ScriptableObject {
     protected GameObject BulletPrefab { get => bulletPrefab; }
 
     [Header("UI Properties")]
-    [SerializeField] string gunName;
+    [SerializeField] string weaponName;
+    public string WeaponName { get => weaponName; }
     [SerializeField] string flavorText;
 
     public void fire(Transform bulletSpawnPoint) {
