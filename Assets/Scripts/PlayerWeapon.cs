@@ -68,11 +68,9 @@ public class PlayerWeapon : MonoBehaviour {
     }
 
     private void OnDisable() {
-        changeWeaponsInput.performed -= changeWeapons;
-
         fireInput.Disable();
         reloadInput.Disable();
-        changeWeaponsInput.Disable();
+        changeWeaponInput.Disable();
     }
 
     public void setFireRateModifier(float fireRateModifier) {
@@ -131,13 +129,13 @@ public class PlayerWeapon : MonoBehaviour {
         }
 
         spawnOldWeaponPickup();
-        weapon = nearbyPickup.Weapon;
+        weapons[currentWeapon].weapon = nearbyPickup.Weapon;
         Destroy(nearbyPickup.gameObject);
     }
 
     private void spawnOldWeaponPickup() {
         WeaponPickup pickup = Instantiate(weaponPickupPrefab, bulletSpawnPoint.position, transform.rotation);
-        pickup.Weapon = weapon;
+        pickup.Weapon = weapons[currentWeapon].weapon;
         pickup.GetComponent<Rigidbody>().AddForce(transform.forward * pickupThrowForce, ForceMode.Impulse);
     }
 }
