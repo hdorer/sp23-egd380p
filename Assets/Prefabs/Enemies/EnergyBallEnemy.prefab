@@ -417,6 +417,7 @@ GameObject:
   - component: {fileID: 4988447341650480386}
   - component: {fileID: 4988447341650480387}
   - component: {fileID: 4988447341650480384}
+  - component: {fileID: 4079970324118253310}
   m_Layer: 0
   m_Name: EnergyBallEnemy
   m_TagString: Untagged
@@ -434,7 +435,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.15289307, y: -0.54442596, z: -1.9307861}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 8165146065499384317}
   - {fileID: 3310852824532103557}
@@ -514,3 +515,16 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+--- !u!65 &4079970324118253310
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4988447341650480385}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2, y: 3, z: 2}
+  m_Center: {x: 0, y: 2.5, z: 0}
