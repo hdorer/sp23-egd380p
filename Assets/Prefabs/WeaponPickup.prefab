@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 495543681614667760}
   - component: {fileID: 495543681614667763}
   - component: {fileID: 495543681614667762}
+  - component: {fileID: 3635722766732511239}
   - component: {fileID: 495543681614667757}
   m_Layer: 0
   m_Name: WeaponPickup
@@ -93,11 +94,24 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 495543681614667756}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.5
   m_Height: 2
   m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!135 &3635722766732511239
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 495543681614667756}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 2.5
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &495543681614667757
 MonoBehaviour:
@@ -112,20 +126,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weapon: {fileID: 0}
-  changeWeaponInput:
-    m_Name: Change Weapon Input
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 5cddbc08-48fb-48dd-9f47-5f7a3f2d1fe2
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: e51e216c-1a4c-4df4-bc01-7233cb022e9d
-      m_Path: <Keyboard>/f
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Change Weapon Input
-      m_Flags: 0
-    m_Flags: 0
