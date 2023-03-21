@@ -16,7 +16,9 @@ public class PlayerWeapon : MonoBehaviour {
 
     private float fireRateModifier = 1.0f;
 
+    [SerializeField] private WeaponPickup weaponPickupPrefab;
     private WeaponPickup nearbyPickup = null;
+    private float pickupThrowForce = 2.0f;
 
     [SerializeField] private InputAction fireInput;
     [SerializeField] private InputAction reloadInput;
@@ -90,7 +92,6 @@ public class PlayerWeapon : MonoBehaviour {
     private IEnumerator doFireCooldown() {
         fireCooldown = true;
         float fireRate = weapon.FireRate / fireRateModifier;
-        // Debug.Log("Setting fire rate: " + weapon.FireRate + " / " + fireRateModifier + " == " + fireRate);
         yield return new WaitForSeconds(fireRate);
         fireCooldown = false;
     }
@@ -112,6 +113,14 @@ public class PlayerWeapon : MonoBehaviour {
             return;
         }
 
+        spawnOldWeaponPickup();
         weapon = nearbyPickup.Weapon;
+        Destroy(nearbyPickup.gameObject);
+    }
+
+    private void spawnOldWeaponPickup() {
+        WeaponPickup pickup = Instantiate(weaponPickupPrefab, bulletSpawnPoint.position, transform.rotation);
+        pickup.Weapon = weapon;
+        pickup.GetComponent<Rigidbody>().AddForce(transform.forward * pickupThrowForce, ForceMode.Impulse);
     }
 }

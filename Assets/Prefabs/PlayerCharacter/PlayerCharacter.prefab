@@ -274,6 +274,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weapon: {fileID: 11400000, guid: a9e8a63cd0ee9f4498fc5b52b5b56ba2, type: 2}
   bulletSpawnPoint: {fileID: 1867875644546100961}
+  weaponPickupPrefab: {fileID: 495543681614667757, guid: bd8613c3472f6d34fb78bac708a803e3, type: 3}
   fireInput:
     m_Name: Fire Input
     m_Type: 0
@@ -312,7 +313,7 @@ MonoBehaviour:
     m_Name: Change Weapon Input
     m_Type: 0
     m_ExpectedControlType: 
-    m_Id: 2e7e8f6b-a638-4f2a-b986-c1167d887f67
+    m_Id: 6abaf509-01cb-4183-a8a3-fd5383701818
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings:

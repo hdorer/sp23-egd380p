@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class WeaponPickup : MonoBehaviour {
     [SerializeField] Weapon weapon;
-    public Weapon Weapon { get => weapon; }
+    public Weapon Weapon { get => weapon; set => weapon = value; }
 
     private void OnTriggerEnter(Collider other) {
         PlayerWeapon pWeapon = other.GetComponent<PlayerWeapon>();
