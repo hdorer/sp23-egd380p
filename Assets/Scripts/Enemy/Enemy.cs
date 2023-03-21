@@ -66,7 +66,7 @@ public class Enemy : Character
             float randAngle = Random.Range(-shootAccAngle, shootAccAngle);
             Vector3 angledVelocity = Quaternion.AngleAxis(randAngle, Vector3.forward) * shootVelocity;
             angledVelocity.y = 0;
-            Instantiate(projectiles[projectileType], bulletSpawnPosition.position, Quaternion.LookRotation(angledVelocity));
+            Instantiate(projectiles[projectileType], bulletSpawnPosition.position, Quaternion.LookRotation(angledVelocity)).GetComponent<PlasmaBall>().SetVelocity(shootVelocity);
         }
         else
         {

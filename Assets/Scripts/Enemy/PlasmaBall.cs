@@ -19,7 +19,7 @@ public class PlasmaBall : MonoBehaviour
 
     public void SetVelocity(Vector3 velocity)
     {
-        GetComponent<Rigidbody>().velocity = velocity;
+        GetComponent<Rigidbody>().velocity = velocity * 1.5f;
     }
 
     private void OnCollisionEnter(Collision collision)

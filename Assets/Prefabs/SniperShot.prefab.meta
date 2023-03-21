@@ -1,0 +1,11 @@
+fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Prefabs/BasicBullet.prefab.meta
+guid: 5e5a84526913065448d41bde3b60eb3b
+========
+guid: 1a87a583fc4d8194284b8a66a193920f
+>>>>>>>> main:Assets/Prefabs/BasicEnemyBullet.prefab.meta
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

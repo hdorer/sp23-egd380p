@@ -313,7 +313,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3310852825799295270}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.8999987, z: 0}
+  m_LocalPosition: {x: 0, y: 2.8999987, z: 2.56}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -489,12 +489,12 @@ MonoBehaviour:
   distanceFromTarget: 0
   currentAttack: {fileID: 0}
   projectiles:
-  - {fileID: 798192242076072870, guid: dd93cb722cc14614cb80c7e5b8fefb5b, type: 3}
+  - {fileID: 4839637938363015079, guid: c259e01f2fc832047a95cd0e6ce2c6c7, type: 3}
   currentRecoveryTime: 0
   bulletSpawnPosition: {fileID: 3310852825799295265}
   gun: {fileID: 3310852825343665892}
   isMelee: 0
-  shootAccAngle: 2
+  shootAccAngle: 0
 --- !u!95 &4988447341650480384
 Animator:
   serializedVersion: 5
