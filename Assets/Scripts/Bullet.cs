@@ -24,4 +24,11 @@ public class Bullet : MonoBehaviour {
             damageSet = true;
         }
     }
+    void OnCollisionEnter(Collision col)
+    {
+        if(col.gameObject.CompareTag("Wall"))
+        {
+            Destroy(gameObject);
+        }
+    }
 }

@@ -95,7 +95,7 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 798192242076072870}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
@@ -112,8 +112,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 656c0667b7131374d8a4eef929bb1cc3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isAllyBullet: 0
   speed: 7
+  lifetime: 15
 --- !u!54 &-3294191049230896920
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -122,7 +122,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 798192242076072870}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 0.07
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 0
