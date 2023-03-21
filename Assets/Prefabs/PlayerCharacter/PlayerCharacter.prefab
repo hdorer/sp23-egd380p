@@ -308,6 +308,23 @@ MonoBehaviour:
       m_Action: Reload Input
       m_Flags: 0
     m_Flags: 0
+  changeWeaponInput:
+    m_Name: Change Weapon Input
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 2e7e8f6b-a638-4f2a-b986-c1167d887f67
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 0137375d-43b8-480a-835a-54af86ee9978
+      m_Path: <Keyboard>/f
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Change Weapon Input
+      m_Flags: 0
+    m_Flags: 0
   onUiUpdate:
     m_PersistentCalls:
       m_Calls: []

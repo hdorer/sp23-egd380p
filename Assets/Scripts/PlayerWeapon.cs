@@ -16,8 +16,11 @@ public class PlayerWeapon : MonoBehaviour {
 
     private float fireRateModifier = 1.0f;
 
+    private WeaponPickup nearbyPickup = null;
+
     [SerializeField] private InputAction fireInput;
     [SerializeField] private InputAction reloadInput;
+    [SerializeField] private InputAction changeWeaponInput;
 
     [System.Serializable] public class UiUpdateEvent : UnityEvent<int, int> { }
     public UiUpdateEvent onUiUpdate;
@@ -25,11 +28,14 @@ public class PlayerWeapon : MonoBehaviour {
     private void OnEnable() {
         fireInput.Enable();
         reloadInput.Enable();
+        changeWeaponInput.Enable();
 
         fireInput.performed += context => firing = true;
         fireInput.canceled += context => firing = false;
 
         reloadInput.performed += context => StartCoroutine(reload());
+
+        changeWeaponInput.performed += context => changeWeapon();
     }
 
     private void Start() {
@@ -59,6 +65,10 @@ public class PlayerWeapon : MonoBehaviour {
     public void resetFireRateModifier() {
         fireRateModifier = 1.0f;
         Debug.Log("Fire rate modifier is " + fireRateModifier);
+    }
+
+    public void setNearbyPickup(WeaponPickup pickup) {
+        nearbyPickup = pickup;
     }
 
     private void fire() {
@@ -91,5 +101,17 @@ public class PlayerWeapon : MonoBehaviour {
         bulletsInClip = weapon.ClipSize;
         onUiUpdate?.Invoke(bulletsInClip, weapon.ClipSize);
         reloading = false;
+    }
+
+    private void changeWeapon() {
+        if(nearbyPickup == null) {
+            return;
+        }
+
+        if(nearbyPickup.Weapon == null) {
+            return;
+        }
+
+        weapon = nearbyPickup.Weapon;
     }
 }
