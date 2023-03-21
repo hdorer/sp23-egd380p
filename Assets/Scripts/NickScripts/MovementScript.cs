@@ -16,6 +16,7 @@ public class MovementScript : Character
     private float vert;
     private bool invincible = false;
     private bool onCooldown = false;
+    private bool onRolling = false;
 
     private float moveSpeedModifier = 1.0f;
 
@@ -72,7 +73,10 @@ public class MovementScript : Character
 
         float mag = Mathf.Clamp01(movement.magnitude) * (moveSpeed * moveSpeedModifier);
         movement.Normalize();
-
+        if(onRolling)
+        {
+            return;
+        }
         rb.velocity = movement*mag;
     }
     private void FixedUpdate()
@@ -84,15 +88,19 @@ public class MovementScript : Character
         Debug.Log("Roll");
         invincible = true;
         onCooldown = true;
+        onRolling = true;
         //Burst character in direction of movement
 
         Vector3 dir = new Vector3 (horiz, 0, vert);
         dir.Normalize();
         dir *= rollMod;
-        rb.AddForce(dir, ForceMode.VelocityChange);
-
+        //rb.velocity = dir;
+        Vector3 newPos = transform.position+dir;
+        transform.position = Vector3.MoveTowards(transform.position, newPos, duration);
+        
         yield return new WaitForSeconds(duration);
         invincible = false;
+        onRolling = false;
         yield return new WaitForSeconds(1.0f);
         onCooldown = false;
         
