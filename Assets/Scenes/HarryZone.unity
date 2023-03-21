@@ -257,8 +257,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -277.73, y: 201.9}
-  m_SizeDelta: {x: -555.4667, y: -403.7903}
+  m_AnchoredPosition: {x: -277.72998, y: 185.08066}
+  m_SizeDelta: {x: -555.4667, y: -370.1513}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &51524870
 MonoBehaviour:
@@ -937,6 +937,34 @@ PrefabInstance:
       value: AmmoDisplay, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: -5632172482557135582, guid: cf3abc9ef325a6d43bc3060558178d31, type: 3}
+      propertyPath: onUiUpdate.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 1702877453889114121, guid: cf3abc9ef325a6d43bc3060558178d31, type: 3}
+      propertyPath: onUiUpdate.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1702877453889114121, guid: cf3abc9ef325a6d43bc3060558178d31, type: 3}
+      propertyPath: onUiUpdate.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1702877453889114121, guid: cf3abc9ef325a6d43bc3060558178d31, type: 3}
+      propertyPath: onUiUpdate.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 51524870}
+    - target: {fileID: 1702877453889114121, guid: cf3abc9ef325a6d43bc3060558178d31, type: 3}
+      propertyPath: onUiUpdate.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1702877453889114121, guid: cf3abc9ef325a6d43bc3060558178d31, type: 3}
+      propertyPath: onUiUpdate.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: updateUiText
+      objectReference: {fileID: 0}
+    - target: {fileID: 1702877453889114121, guid: cf3abc9ef325a6d43bc3060558178d31, type: 3}
+      propertyPath: onUiUpdate.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: AmmoDisplay, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1702877453889114121, guid: cf3abc9ef325a6d43bc3060558178d31, type: 3}
       propertyPath: onUiUpdate.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
@@ -2161,7 +2189,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startActive: 0
   oneVotePerChatter: 1
-  pollEffects: 
   optionLabels: []
   pollTime: 20
   pollDowntime: 60
@@ -2797,7 +2824,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startActive: 0
   oneVotePerChatter: 1
-  pollEffects: 
   optionLabels:
   - Increase Health Regen
   - Increase Enemy Spawn Rate
