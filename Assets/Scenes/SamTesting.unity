@@ -308,7 +308,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &482116701
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -321,8 +321,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30090c1fc0f50db40af5f9a376c6261c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  random: 1
-  seed: 820716739
+  random: 0
+  seed: -1872327309
 --- !u!4 &482116702
 Transform:
   m_ObjectHideFlags: 0
@@ -1797,8 +1797,6 @@ MonoBehaviour:
   placedTiles:
   - {fileID: 1525245496}
   hallways: []
-  placedTilesParent: {fileID: 0}
-  hallwaysParent: {fileID: 0}
   hallway: {fileID: 308476084578560956, guid: 4b9b37cbe626a4b4680348af68c14ea2, type: 3}
   placeableTiles:
   - {fileID: 4532993330944040418, guid: 7425a01942802744090a02ad66e9e609, type: 3}

@@ -183,6 +183,9 @@ public class LevelBuilder : MonoBehaviour
                                                                     new Vector3Int(gridPt.x - 1, 0, gridPt.y), new Vector3Int(gridPt.x, 0, gridPt.y - 1), new Vector3Int(gridPt.x + 1, 0, gridPt.y - 1)
                                                                     };
 
+                //for (int i = 0; i < neighborGridpts.Length; i++)
+                //    neighborGridpts[i] = grid.WorldToCell(neighborGridpts[i]);
+
                 float dist = 0, tmp;
                 Vector3 newPt = tile.transform.position;
 
@@ -223,6 +226,7 @@ public class LevelBuilder : MonoBehaviour
                     {
                         Debug.Log("ERROR: RELOADING LEVEL");
                         ReloadLevel();
+                        return;
                     }
 
                     if (path != null)
@@ -250,6 +254,7 @@ public class LevelBuilder : MonoBehaviour
 
         //handle the starting zone
         TileData tmp = placedTiles[0];
+        tmp.transform.position = grid.WorldToCell(Vector3.zero);
         placedTiles.RemoveAt(0);
         placedTiles.Clear();
         placedTiles.Add(tmp);
