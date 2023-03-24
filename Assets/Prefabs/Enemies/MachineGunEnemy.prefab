@@ -269,6 +269,7 @@ GameObject:
   - component: {fileID: 4434164153672867305}
   - component: {fileID: 4434164153672867304}
   - component: {fileID: 4434164153672867223}
+  - component: {fileID: 394330743341432100}
   m_Layer: 0
   m_Name: MachineGunEnemy
   m_TagString: Untagged
@@ -285,8 +286,8 @@ Transform:
   m_GameObject: {fileID: 4434164153672867222}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.213, z: 0}
-  m_LocalScale: {x: 1.0221351, y: 1.0221351, z: 1.0221351}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 620686261776263933}
   - {fileID: 6174697367353062164}
@@ -366,6 +367,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+--- !u!65 &394330743341432100
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4434164153672867222}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2, y: 1.53, z: 1.15}
+  m_Center: {x: 0, y: 1.24, z: 0}
 --- !u!1 &5560922644233311467
 GameObject:
   m_ObjectHideFlags: 0

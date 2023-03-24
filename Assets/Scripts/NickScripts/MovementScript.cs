@@ -9,11 +9,14 @@ public class MovementScript : Character
     //Made public so items can increase invincibility time
     [SerializeField] private float damageInvin = 1.0f;
     [SerializeField] private float rollInvin = 0.5f;
+    [SerializeField] private float rollMod = 50.0f;
 
     private Rigidbody rb;
     private float horiz;
     private float vert;
     private bool invincible = false;
+    private bool onCooldown = false;
+    private bool onRolling = false;
 
     private float moveSpeedModifier = 1.0f;
 
@@ -70,49 +73,79 @@ public class MovementScript : Character
 
         float mag = Mathf.Clamp01(movement.magnitude) * (moveSpeed * moveSpeedModifier);
         movement.Normalize();
-
+        if(onRolling)
+        {
+            return;
+        }
         rb.velocity = movement*mag;
     }
     private void FixedUpdate()
     {
         MovePlayer();
     }
-    private IEnumerator Invincibility(float duration)
+    private IEnumerator DodgeRoll(float duration)
+    {
+        Debug.Log("Roll");
+        invincible = true;
+        onCooldown = true;
+        onRolling = true;
+        //Burst character in direction of movement
+
+        Vector3 dir = new Vector3 (horiz, 0, vert);
+        dir.Normalize();
+        dir *= rollMod;
+        //rb.velocity = dir;
+        Vector3 newPos = transform.position+dir;
+        transform.position = Vector3.MoveTowards(transform.position, newPos, duration);
+        
+        yield return new WaitForSeconds(duration);
+        invincible = false;
+        onRolling = false;
+        yield return new WaitForSeconds(1.0f);
+        onCooldown = false;
+        
+        StopCoroutine("DodgeRoll");
+    }
+    private IEnumerator DamageInv(float duration)
     {
         invincible = true;
         yield return new WaitForSeconds(duration);
         invincible = false;
         
-        StopCoroutine("Invincibility");
+        StopCoroutine("DamageInv");
     }
     private void onRoll(InputAction.CallbackContext context)
     {
-        if(invincible)
+        if(invincible || onCooldown)
         {
             return;
         }
 
-        StartCoroutine(Invincibility(rollInvin));
+        StartCoroutine(DodgeRoll(rollInvin));
 
-        //Play Animation
+        //Play Animation In coroutine?
 
         //Maybe, cooldown on roll?
     }
-    private void OnTriggerEnter(Collider col)
+    private void OnCollisionEnter(Collision col)
     {
         if(invincible)
         {
             return;
         }
         
-        if(col.CompareTag("Enemy Bullet"))
+        if(col.gameObject.CompareTag("Enemy Bullet")||col.gameObject.CompareTag("Enemy Melee"))
         {
             //This need to take the damage the bullet does rather than a flat rate
             health -= 25; 
             //Update ui health!
             Debug.Log("Damaged");
+            if(!col.gameObject.CompareTag("Enemy Melee"))
+            {
+                Destroy(col.gameObject);
+            }
 
-            StartCoroutine(Invincibility(damageInvin));
+            StartCoroutine(DamageInv(damageInvin));
         }
     }
 

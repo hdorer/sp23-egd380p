@@ -17,5 +17,5 @@ MonoBehaviour:
   attackScore: 3
   recoveryTime: 3.5
   minDistance: 1
-  maxDistance: 6
+  maxDistance: 10
   pushAmount: 0
