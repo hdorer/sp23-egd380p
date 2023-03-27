@@ -2006,7 +2006,7 @@ GameObject:
   - component: {fileID: 6819292820840347204}
   - component: {fileID: 3683195322805344309}
   - component: {fileID: 8619546751186793468}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: LargeRoom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3234,7 +3234,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 116
+  m_Constraints: 126
   m_CollisionDetection: 0
 --- !u!114 &6702738767564255786
 MonoBehaviour:

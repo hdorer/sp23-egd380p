@@ -2853,7 +2853,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 116
+  m_Constraints: 126
   m_CollisionDetection: 0
 --- !u!1 &5540918808210904324
 GameObject:
@@ -3002,7 +3002,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 116
+  m_Constraints: 126
   m_CollisionDetection: 0
 --- !u!1 &5540918809023554942
 GameObject:
@@ -3116,7 +3116,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 116
+  m_Constraints: 126
   m_CollisionDetection: 0
 --- !u!1 &5540918809630485188
 GameObject:
@@ -3132,7 +3132,7 @@ GameObject:
   - component: {fileID: 817028445329981953}
   - component: {fileID: 1798262858929935055}
   - component: {fileID: 6448305668711461491}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: DonutRoom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3364,7 +3364,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 116
+  m_Constraints: 126
   m_CollisionDetection: 0
 --- !u!1 &5690036531095167182
 GameObject:

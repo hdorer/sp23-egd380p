@@ -945,7 +945,7 @@ GameObject:
   - component: {fileID: 3261030247245445984}
   - component: {fileID: 5738555080038510213}
   - component: {fileID: 2876256658257084274}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: MediumRoom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
