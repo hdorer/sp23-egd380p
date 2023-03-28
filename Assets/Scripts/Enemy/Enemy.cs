@@ -144,10 +144,14 @@ public class Enemy : Character
     {
         if(col.gameObject.CompareTag("Player Bullet"))
         {
+            health -= 25;
+            if(health <= 0)
+            {
+                Destroy(gameObject);
+            }
             Debug.Log("Hello We Reached Here");
             Destroy(col.gameObject);
             //Take Damage
-            Destroy(gameObject);
         }
     }
 
