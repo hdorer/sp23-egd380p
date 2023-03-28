@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "ScriptableObjects/Blaster")]
-public class Weapon : ScriptableObject {
+public class Blaster : ScriptableObject {
     [Header("Weapon Properties")]
     [SerializeField] private float fireRate;
     [SerializeField] private float damagePerBullet;
