@@ -1260,17 +1260,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7557286300325774033, guid: 9a5aef559b35afd4497e7847f0e7a283, type: 3}
   m_PrefabInstance: {fileID: 2546625779281283103}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &999735435 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 999735435, guid: 9a5aef559b35afd4497e7847f0e7a283, type: 3}
-  m_PrefabInstance: {fileID: 2546625779281283103}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 999735430}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57444955ed180c34f92402b7badd411d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1040373050
 GameObject:
   m_ObjectHideFlags: 0
@@ -1912,7 +1901,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1022750120c57e42bf32c875e08ba6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: {fileID: 316670385}
+  ammoText: {fileID: 316670385}
+  weaponNameTexts: []
 --- !u!114 &1598217483
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2142,7 +2132,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   effectDuration: 10
   pMovement: {fileID: 2546625779281283104}
-  pWeapons: {fileID: 999735435}
+  pWeapons: {fileID: 0}
 --- !u!4 &1753135404
 Transform:
   m_ObjectHideFlags: 0
@@ -2699,9 +2689,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7aa659e0f5f859b4d8f54d1fab9ac518, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numRooms: 9
+  numRooms: 10
   startSeperation: 5
   tileShift: 3
+  pauseDelay: 0
   placedTiles:
   - {fileID: 7939635031611494895}
   hallways: []
@@ -2709,12 +2700,13 @@ MonoBehaviour:
   placeableTiles:
   - {fileID: 4532993330944040418, guid: 7425a01942802744090a02ad66e9e609, type: 3}
   - {fileID: 817559557622800784, guid: 7ae82a0dc0e76164ab7a4dd182431046, type: 3}
-  - {fileID: 4532993330944040418, guid: 7425a01942802744090a02ad66e9e609, type: 3}
+  - {fileID: 5540918809630485188, guid: 3ce761d8eeb5d5e4a9880036c65704b8, type: 3}
   - {fileID: 817559557622800784, guid: 7ae82a0dc0e76164ab7a4dd182431046, type: 3}
   - {fileID: 817559557622800784, guid: 7ae82a0dc0e76164ab7a4dd182431046, type: 3}
-  - {fileID: 4532993330944040418, guid: 7425a01942802744090a02ad66e9e609, type: 3}
+  - {fileID: 3329714740037679923, guid: b08b9de07911b97408629f6ab3707c6b, type: 3}
   - {fileID: 2382284882741248557, guid: 3bd768b899be4f44fa162138dec93cfc, type: 3}
   - {fileID: 2382284882741248557, guid: 3bd768b899be4f44fa162138dec93cfc, type: 3}
+  - {fileID: 817559557622800784, guid: c3ea894ebb534414e9a93a42c2aebe26, type: 3}
 --- !u!156049354 &2092609222
 Grid:
   m_ObjectHideFlags: 0
@@ -2870,10 +2862,50 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 999735435, guid: 9a5aef559b35afd4497e7847f0e7a283, type: 3}
+    - target: {fileID: 3816440743214309993, guid: 9a5aef559b35afd4497e7847f0e7a283, type: 3}
+      propertyPath: weapons.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3816440743214309993, guid: 9a5aef559b35afd4497e7847f0e7a283, type: 3}
+      propertyPath: weapons.Array.data[0].weapon
+      value: 
+      objectReference: {fileID: 11400000, guid: a9e8a63cd0ee9f4498fc5b52b5b56ba2, type: 2}
+    - target: {fileID: 3816440743214309993, guid: 9a5aef559b35afd4497e7847f0e7a283, type: 3}
+      propertyPath: onUiUpdate.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3816440743214309993, guid: 9a5aef559b35afd4497e7847f0e7a283, type: 3}
+      propertyPath: onWeaponSwitch.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3816440743214309993, guid: 9a5aef559b35afd4497e7847f0e7a283, type: 3}
       propertyPath: onUiUpdate.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1598217482}
+    - target: {fileID: 3816440743214309993, guid: 9a5aef559b35afd4497e7847f0e7a283, type: 3}
+      propertyPath: onWeaponSwitch.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3816440743214309993, guid: 9a5aef559b35afd4497e7847f0e7a283, type: 3}
+      propertyPath: onUiUpdate.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3816440743214309993, guid: 9a5aef559b35afd4497e7847f0e7a283, type: 3}
+      propertyPath: onUiUpdate.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: updateAmmoText
+      objectReference: {fileID: 0}
+    - target: {fileID: 3816440743214309993, guid: 9a5aef559b35afd4497e7847f0e7a283, type: 3}
+      propertyPath: onWeaponSwitch.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3816440743214309993, guid: 9a5aef559b35afd4497e7847f0e7a283, type: 3}
+      propertyPath: onUiUpdate.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: WeaponDisplay, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3816440743214309993, guid: 9a5aef559b35afd4497e7847f0e7a283, type: 3}
+      propertyPath: onUiUpdate.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 5582301183447046640, guid: 9a5aef559b35afd4497e7847f0e7a283, type: 3}
       propertyPath: m_RootOrder
       value: 1
