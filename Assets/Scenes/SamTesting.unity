@@ -322,7 +322,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   random: 0
-  seed: -1872327309
+  seed: -2006987914
 --- !u!4 &482116702
 Transform:
   m_ObjectHideFlags: 0
@@ -1792,9 +1792,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   numRooms: 15
-  startSeperation: 6
-  tileShift: 3
-  pauseDelay: 0.1
+  startSeperation: 8
+  tileShift: 0
+  pauseDelay: 0.2
   placedTiles:
   - {fileID: 1525245496}
   hallways: []
