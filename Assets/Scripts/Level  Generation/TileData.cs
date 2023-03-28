@@ -17,7 +17,7 @@ public class Connection
 public class TileData : MonoBehaviour
 {
     public List<Connection> connections;
-    [HideInInspector]
+    //[HideInInspector]
     public Collider overlap = null;
     public List<GameObject> enemies;
     public BoxCollider[] boxColliders;
@@ -72,7 +72,7 @@ public class TileData : MonoBehaviour
         {
             foreach (Connection c in connections)
             {
-                if (tile.CheckContains(c.alignPt.position))
+                if (tile.CheckContains(c.alignPt.position /*+ Vector3.up*/))
                     return true;
             }
         }
@@ -93,6 +93,10 @@ public class TileData : MonoBehaviour
                 door.locked = true;
                 GetComponent<EnableEnemies>().enemies.SetActive(true);
             }
+    }
+    private void OnTriggerStay(Collider other)
+    {
+        overlap = other;
     }
 
     private void OnTriggerExit(Collider other)
