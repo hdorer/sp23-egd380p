@@ -76,12 +76,15 @@ public class TileData : MonoBehaviour
                     return true;
             }
         }
-
+        //if (overlap != null)
+        //    return true;
+        //else
         return false;
     }
 
     private void OnTriggerEnter(Collider other)
     {
+        //Debug.Log(other.transform.parent.name + " " + gameObject.name);
         overlap = other;
 
         if (other.CompareTag("Player") && enemies.Count > 0)
