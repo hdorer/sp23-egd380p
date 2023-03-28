@@ -316,7 +316,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 9.1115, y: -174.42}
+  m_AnchoredPosition: {x: 9.111511, y: -174.42}
   m_SizeDelta: {x: -49.36, y: 18.3587}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &239521023
@@ -1912,7 +1912,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1022750120c57e42bf32c875e08ba6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: {fileID: 316670385}
+  ammoText: {fileID: 0}
+  weaponNameTexts: []
 --- !u!114 &1598217483
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2451,6 +2452,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1874852312}
   m_CullTransparentMesh: 1
+--- !u!4 &1886072612 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3491276334749579462, guid: 9a5aef559b35afd4497e7847f0e7a283, type: 3}
+  m_PrefabInstance: {fileID: 2546625779281283103}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1918367343
 GameObject:
   m_ObjectHideFlags: 0
@@ -2871,9 +2877,37 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 999735435, guid: 9a5aef559b35afd4497e7847f0e7a283, type: 3}
+      propertyPath: changeWeaponInput.m_Id
+      value: 29238875-c589-4c88-8610-341e88b4cc4e
+      objectReference: {fileID: 0}
+    - target: {fileID: 999735435, guid: 9a5aef559b35afd4497e7847f0e7a283, type: 3}
+      propertyPath: changeWeaponInput.m_Name
+      value: Change Weapon Input
+      objectReference: {fileID: 0}
+    - target: {fileID: 999735435, guid: 9a5aef559b35afd4497e7847f0e7a283, type: 3}
       propertyPath: onUiUpdate.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1598217482}
+    - target: {fileID: 3491276334749579462, guid: 9a5aef559b35afd4497e7847f0e7a283, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3491276334749579462, guid: 9a5aef559b35afd4497e7847f0e7a283, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.36
+      objectReference: {fileID: 0}
+    - target: {fileID: 3816440743214309993, guid: 9a5aef559b35afd4497e7847f0e7a283, type: 3}
+      propertyPath: bulletSpawnPoint
+      value: 
+      objectReference: {fileID: 1886072612}
+    - target: {fileID: 3816440743214309993, guid: 9a5aef559b35afd4497e7847f0e7a283, type: 3}
+      propertyPath: weapons.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3816440743214309993, guid: 9a5aef559b35afd4497e7847f0e7a283, type: 3}
+      propertyPath: weapons.Array.data[0].weapon
+      value: 
+      objectReference: {fileID: 11400000, guid: a9e8a63cd0ee9f4498fc5b52b5b56ba2, type: 2}
     - target: {fileID: 5582301183447046640, guid: 9a5aef559b35afd4497e7847f0e7a283, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -2921,6 +2955,10 @@ PrefabInstance:
     - target: {fileID: 5582301183447046641, guid: 9a5aef559b35afd4497e7847f0e7a283, type: 3}
       propertyPath: m_Name
       value: StartingZone
+      objectReference: {fileID: 0}
+    - target: {fileID: 8028342144234513725, guid: 9a5aef559b35afd4497e7847f0e7a283, type: 3}
+      propertyPath: rollInvin
+      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9a5aef559b35afd4497e7847f0e7a283, type: 3}
