@@ -7,7 +7,7 @@ using UnityEngine.InputSystem;
 
 [System.Serializable]
 public struct HeldWeapon {
-    public Weapon weapon;
+    public Blaster weapon;
     [HideInInspector] public int bulletsInClip;
 }
 

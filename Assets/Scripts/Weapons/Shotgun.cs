@@ -2,8 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "ScriptableObjects/Shotgun")]
-public class Shotgun : Weapon {
+[CreateAssetMenu(menuName = "ScriptableObjects/Weapons/Shotgun")]
+public class Shotgun : Blaster {
     [Header("Shotgun Properties")]
     [SerializeField] private float bulletsPerShot;
     [SerializeField] private float bulletSpread;
