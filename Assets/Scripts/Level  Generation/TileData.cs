@@ -66,20 +66,19 @@ public class TileData : MonoBehaviour
         return false;
     }
 
-    public bool CheckContains(List<TileData> tiles)
+    public Vector3 CheckContains(List<TileData> tiles)
     {
         foreach (TileData tile in tiles)
         {
             foreach (Connection c in connections)
             {
-                if (tile.CheckContains(c.alignPt.position /*+ Vector3.up*/))
-                    return true;
+                if (tile.CheckContains(c.alignPt.position + Vector3.up))
+                    return c.alignPt.position;
             }
         }
-        //if (overlap != null)
-        //    return true;
-        //else
-        return false;
+        
+        //return up if no point is found
+        return Vector3.up;
     }
 
     private void OnTriggerEnter(Collider other)

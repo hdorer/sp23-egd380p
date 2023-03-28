@@ -238,6 +238,9 @@ public class LevelBuilder : MonoBehaviour
             {
                 if (con.connection != null && visited.ContainsKey(grid.WorldToCell(con.connection.position)) != true)
                 {
+                    if (visited.ContainsKey(grid.WorldToCell(con.alignPt.position)))
+                        continue;
+
                     visited.Add(grid.WorldToCell(con.alignPt.position), true);
                     List<Vector3Int> path = pathFinding.GeneratePath(placedTiles, grid, grid.WorldToCell(con.alignPt.position), grid.WorldToCell(con.connection.transform.position));
 
@@ -307,10 +310,12 @@ public class LevelBuilder : MonoBehaviour
         overlapChecked = true;
         hallwaysGen = false;
 
+        Vector3 overlapPt;
         //check each placed tiles
         foreach (TileData tile in placedTiles)
         {
-            if (tile.overlap != null || tile.CheckContains(placedTiles))
+            overlapPt = tile.CheckContains(placedTiles);
+            if (tile.overlap != null || overlapPt != Vector3.up)
             {
                 overlapChecked = false;
                 hallwaysGen = true;
@@ -318,45 +323,46 @@ public class LevelBuilder : MonoBehaviour
                 gridPt.y = 0;
 
                 int cellSize = Mathf.RoundToInt(grid.cellSize.x);
-                Vector3Int[] neighborGridpts = new Vector3Int[8] {new Vector3Int(gridPt.x - cellSize, 0, gridPt.z + cellSize), new Vector3Int(gridPt.x, 0, gridPt.z + cellSize), new Vector3Int(gridPt.x + cellSize, 0, gridPt.z + cellSize),
-                                                                    new Vector3Int(gridPt.x - cellSize, 0, gridPt.z), /*CENTER,*/ new Vector3Int(gridPt.x + cellSize, 0, gridPt.z),
-                                                                    new Vector3Int(gridPt.x - cellSize, 0, gridPt.z - cellSize), new Vector3Int(gridPt.x, 0, gridPt.z - cellSize), new Vector3Int(gridPt.x + cellSize, 0, gridPt.z - cellSize)
+                //Vector3Int[] neighborGridpts = new Vector3Int[8] {new Vector3Int(gridPt.x - cellSize, 0, gridPt.z + cellSize), new Vector3Int(gridPt.x, 0, gridPt.z + cellSize), new Vector3Int(gridPt.x + cellSize, 0, gridPt.z + cellSize),
+                //                                                    new Vector3Int(gridPt.x - cellSize, 0, gridPt.z), /*CENTER,*/ new Vector3Int(gridPt.x + cellSize, 0, gridPt.z),
+                //                                                    new Vector3Int(gridPt.x - cellSize, 0, gridPt.z - cellSize), new Vector3Int(gridPt.x, 0, gridPt.z - cellSize), new Vector3Int(gridPt.x + cellSize, 0, gridPt.z - cellSize)
+                //                                                    };
+                Vector3Int[] neighborGridpts = new Vector3Int[8] {new Vector3Int(-cellSize, 0, cellSize), new Vector3Int(0, 0, cellSize), new Vector3Int(cellSize, 0, cellSize),
+                                                                    new Vector3Int(-cellSize, 0, 0), /*CENTER,*/ new Vector3Int(cellSize, 0, 0),
+                                                                    new Vector3Int(-cellSize, 0, -cellSize), new Vector3Int(0, 0, -cellSize), new Vector3Int(cellSize, 0, -cellSize)
                                                                     };
 
                 for (int i = 0; i < neighborGridpts.Length; i++)
-                    Debug.DrawLine(gridPt, neighborGridpts[i], Color.green, 2f);
+                    Debug.DrawLine(gridPt, neighborGridpts[i] + gridPt, Color.green, 2f);
                 //    neighborGridpts[i] = grid.WorldToCell(neighborGridpts[i]);
 
-                float dist = 0, tmp;
-                Vector3 newPt = tile.transform.position;
-
-                Vector3 parentTransform;
+                Vector3 collisionPt;
 
                 if (tile.overlap != null)
                 {
-                    if (tile.overlap.transform.parent == null)
-                    {
-                        parentTransform = tile.overlap.transform.position;
-                        //Debug.Log(parentTransform);
-                    }
-                    else
-                    {
-                        parentTransform = tile.overlap.transform.parent.transform.position;
-                        //Debug.Log("Parent: " + parentTransform);
-                    }
-
-                    for (int i = 0; i < neighborGridpts.Length; i++)
-                    {
-                        tmp = Vector3.Distance(neighborGridpts[i], parentTransform);
-                        if (tmp > dist)
-                        {
-                            dist = tmp;
-                            newPt = Vector3Int.FloorToInt(neighborGridpts[i]);
-                        }
-                    }
-
-                    tile.transform.position = newPt;
+                    collisionPt = tile.overlap.transform.root.position;
                 }
+                else
+                {
+                    collisionPt = overlapPt;
+                }
+
+                float dist = 0, movePt1, movePt2;
+                Vector3 newPt = tile.transform.position;
+
+                for (int i = 0; i < neighborGridpts.Length; i++)
+                {
+                    movePt1 = Vector3.Distance(neighborGridpts[i] + gridPt, collisionPt);
+                    movePt2 = Vector3.Distance(neighborGridpts[i] + gridPt, collisionPt);
+                    
+                    if (movePt1 > dist)
+                    {
+                        dist = movePt1;
+                        newPt = Vector3Int.FloorToInt(neighborGridpts[i] + gridPt);
+                    }
+                }
+
+                tile.transform.position = newPt;
             }
         }
 
