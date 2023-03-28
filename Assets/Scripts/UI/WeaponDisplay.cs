@@ -14,7 +14,7 @@ public class WeaponDisplay : MonoBehaviour {
     public void updateWeaponNameText(HeldWeapon[] weapons, int currentWeapon) {
         int index = currentWeapon;
         for(int i = 0; i < weaponNameTexts.Length; i++) {
-            weaponNameTexts[i].text = weapons[index].weapon.WeaponName;
+            weaponNameTexts[i].text = weapons[index].weapon.Name;
             
             index++;
             if(index >= weapons.Length) {
