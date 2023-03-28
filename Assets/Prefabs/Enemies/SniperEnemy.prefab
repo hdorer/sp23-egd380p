@@ -275,7 +275,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3876944000881043069}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.8106728, y: -0.5444269, z: -5.233843}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -401,7 +401,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3992247989593703166}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 17.476917}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.7142857, y: 0.15952855, z: 0.15952855}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -412,7 +412,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -2.5866752, y: 4.777752}
+  m_AnchoredPosition: {x: 0, y: 6}
   m_SizeDelta: {x: 919, y: 517}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &587928289267702179
@@ -489,6 +489,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parentEnemy: {fileID: 3876944000881042947}
+  camPos: {fileID: 0}
   curHP: {fileID: 8130198178970711561}
 --- !u!1 &5451983102316163070
 GameObject:
