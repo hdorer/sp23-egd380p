@@ -20,6 +20,7 @@ public class PlayerWeapon : MonoBehaviour {
     [SerializeField] private InputAction fireInput;
     [SerializeField] private InputAction reloadInput;
     [SerializeField] private InputAction changeWeaponInput;
+    [SerializeField] private InputAction pickUpWeaponInput;
 
     [System.Serializable] public class UiUpdateEvent : UnityEvent<string, int, int> { }
     public UiUpdateEvent onUiUpdate;
@@ -35,17 +36,21 @@ public class PlayerWeapon : MonoBehaviour {
         fireInput.Enable();
         reloadInput.Enable();
         changeWeaponInput.Enable();
+        pickUpWeaponInput.Enable();
 
         fireInput.performed += context => weapons[currentWeapon].startFiring();
         fireInput.canceled += context => weapons[currentWeapon].stopFiring();
 
         reloadInput.performed += context => StartCoroutine(weapons[currentWeapon].reload());
 
-        changeWeaponInput.performed += context => changeWeapon();
+        changeWeaponInput.performed += changeWeapon;
+
+        pickUpWeaponInput.performed += context => pickUpWeapon();
     }
 
     private void Start() {
         for(int i = 0; i < weapons.Length; i++) {
+            weapons[i] = Instantiate(weapons[i]);
             weapons[i].setPlayer(this);
             weapons[i].start();
         }
@@ -61,7 +66,7 @@ public class PlayerWeapon : MonoBehaviour {
     private void OnDisable() {
         fireInput.Disable();
         reloadInput.Disable();
-        changeWeaponInput.Disable();
+        pickUpWeaponInput.Disable();
     }
 
     public void setFireRateModifier(float fireRateModifier) {
@@ -82,7 +87,7 @@ public class PlayerWeapon : MonoBehaviour {
         onUiUpdate?.Invoke(resourceName, resource, maxResource);
     }
 
-    private void changeWeapon() {
+    private void pickUpWeapon() {
         if(nearbyPickup == null) {
             return;
         }
@@ -92,7 +97,11 @@ public class PlayerWeapon : MonoBehaviour {
         }
 
         spawnOldWeaponPickup();
+        
         weapons[currentWeapon] = nearbyPickup.Weapon;
+        weapons[currentWeapon].equip();
+        onWeaponSwitch?.Invoke(weapons, currentWeapon);
+        
         Destroy(nearbyPickup.gameObject);
     }
 
@@ -100,5 +109,21 @@ public class PlayerWeapon : MonoBehaviour {
         WeaponPickup pickup = Instantiate(weaponPickupPrefab, bulletSpawnPoint.position, transform.rotation);
         pickup.Weapon = weapons[currentWeapon];
         pickup.GetComponent<Rigidbody>().AddForce(transform.forward * pickupThrowForce, ForceMode.Impulse);
+    }
+
+    private void changeWeapon(InputAction.CallbackContext context) {
+        int delta = (int)Mathf.Sign(context.ReadValue<float>());
+
+        currentWeapon += delta;
+
+        if(currentWeapon >= weapons.Length) {
+            currentWeapon = 0;
+        }
+        if(currentWeapon < 0) {
+            currentWeapon = weapons.Length - 1;
+        }
+
+        weapons[currentWeapon].equip();
+        onWeaponSwitch?.Invoke(weapons, currentWeapon);
     }
 }

@@ -1008,11 +1008,11 @@ PrefabInstance:
     - target: {fileID: 1702877453889114121, guid: cf3abc9ef325a6d43bc3060558178d31, type: 3}
       propertyPath: weapons.Array.data[0]
       value: 
-      objectReference: {fileID: 11400000, guid: a9e8a63cd0ee9f4498fc5b52b5b56ba2, type: 2}
+      objectReference: {fileID: 11400000, guid: cffde5b9599dc884f991455c41a8968a, type: 2}
     - target: {fileID: 1702877453889114121, guid: cf3abc9ef325a6d43bc3060558178d31, type: 3}
       propertyPath: weapons.Array.data[1]
       value: 
-      objectReference: {fileID: 11400000, guid: cffde5b9599dc884f991455c41a8968a, type: 2}
+      objectReference: {fileID: 11400000, guid: a9e8a63cd0ee9f4498fc5b52b5b56ba2, type: 2}
     - target: {fileID: 1702877453889114121, guid: cf3abc9ef325a6d43bc3060558178d31, type: 3}
       propertyPath: onUiUpdate.m_PersistentCalls.m_Calls.Array.size
       value: 1

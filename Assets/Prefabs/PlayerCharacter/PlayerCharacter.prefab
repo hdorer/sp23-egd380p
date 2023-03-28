@@ -287,13 +287,46 @@ MonoBehaviour:
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: 0137375d-43b8-480a-835a-54af86ee9978
-      m_Path: <Keyboard>/f
+    - m_Name: 1D Axis
+      m_Id: 14b937f9-fcf3-4bb0-851c-b9a85baf191e
+      m_Path: 1DAxis
       m_Interactions: 
       m_Processors: 
       m_Groups: 
       m_Action: Change Weapon Input
+      m_Flags: 4
+    - m_Name: negative
+      m_Id: 2e6c4bd3-6d52-423a-955e-5c6e5477f29f
+      m_Path: <Mouse>/scroll/down
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Change Weapon Input
+      m_Flags: 8
+    - m_Name: positive
+      m_Id: 6a5d8085-130b-4877-9f47-ea950ad58dff
+      m_Path: <Mouse>/scroll/up
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Change Weapon Input
+      m_Flags: 8
+    m_Flags: 0
+  pickUpWeaponInput:
+    m_Name: Pick Up Weapon Input
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: afab85d6-ed3f-4c60-aa0e-3c1338a57966
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: a6589eb1-7f17-4465-815c-c1783304bfb1
+      m_Path: <Keyboard>/f
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Pick Up Weapon Input
       m_Flags: 0
     m_Flags: 0
   onUiUpdate:
