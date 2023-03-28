@@ -4,23 +4,74 @@ using UnityEngine;
 
 [CreateAssetMenu(menuName = "ScriptableObjects/Weapons/Blaster")]
 public class Blaster : Weapon {
-    [Header("Weapon Properties")]
+    [Header("Blaster Properties")]
     [SerializeField] private float fireRate;
     [SerializeField] private float damagePerBullet;
     [SerializeField] private int clipSize;
     [SerializeField] private float reloadTime;
 
+    private int bulletsInClip;
+
     [Header("Bullet Prefab")]
     [SerializeField] private GameObject bulletPrefab;
+    
+    private bool firing = false;
+    private bool fireCooldown = false;
+    private bool reloading = false;
 
-    public float FireRate { get => fireRate; }
     public float DamagePerBullet { get => damagePerBullet; }
-    public int ClipSize { get => clipSize; }
-    public float ReloadTime { get => reloadTime; }
     protected GameObject BulletPrefab { get => bulletPrefab; }
 
-    public override void fire(Transform bulletSpawnPoint) {
-        Bullet bullet = Instantiate(bulletPrefab, bulletSpawnPoint.position, bulletSpawnPoint.rotation).GetComponent<Bullet>();
+    public override void start() {
+        base.start();
+        bulletsInClip = clipSize;
+    }
+
+    public override IEnumerator reload() {
+        reloading = true;
+        yield return new WaitForSeconds(reloadTime);
+        bulletsInClip = clipSize;
+        Player.updateUi("Ammo", bulletsInClip, clipSize);
+        reloading = false;
+    }
+
+    public override void update() {
+        if(!firing || fireCooldown || reloading) {
+            return;
+        }
+
+        fire();
+        bulletsInClip--;
+
+        Player.updateUi("Ammo", bulletsInClip, clipSize);
+
+        if(bulletsInClip <= 0) {
+            Player.StartCoroutine(reload());
+        } else {
+            Player.StartCoroutine(doFireCooldown());
+        }
+    }
+
+    public override void equip() {
+        Player.updateUi("Ammo", bulletsInClip, clipSize);
+    }
+
+    public override void startFiring() {
+        firing = true;
+    }
+
+    public override void stopFiring() {
+        firing = false;
+    }
+
+    public virtual void fire() {
+        Bullet bullet = Instantiate(bulletPrefab, Player.BulletSpawnPoint, Player.BulletSpawnPointRotation).GetComponent<Bullet>();
         bullet.setDamage(damagePerBullet);
+    }
+
+    private IEnumerator doFireCooldown() {
+        fireCooldown = true;
+        yield return new WaitForSeconds(fireRate / Player.FireRateModifier);
+        fireCooldown = false;
     }
 }

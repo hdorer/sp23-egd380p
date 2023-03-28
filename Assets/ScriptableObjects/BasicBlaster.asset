@@ -12,12 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c9ac18730757294c9022b53ae3bad24, type: 3}
   m_Name: BasicBlaster
   m_EditorClassIdentifier: 
+  gunName: Basic Blaster
+  flavorText: The most basic weapon in the game.
   fireRate: 0.1
   damagePerBullet: 8
-  bulletsPerShot: 1
-  bulletSpread: 0
   clipSize: 30
   reloadTime: 1
   bulletPrefab: {fileID: 4127692203258555895, guid: b20e1de082063a7429b5e3ea2f8b9a03, type: 3}
-  weaponName: Basic Blaster
-  flavorText: The most basic weapon in the game.

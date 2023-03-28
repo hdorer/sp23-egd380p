@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class WeaponPickup : MonoBehaviour {
-    [SerializeField] Blaster weapon;
-    public Blaster Weapon { get => weapon; set => weapon = value; }
+    [SerializeField] Weapon weapon;
+    public Weapon Weapon { get => weapon; set => weapon = value; }
 
     private void OnTriggerEnter(Collider other) {
         PlayerWeapon pWeapon = other.GetComponent<PlayerWeapon>();
