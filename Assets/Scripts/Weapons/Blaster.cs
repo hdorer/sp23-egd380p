@@ -28,7 +28,6 @@ public class Blaster : Weapon {
     }
 
     public override IEnumerator reload() {
-        Debug.Log("Reloading");
         reloading = true;
         yield return new WaitForSeconds(reloadTime);
         bulletsInClip = clipSize;
@@ -37,8 +36,6 @@ public class Blaster : Weapon {
     }
 
     public override void update() {
-        Debug.Log(firing + " " + fireCooldown + " " + reloading);
-        
         if(!firing || fireCooldown || reloading) {
             return;
         }

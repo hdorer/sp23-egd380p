@@ -81,6 +81,7 @@ public class PlayerWeapon : MonoBehaviour {
 
     public void setNearbyPickup(WeaponPickup pickup) {
         nearbyPickup = pickup;
+        Debug.Log(nearbyPickup == null ? "null" : nearbyPickup.gameObject.name);
     }
 
     public void updateUi(string resourceName, int resource, int maxResource) {
@@ -98,7 +99,9 @@ public class PlayerWeapon : MonoBehaviour {
 
         spawnOldWeaponPickup();
         
-        weapons[currentWeapon] = nearbyPickup.Weapon;
+        weapons[currentWeapon] = Instantiate(nearbyPickup.Weapon);
+        weapons[currentWeapon].setPlayer(this);
+        weapons[currentWeapon].start();
         weapons[currentWeapon].equip();
         onWeaponSwitch?.Invoke(weapons, currentWeapon);
         
