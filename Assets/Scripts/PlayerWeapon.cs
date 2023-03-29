@@ -30,6 +30,7 @@ public class PlayerWeapon : MonoBehaviour {
 
     public Vector3 BulletSpawnPoint { get => bulletSpawnPoint.position; }
     public Quaternion BulletSpawnPointRotation { get => bulletSpawnPoint.rotation; }
+    public Vector3 BulletSpawnPointForward { get => bulletSpawnPoint.forward; }
     public float FireRateModifier { get => fireRateModifier; }
 
     private void OnEnable() {

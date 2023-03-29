@@ -8,7 +8,7 @@ public class Shotgun : Blaster {
     [SerializeField] private float bulletsPerShot;
     [SerializeField] private float bulletSpread;
 
-    public override void fire() {
+    protected override void fire() {
         float startingRotation = -((bulletsPerShot - 1) / 2 * bulletSpread);
         for(int i = 0; i < bulletsPerShot; i++) {
             float bulletRotationX = Player.BulletSpawnPointRotation.eulerAngles.x;

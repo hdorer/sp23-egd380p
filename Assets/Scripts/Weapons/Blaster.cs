@@ -23,7 +23,6 @@ public class Blaster : Weapon {
     protected GameObject BulletPrefab { get => bulletPrefab; }
 
     public override void start() {
-        base.start();
         bulletsInClip = clipSize;
     }
 
@@ -33,6 +32,18 @@ public class Blaster : Weapon {
         bulletsInClip = clipSize;
         Player.updateUi("Ammo", bulletsInClip, clipSize);
         reloading = false;
+    }
+
+    public override void equip() {
+        Player.updateUi("Ammo", bulletsInClip, clipSize);
+    }
+
+    public override void startFiring() {
+        firing = true;
+    }
+
+    public override void stopFiring() {
+        firing = false;
     }
 
     public override void update() {
@@ -52,19 +63,7 @@ public class Blaster : Weapon {
         }
     }
 
-    public override void equip() {
-        Player.updateUi("Ammo", bulletsInClip, clipSize);
-    }
-
-    public override void startFiring() {
-        firing = true;
-    }
-
-    public override void stopFiring() {
-        firing = false;
-    }
-
-    public virtual void fire() {
+    protected virtual void fire() {
         Bullet bullet = Instantiate(bulletPrefab, Player.BulletSpawnPoint, Player.BulletSpawnPointRotation).GetComponent<Bullet>();
         bullet.setDamage(damagePerBullet);
     }
