@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 495543681614667762}
   - component: {fileID: 3635722766732511239}
   - component: {fileID: 495543681614667757}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: WeaponPickup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -155,7 +155,7 @@ GameObject:
   - component: {fileID: 8720822339103403976}
   - component: {fileID: 3834545129283416905}
   - component: {fileID: 6864312245521938769}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Text (Legacy)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -235,7 +235,7 @@ GameObject:
   - component: {fileID: 4168898967231917560}
   - component: {fileID: 1435519594831922235}
   - component: {fileID: 5771902455214173029}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Text (Legacy)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -316,7 +316,7 @@ GameObject:
   - component: {fileID: 9064707249631086494}
   - component: {fileID: 6223406057530201809}
   - component: {fileID: 554038489701349325}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -416,7 +416,7 @@ GameObject:
   - component: {fileID: 7129408663682346266}
   - component: {fileID: 2691963188058387786}
   - component: {fileID: 2578620065885665303}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}

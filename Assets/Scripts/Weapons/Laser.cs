@@ -18,6 +18,7 @@ public class Laser : Weapon {
     private bool charging = false;
 
     [SerializeField] private float maxDamage = 40f;
+    [SerializeField] private float minHeatPerShot = 3f;
     [SerializeField] private float maxHeatPerShot = 25f;
 
     [SerializeField] private float maxRange = 15f;
@@ -25,6 +26,8 @@ public class Laser : Weapon {
     private RaycastHit hit;
 
     private float lrChargingAlpha = 0.6f;
+
+    private float shotStayTime = 0.25f;
 
     public override void start() {
         
@@ -87,7 +90,8 @@ public class Laser : Weapon {
 
         charge = 0;
         charging = false;
-        Player.LineRenderer.enabled = false;
+
+        Player.StartCoroutine(showShot());
     }
 
     private void damageEnemy(float damage) {
@@ -136,5 +140,14 @@ public class Laser : Weapon {
 
         Player.LineRenderer.startWidth = charge / maxCharge;
         Player.LineRenderer.endWidth = charge / maxCharge;
+    }
+
+    private IEnumerator showShot() {
+        Player.LineRenderer.startColor = new Color(1, 0, 0, 1);
+        Player.LineRenderer.endColor = new Color(1, 0, 0, 1);
+        
+        yield return new WaitForSeconds(shotStayTime);
+
+        Player.LineRenderer.enabled = false;
     }
 }
