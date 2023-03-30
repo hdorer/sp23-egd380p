@@ -94,6 +94,10 @@ public class TileData : MonoBehaviour
                 GetComponent<EnableEnemies>().enemies.SetActive(true);
             }
     }
+    private void OnTriggerStay(Collider other)
+    {
+        overlap = other;
+    }
 
     private void OnTriggerExit(Collider other)
     {

@@ -9,6 +9,7 @@ TagManager:
   - Player Bullet
   - Enemy Melee
   - Wall
+  - Floor
   layers:
   - Default
   - TransparentFX
@@ -18,7 +19,7 @@ TagManager:
   - UI
   - Player
   - Rooms
-  - 
+  - StartingZone
   - 
   - 
   - 

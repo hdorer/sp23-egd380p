@@ -9,15 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1c9ac18730757294c9022b53ae3bad24, type: 3}
+  m_Script: {fileID: 11500000, guid: c71862eaf5c1d494bbde36289868d454, type: 3}
   m_Name: BasicShotgun
   m_EditorClassIdentifier: 
+  gunName: Basic Shotgun
+  flavorText: It's a shotgun
   fireRate: 0.8
-  damagePerBullet: 4
-  bulletsPerShot: 3
-  bulletSpread: 10
+  damagePerBullet: 3
   clipSize: 5
   reloadTime: 2
   bulletPrefab: {fileID: 4127692203258555895, guid: b20e1de082063a7429b5e3ea2f8b9a03, type: 3}
-  weaponName: Basic Shotgun
-  flavorText: Best at blowing enemies apart from short range.
+  bulletsPerShot: 3
+  bulletSpread: 10
