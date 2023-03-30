@@ -18,16 +18,10 @@ public abstract class Weapon : ScriptableObject {
         }
     }
 
-    public virtual IEnumerator reload() {
-        yield return null;
-    }
-
-    public virtual void start() {
-
-    }
-
+    public abstract void start();
     public abstract void update();
     public abstract void equip();
     public abstract void startFiring();
     public abstract void stopFiring();
+    public abstract IEnumerator reload();
 }
