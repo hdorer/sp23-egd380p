@@ -11,13 +11,13 @@ public class Shotgun : Blaster {
     protected override void fire() {
         float startingRotation = -((bulletsPerShot - 1) / 2 * bulletSpread);
         for(int i = 0; i < bulletsPerShot; i++) {
-            float bulletRotationX = Player.BulletSpawnPointRotation.eulerAngles.x;
-            float bulletRotationY = Player.BulletSpawnPointRotation.eulerAngles.y + startingRotation + bulletSpread * i;
-            float bulletRotationZ = Player.BulletSpawnPointRotation.eulerAngles.z;
+            float bulletRotationX = Player.BulletSpawnRotation.eulerAngles.x;
+            float bulletRotationY = Player.BulletSpawnRotation.eulerAngles.y + startingRotation + bulletSpread * i;
+            float bulletRotationZ = Player.BulletSpawnRotation.eulerAngles.z;
 
             Quaternion bulletRotation = Quaternion.Euler(bulletRotationX, bulletRotationY, bulletRotationZ);
 
-            Bullet bullet = Instantiate(BulletPrefab, Player.BulletSpawnPoint, bulletRotation).GetComponent<Bullet>();
+            Bullet bullet = Instantiate(BulletPrefab, Player.BulletSpawnPosition, bulletRotation).GetComponent<Bullet>();
             bullet.setDamage(DamagePerBullet);
         }
     }

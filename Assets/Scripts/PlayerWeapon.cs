@@ -28,9 +28,10 @@ public class PlayerWeapon : MonoBehaviour {
     [System.Serializable] public class WeaponSwitchEvent : UnityEvent<Weapon[], int> { }
     public WeaponSwitchEvent onWeaponSwitch;
 
-    public Vector3 BulletSpawnPoint { get => bulletSpawnPoint.position; }
-    public Quaternion BulletSpawnPointRotation { get => bulletSpawnPoint.rotation; }
-    public Vector3 BulletSpawnPointForward { get => bulletSpawnPoint.forward; }
+    public Vector3 BulletSpawnPosition { get => bulletSpawnPoint.position; }
+    public Quaternion BulletSpawnRotation { get => bulletSpawnPoint.rotation; }
+    public Vector3 BulletSpawnForward { get => bulletSpawnPoint.forward; }
+    public LineRenderer LineRenderer { get => bulletSpawnPoint.GetComponent<LineRenderer>(); }
     public float FireRateModifier { get => fireRateModifier; }
 
     private void OnEnable() {
@@ -50,6 +51,8 @@ public class PlayerWeapon : MonoBehaviour {
     }
 
     private void Start() {
+        bulletSpawnPoint.GetComponent<LineRenderer>().enabled = false;
+
         for(int i = 0; i < weapons.Length; i++) {
             weapons[i] = Instantiate(weapons[i]);
             weapons[i].setPlayer(this);

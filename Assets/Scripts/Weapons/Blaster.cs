@@ -64,7 +64,7 @@ public class Blaster : Weapon {
     }
 
     protected virtual void fire() {
-        Bullet bullet = Instantiate(bulletPrefab, Player.BulletSpawnPoint, Player.BulletSpawnPointRotation).GetComponent<Bullet>();
+        Bullet bullet = Instantiate(bulletPrefab, Player.BulletSpawnPosition, Player.BulletSpawnRotation).GetComponent<Bullet>();
         bullet.setDamage(damagePerBullet);
     }
 

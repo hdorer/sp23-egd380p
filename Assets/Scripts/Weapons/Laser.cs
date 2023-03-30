@@ -22,13 +22,17 @@ public class Laser : Weapon {
 
     [SerializeField] private float maxRange = 15f;
 
-    public override void start() {
+    private RaycastHit hit;
 
+    public override void start() {
+        
     }
 
     public override void update() {
         if(charging) {
+            Physics.Raycast(Player.BulletSpawnPosition, Player.BulletSpawnForward, out hit, maxRange);
             chargeShot();
+            updateLineRenderer();
         } else {
             coolOff();
         }
@@ -46,6 +50,7 @@ public class Laser : Weapon {
         }
 
         charging = true;
+        Player.LineRenderer.enabled = true;
     }
 
     public override void stopFiring() {
@@ -75,11 +80,10 @@ public class Laser : Weapon {
 
         charge = 0;
         charging = false;
+        Player.LineRenderer.enabled = false;
     }
 
     private void damageEnemy(float damage) {
-        RaycastHit hit;
-        Physics.Raycast(Player.BulletSpawnPoint, Player.BulletSpawnPointForward, out hit, maxRange);
         if(hit.collider == null) {
             return;
         }
@@ -111,6 +115,16 @@ public class Laser : Weapon {
         if(heat <= 0f) {
             heat = 0f;
             venting = false;
+        }
+    }
+
+    private void updateLineRenderer() {
+        Player.LineRenderer.SetPosition(0, Player.BulletSpawnPosition);
+        
+        if(hit.collider != null) {
+            Player.LineRenderer.SetPosition(1, hit.point);
+        } else {
+            Player.LineRenderer.SetPosition(1, Player.BulletSpawnPosition + Player.BulletSpawnForward * maxRange);
         }
     }
 }
