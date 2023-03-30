@@ -9,6 +9,7 @@ TagManager:
   - Player Bullet
   - Enemy Melee
   - Wall
+  - Floor
   layers:
   - Default
   - TransparentFX
