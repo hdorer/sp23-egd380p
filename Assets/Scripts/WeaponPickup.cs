@@ -6,6 +6,12 @@ public class WeaponPickup : MonoBehaviour {
     [SerializeField] Weapon weapon;
     public Weapon Weapon { get => weapon; set => weapon = value; }
 
+    private void OnCollisionEnter(Collision collision) {
+        if(collision.gameObject.tag == "Floor") {
+            GetComponent<Rigidbody>().isKinematic = true;
+        }
+    }
+
     private void OnTriggerEnter(Collider other) {
         PlayerWeapon pWeapon = other.GetComponent<PlayerWeapon>();
         if(pWeapon == null) {
