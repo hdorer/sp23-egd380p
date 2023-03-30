@@ -24,6 +24,8 @@ public class Laser : Weapon {
 
     private RaycastHit hit;
 
+    private float lrChargingAlpha = 0.6f;
+
     public override void start() {
         
     }
@@ -50,7 +52,12 @@ public class Laser : Weapon {
         }
 
         charging = true;
+
         Player.LineRenderer.enabled = true;
+        Player.LineRenderer.startColor = new Color(1, 0, 0, lrChargingAlpha);
+        Player.LineRenderer.endColor = new Color(1, 0, 0, lrChargingAlpha);
+        Player.LineRenderer.startWidth = 0;
+        Player.LineRenderer.endWidth = 0;
     }
 
     public override void stopFiring() {
@@ -126,5 +133,8 @@ public class Laser : Weapon {
         } else {
             Player.LineRenderer.SetPosition(1, Player.BulletSpawnPosition + Player.BulletSpawnForward * maxRange);
         }
+
+        Player.LineRenderer.startWidth = charge / maxCharge;
+        Player.LineRenderer.endWidth = charge / maxCharge;
     }
 }
