@@ -5,21 +5,11 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
-[System.Serializable]
-public struct HeldWeapon {
-    public Weapon weapon;
-    [HideInInspector] public int bulletsInClip;
-}
-
 public class PlayerWeapon : MonoBehaviour {
-    [SerializeField] private HeldWeapon[] weapons;
+    [SerializeField] private Weapon[] weapons;
     private int currentWeapon = 0;
     
     [SerializeField] private Transform bulletSpawnPoint;
-
-    private bool firing = false;
-    private bool fireCooldown = false;
-    private bool reloading = false;
 
     private float fireRateModifier = 1.0f;
 
@@ -30,47 +20,57 @@ public class PlayerWeapon : MonoBehaviour {
     [SerializeField] private InputAction fireInput;
     [SerializeField] private InputAction reloadInput;
     [SerializeField] private InputAction changeWeaponInput;
+    [SerializeField] private InputAction pickUpWeaponInput;
 
-    [System.Serializable] public class UiUpdateEvent : UnityEvent<HeldWeapon> { }
+    [System.Serializable] public class UiUpdateEvent : UnityEvent<string, int, int> { }
     public UiUpdateEvent onUiUpdate;
 
-    [System.Serializable] public class WeaponSwitchEvent : UnityEvent<HeldWeapon[], int> { }
+    [System.Serializable] public class WeaponSwitchEvent : UnityEvent<Weapon[], int> { }
     public WeaponSwitchEvent onWeaponSwitch;
+
+    public Vector3 BulletSpawnPosition { get => bulletSpawnPoint.position; }
+    public Quaternion BulletSpawnRotation { get => bulletSpawnPoint.rotation; }
+    public Vector3 BulletSpawnForward { get => bulletSpawnPoint.forward; }
+    public LineRenderer LineRenderer { get => bulletSpawnPoint.GetComponent<LineRenderer>(); }
+    public float FireRateModifier { get => fireRateModifier; }
 
     private void OnEnable() {
         fireInput.Enable();
         reloadInput.Enable();
         changeWeaponInput.Enable();
+        pickUpWeaponInput.Enable();
 
-        fireInput.performed += context => firing = true;
-        fireInput.canceled += context => firing = false;
+        fireInput.performed += context => weapons[currentWeapon].startFiring();
+        fireInput.canceled += context => weapons[currentWeapon].stopFiring();
 
-        reloadInput.performed += context => StartCoroutine(reload());
+        reloadInput.performed += context => StartCoroutine(weapons[currentWeapon].reload());
 
-        changeWeaponInput.performed += context => changeWeapon();
+        changeWeaponInput.performed += changeWeapon;
+
+        pickUpWeaponInput.performed += context => pickUpWeapon();
     }
 
     private void Start() {
+        bulletSpawnPoint.GetComponent<LineRenderer>().enabled = false;
+
         for(int i = 0; i < weapons.Length; i++) {
-            weapons[i].bulletsInClip = weapons[i].weapon.ClipSize;
+            weapons[i] = Instantiate(weapons[i]);
+            weapons[i].setPlayer(this);
+            weapons[i].start();
         }
 
-        onUiUpdate?.Invoke(weapons[currentWeapon]);
+        weapons[currentWeapon].equip();
         onWeaponSwitch?.Invoke(weapons, currentWeapon);
-
-        Debug.Log("Fire rate modifier is " + fireRateModifier);
     }
 
     private void Update() {
-        if(firing) {
-            fire();
-        }
+        weapons[currentWeapon].update();
     }
 
     private void OnDisable() {
         fireInput.Disable();
         reloadInput.Disable();
-        changeWeaponInput.Disable();
+        pickUpWeaponInput.Disable();
     }
 
     public void setFireRateModifier(float fireRateModifier) {
@@ -85,41 +85,14 @@ public class PlayerWeapon : MonoBehaviour {
 
     public void setNearbyPickup(WeaponPickup pickup) {
         nearbyPickup = pickup;
+        Debug.Log(nearbyPickup == null ? "null" : nearbyPickup.gameObject.name);
     }
 
-    private void fire() {
-        if(fireCooldown || reloading) {
-            return;
-        }
-
-        weapons[currentWeapon].weapon.fire(bulletSpawnPoint);
-        weapons[currentWeapon].bulletsInClip--;
-        
-        onUiUpdate?.Invoke(weapons[currentWeapon]);
-
-        if(weapons[currentWeapon].bulletsInClip <= 0) {
-            StartCoroutine(reload());
-        } else {
-            StartCoroutine(doFireCooldown());
-        }
+    public void updateUi(string resourceName, int resource, int maxResource) {
+        onUiUpdate?.Invoke(resourceName, resource, maxResource);
     }
 
-    private IEnumerator doFireCooldown() {
-        fireCooldown = true;
-        float fireRate = weapons[currentWeapon].weapon.FireRate / fireRateModifier;
-        yield return new WaitForSeconds(fireRate);
-        fireCooldown = false;
-    }
-
-    private IEnumerator reload() {
-        reloading = true;
-        yield return new WaitForSeconds(weapons[currentWeapon].weapon.ReloadTime);
-        weapons[currentWeapon].bulletsInClip = weapons[currentWeapon].weapon.ClipSize;
-        onUiUpdate?.Invoke(weapons[currentWeapon]);
-        reloading = false;
-    }
-
-    private void changeWeapon() {
+    private void pickUpWeapon() {
         if(nearbyPickup == null) {
             return;
         }
@@ -129,13 +102,35 @@ public class PlayerWeapon : MonoBehaviour {
         }
 
         spawnOldWeaponPickup();
-        weapons[currentWeapon].weapon = nearbyPickup.Weapon;
+        
+        weapons[currentWeapon] = Instantiate(nearbyPickup.Weapon);
+        weapons[currentWeapon].setPlayer(this);
+        weapons[currentWeapon].start();
+        weapons[currentWeapon].equip();
+        onWeaponSwitch?.Invoke(weapons, currentWeapon);
+        
         Destroy(nearbyPickup.gameObject);
     }
 
     private void spawnOldWeaponPickup() {
         WeaponPickup pickup = Instantiate(weaponPickupPrefab, bulletSpawnPoint.position, transform.rotation);
-        pickup.Weapon = weapons[currentWeapon].weapon;
+        pickup.Weapon = weapons[currentWeapon];
         pickup.GetComponent<Rigidbody>().AddForce(transform.forward * pickupThrowForce, ForceMode.Impulse);
+    }
+
+    private void changeWeapon(InputAction.CallbackContext context) {
+        int delta = (int)Mathf.Sign(context.ReadValue<float>());
+
+        currentWeapon += delta;
+
+        if(currentWeapon >= weapons.Length) {
+            currentWeapon = 0;
+        }
+        if(currentWeapon < 0) {
+            currentWeapon = weapons.Length - 1;
+        }
+
+        weapons[currentWeapon].equip();
+        onWeaponSwitch?.Invoke(weapons, currentWeapon);
     }
 }

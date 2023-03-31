@@ -146,9 +146,12 @@ public class Enemy : Character
         {
             Debug.Log("Hello We Reached Here");
             Destroy(col.gameObject);
-            //Take Damage
-            Destroy(gameObject);
+            takeDamage();
         }
     }
 
+    public void takeDamage() {
+        //Take Damage
+        Destroy(gameObject);
+    }
 }

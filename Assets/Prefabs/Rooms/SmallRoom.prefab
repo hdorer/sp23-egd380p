@@ -1030,7 +1030,7 @@ GameObject:
   - component: {fileID: 1206839711006232348}
   - component: {fileID: 7293453858397001624}
   - component: {fileID: 3936494383129230108}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: SmallRoom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2214,7 +2214,7 @@ GameObject:
   - component: {fileID: 5923686812226688290}
   m_Layer: 0
   m_Name: Floor
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2311,7 +2311,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 116
+  m_Constraints: 126
   m_CollisionDetection: 0
 --- !u!114 &5923686812226688290
 MonoBehaviour:
