@@ -2863,6 +2863,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 3816440743214309993, guid: 9a5aef559b35afd4497e7847f0e7a283, type: 3}
+      propertyPath: weapons.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: a9e8a63cd0ee9f4498fc5b52b5b56ba2, type: 2}
+    - target: {fileID: 3816440743214309993, guid: 9a5aef559b35afd4497e7847f0e7a283, type: 3}
       propertyPath: onUiUpdate.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1598217482}
@@ -2913,6 +2917,14 @@ PrefabInstance:
     - target: {fileID: 5582301183447046641, guid: 9a5aef559b35afd4497e7847f0e7a283, type: 3}
       propertyPath: m_Name
       value: StartingZone
+      objectReference: {fileID: 0}
+    - target: {fileID: 6671578081600057158, guid: 9a5aef559b35afd4497e7847f0e7a283, type: 3}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
+    - target: {fileID: 8756894803972323961, guid: 9a5aef559b35afd4497e7847f0e7a283, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9a5aef559b35afd4497e7847f0e7a283, type: 3}

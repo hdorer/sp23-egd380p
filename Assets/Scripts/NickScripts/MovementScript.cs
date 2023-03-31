@@ -5,10 +5,14 @@ using UnityEngine.InputSystem;
 
 public class MovementScript : Character
 {
+    [Tooltip("Used To Set Dodge Roll Button")]
     [SerializeField] private InputAction dodgeRoll;
     //Made public so items can increase invincibility time
+    [Tooltip("The Time Invincible after taking damage")]
     [SerializeField] private float damageInvin = 1.0f;
+    [Tooltip("The Time Invincible after rolling")]
     [SerializeField] private float rollInvin = 0.5f;
+    [Tooltip("A Modifier to change distance of roll")]
     [SerializeField] private float rollMod = 50.0f;
 
     private Rigidbody rb;
@@ -90,8 +94,20 @@ public class MovementScript : Character
         onCooldown = true;
         onRolling = true;
         //Burst character in direction of movement
+        Vector3 dir = Vector3.zero;
 
-        Vector3 dir = new Vector3 (horiz, 0, vert);
+        if(rb.velocity.magnitude == 0)
+        {
+            invincible = false;
+            onRolling = false;
+            onCooldown = false;
+            StopCoroutine("DodgeRoll");
+        }
+        else
+        {
+            dir = new Vector3 (horiz, 0, vert);
+        }
+
         dir.Normalize();
         dir *= rollMod;
         //rb.velocity = dir;
