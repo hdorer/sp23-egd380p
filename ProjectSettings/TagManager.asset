@@ -10,6 +10,7 @@ TagManager:
   - Enemy Melee
   - Wall
   - Floor
+  - Enemy
   layers:
   - Default
   - TransparentFX

@@ -139,23 +139,12 @@ public class Enemy : Character
         }
         return false;
     }
-    //Delete this crap later only here for prototype
-    private void OnCollisionEnter(Collision col)
-    {
-        if(col.gameObject.CompareTag("Player Bullet"))
-        {
-            health -= 25;
-            if(health <= 0)
-            {
-                Destroy(gameObject);
-            }
-            Debug.Log("Hello We Reached Here");
-            Destroy(col.gameObject);
-        }
-    }
 
-    public void takeDamage() {
-        //Take Damage
-        Destroy(gameObject);
+    public override void takeDamage(float damage) {
+        base.takeDamage(damage);
+
+        if(Health <= 0) {
+            Destroy(gameObject);
+        }
     }
 }

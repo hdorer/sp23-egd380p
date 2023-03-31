@@ -104,7 +104,7 @@ public class Laser : Weapon {
             return;
         }
 
-        enemy.takeDamage();
+        enemy.takeDamage(damage);
     }
 
     private void chargeShot() {

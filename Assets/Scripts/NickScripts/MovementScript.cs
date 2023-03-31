@@ -45,7 +45,7 @@ public class MovementScript : Character
 
         if(Input.GetKeyDown(KeyCode.H))
         {
-            Debug.Log("Curent Health: " + health);
+            Debug.Log("Curent Health: " + Health);
         }
     }
     private void RotatePlayer()
