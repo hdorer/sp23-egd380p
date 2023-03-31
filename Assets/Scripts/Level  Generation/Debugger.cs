@@ -18,4 +18,17 @@ public class Debugger : MonoBehaviour
 
         Random.InitState(seed);
     }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            if (random)
+            {
+                seed = Random.Range(int.MinValue, int.MaxValue);
+                Debug.Log("Seed: " + seed);
+                Random.InitState(seed);
+            }
+        }
+    }
 }

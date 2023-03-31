@@ -476,7 +476,7 @@ GameObject:
   - component: {fileID: 140976301739343070}
   - component: {fileID: 4081297365773054618}
   - component: {fileID: 7939635031611494898}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: StartingZone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1246,10 +1246,6 @@ PrefabInstance:
     - target: {fileID: 5493555933616117599, guid: cf3abc9ef325a6d43bc3060558178d31, type: 3}
       propertyPath: m_Size.y
       value: 2.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5493555933616117599, guid: cf3abc9ef325a6d43bc3060558178d31, type: 3}
-      propertyPath: m_Enabled
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cf3abc9ef325a6d43bc3060558178d31, type: 3}

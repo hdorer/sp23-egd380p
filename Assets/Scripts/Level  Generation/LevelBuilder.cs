@@ -14,6 +14,7 @@ public class LevelBuilder : MonoBehaviour
     public float pauseDelay;
     public List<TileData> placedTiles;
     public List<Hallways> hallways;
+    //public GameObject player;
     private GameObject placedTilesParent;
     private GameObject hallwaysParent;
     int index = 0;
@@ -50,10 +51,17 @@ public class LevelBuilder : MonoBehaviour
             CheckOverlap();
         else if (hallwaysGen == false && overlapChecked == true)
         {
-            GenerateHallways();
+            //add tiles to the parent to keep things organized
+            for (int i = 1; i < placedTiles.Count; i++)
+                placedTiles[i].transform.parent = placedTilesParent.transform;
 
-            //enable player in the starting area
-            placedTiles[0].GetComponent<EnablePlayer>().col.enabled = true;
+            bool check = GenerateHallways();
+
+            if (check)
+            {
+                //enable player in the starting area
+                placedTiles[0].GetComponent<EnablePlayer>().col.enabled = true;
+            }
         }
     }
 
@@ -144,7 +152,7 @@ public class LevelBuilder : MonoBehaviour
         placedTiles.Add(newTile.GetComponent<TileData>());
         index = placedTiles.Count - 1;
 
-        newTile.transform.parent = placedTilesParent.transform;
+        //newTile.transform.parent = placedTilesParent.transform;
 
         foreach (Connection con in placedTiles[index].connections)
         {
@@ -226,7 +234,7 @@ public class LevelBuilder : MonoBehaviour
         StartCoroutine(PauseGen());
     }
 
-    private void GenerateHallways()
+    private bool GenerateHallways()
     {
         hallwaysGen = true;
 
@@ -249,7 +257,7 @@ public class LevelBuilder : MonoBehaviour
                     {
                         Debug.Log("ERROR: RELOADING LEVEL");
                         ReloadLevel();
-                        return;
+                        return false;
                     }
 
                     if (path != null)
@@ -267,6 +275,7 @@ public class LevelBuilder : MonoBehaviour
         }
 
         StartCoroutine(DeleteWalls());
+        return true;
     }
 
     void ReloadLevel()
@@ -340,20 +349,19 @@ public class LevelBuilder : MonoBehaviour
 
                 if (tile.overlap != null)
                 {
-                    collisionPt = tile.overlap.transform.root.position;
+                    collisionPt = tile.overlap.position;
                 }
                 else
                 {
                     collisionPt = overlapPt;
                 }
 
-                float dist = 0, movePt1, movePt2;
+                float dist = 0, movePt1;
                 Vector3 newPt = tile.transform.position;
 
                 for (int i = 0; i < neighborGridpts.Length; i++)
                 {
                     movePt1 = Vector3.Distance(neighborGridpts[i] + gridPt, collisionPt);
-                    movePt2 = Vector3.Distance(neighborGridpts[i] + gridPt, collisionPt);
                     
                     if (movePt1 > dist)
                     {
