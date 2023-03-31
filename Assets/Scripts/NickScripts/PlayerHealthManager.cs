@@ -8,7 +8,7 @@ public class PlayerHealthManager : MonoBehaviour
     [SerializeField] GameObject playerCharacter;
     [SerializeField] Image healthFill;
     float pHealth, pHealthMax;
-    public int gameoverSceneNum = 2;
+    public string gameoverSceneName = "TestGameOverScreen";
     // Start is called before the first frame update
     void Start()
     {
@@ -27,7 +27,7 @@ public class PlayerHealthManager : MonoBehaviour
         healthFill.fillAmount = Mathf.Clamp(pHealth/pHealthMax, 0.0f, 1.0f);
         if(pHealth <= 0)
         {
-            SceneSwitcher.GoToScene(gameoverSceneNum);
+            SceneSwitcher.GoToSceneName(gameoverSceneName);
         }
     }
 }
