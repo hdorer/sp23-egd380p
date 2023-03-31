@@ -17,8 +17,8 @@ public class Connection
 public class TileData : MonoBehaviour
 {
     public List<Connection> connections;
-    //[HideInInspector]
-    public Collider overlap = null;
+    [HideInInspector]
+    public Transform overlap = null;
     public List<GameObject> enemies;
     public BoxCollider[] boxColliders;
     public SlidingDoor[] doors;
@@ -66,26 +66,29 @@ public class TileData : MonoBehaviour
         return false;
     }
 
-    public bool CheckContains(List<TileData> tiles)
+    public Vector3 CheckContains(List<TileData> tiles)
     {
         foreach (TileData tile in tiles)
         {
             foreach (Connection c in connections)
             {
-                if (tile.CheckContains(c.alignPt.position /*+ Vector3.up*/))
-                    return true;
+                if (tile.CheckContains(c.alignPt.position + Vector3.up))
+                    return c.alignPt.position;
             }
         }
-        //if (overlap != null)
-        //    return true;
-        //else
-        return false;
+        
+        //return up if no point is found
+        return Vector3.up;
     }
 
     private void OnTriggerEnter(Collider other)
     {
         //Debug.Log(other.transform.parent.name + " " + gameObject.name);
-        overlap = other;
+        overlap = other.transform.root;
+
+        TileData tile = other.GetComponent<TileData>();
+        if (tile != null)
+            tile.overlap = this.transform.root;
 
         if (other.CompareTag("Player") && enemies.Count > 0)
             foreach (SlidingDoor door in doors)
@@ -96,7 +99,11 @@ public class TileData : MonoBehaviour
     }
     private void OnTriggerStay(Collider other)
     {
-        overlap = other;
+        overlap = other.transform.root;
+
+        TileData tile = other.GetComponent<TileData>();
+        if (tile != null)
+            tile.overlap = this.transform.root;
     }
 
     private void OnTriggerExit(Collider other)
