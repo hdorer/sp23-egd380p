@@ -5,7 +5,8 @@ using UnityEngine.InputSystem;
 
 public class ItemBox : MonoBehaviour
 {
-    [SerializeField] private List<GameObject> ItemList; //Input weapon prefabs that swap current weapons
+    [SerializeField] private List<Weapon> ItemList; //Input weapon prefabs that swap current weapons
+    [SerializeField] private GameObject weaponPickup;
     [SerializeField] private InputAction openBox;       //Input as so u can press E to open
     [SerializeField] private GameObject boxObject;      //The actual object. will spawn the funky item in front of it
 
@@ -43,12 +44,9 @@ public class ItemBox : MonoBehaviour
         {
             opened = true;
             int itemNum = Random.Range(0,ItemList.Count);
-            GameObject chosenItem = ItemList[itemNum];
-            //Vector3 newPosition = new Vector3(boxObject.transform.position.x, )
-            Instantiate(chosenItem, boxObject.transform.position, Quaternion.identity);
-            //Random number from 0 to list size
-            //Select object from list
-            //Spawn object (weapon, item, etc) in front of box
+            weaponPickup.GetComponent<WeaponPickup>().Weapon = ItemList[itemNum];
+            
+            GameObject h = Instantiate(weaponPickup, boxObject.transform.position, Quaternion.identity);            
         }
     }
 }
