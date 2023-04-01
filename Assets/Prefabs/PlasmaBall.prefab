@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 5624211145877084011}
   - component: {fileID: 1546802337171682752}
   - component: {fileID: 1905805756491961577}
-  - component: {fileID: 4269570375855476153}
   - component: {fileID: 1905805756491961578}
   m_Layer: 0
   m_Name: PlasmaBall
@@ -116,19 +115,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!114 &4269570375855476153
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4839637938363015079}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 362b166b92674ab44ad05b0e5c04edc3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lifetime: 2
 --- !u!114 &1905805756491961578
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -141,7 +127,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2e2adb9dc21cc44ba8e6e9d03b51e46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lifetime: 15
+  lifetime: 2
   speed: 8
   isEnemy: 1
   explosion: {fileID: 2465383761130801729, guid: d14f0a25007bf9d4eb187e14296e6386, type: 3}

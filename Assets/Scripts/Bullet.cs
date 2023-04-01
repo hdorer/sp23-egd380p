@@ -3,17 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
     
-public class Bullet : MonoBehaviour {
+public class Bullet : DeathTimer {
     [SerializeField] private float speed = 10;
     private float damage;
     protected float Damage { get => damage; }
     private bool damageSet = false;
-
-    [SerializeField] private float lifetime = 15;
-
-    private void Start() {
-        Destroy(gameObject, lifetime);
-    }
 
     private void Update() {
         transform.position += transform.forward * Time.deltaTime * speed;

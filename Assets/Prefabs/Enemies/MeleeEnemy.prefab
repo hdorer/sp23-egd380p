@@ -289,9 +289,9 @@ GameObject:
   m_Component:
   - component: {fileID: 5461811307628462268}
   - component: {fileID: 4649844427195963960}
-  - component: {fileID: 4649844427195963961}
   - component: {fileID: 4649844427195963963}
   - component: {fileID: 662201855496712338}
+  - component: {fileID: 4649844427195963961}
   m_Layer: 0
   m_Name: MeleeEnemy
   m_TagString: Enemy
@@ -343,34 +343,6 @@ NavMeshAgent:
   m_BaseOffset: -0.08
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &4649844427195963961
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4649844427195963910}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 110bf3a6d2e75b440b11d62be5d6c0b1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 100
-  moveSpeed: 1.6
-  currentState: {fileID: 5496354238823778399}
-  agent: {fileID: 4649844427195963960}
-  target: {fileID: 0}
-  isActing: 0
-  possibleAttacks:
-  - {fileID: 11400000, guid: 6a3d901d6ad88a44f9d9e9899e2efa59, type: 2}
-  distanceFromTarget: 0
-  currentAttack: {fileID: 0}
-  projectiles: []
-  currentRecoveryTime: 0
-  bulletSpawnPosition: {fileID: 0}
-  gun: {fileID: 5496354240097584024}
-  isMelee: 1
-  shootAccAngle: 0
 --- !u!95 &4649844427195963963
 Animator:
   serializedVersion: 5
@@ -404,6 +376,34 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.08, y: 2.33, z: 1.57}
   m_Center: {x: 0, y: 1.67, z: 0}
+--- !u!114 &4649844427195963961
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4649844427195963910}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 110bf3a6d2e75b440b11d62be5d6c0b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  moveSpeed: 1.6
+  currentState: {fileID: 5496354238823778399}
+  agent: {fileID: 4649844427195963960}
+  target: {fileID: 0}
+  isActing: 0
+  possibleAttacks:
+  - {fileID: 11400000, guid: 6a3d901d6ad88a44f9d9e9899e2efa59, type: 2}
+  distanceFromTarget: 0
+  currentAttack: {fileID: 0}
+  projectiles: []
+  currentRecoveryTime: 0
+  bulletSpawnPosition: {fileID: 0}
+  gun: {fileID: 5496354240097584024}
+  isMelee: 1
+  shootAccAngle: 0
 --- !u!1 &4942439137570325311
 GameObject:
   m_ObjectHideFlags: 0
@@ -950,6 +950,7 @@ GameObject:
   - component: {fileID: 4929089817192718577}
   - component: {fileID: 5591930610637931972}
   - component: {fileID: 4256959843336898133}
+  - component: {fileID: 1705788887410932684}
   m_Layer: 0
   m_Name: Sword
   m_TagString: Enemy Melee
@@ -1037,3 +1038,15 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.002, y: 0.014853977, z: 0.05347308}
   m_Center: {x: 0.000000003958121, y: 9.36153e-10, z: 0.01129265}
+--- !u!114 &1705788887410932684
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8280337986247006402}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 441636338eae78040be0044a48a04533, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
