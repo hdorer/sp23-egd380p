@@ -9,4 +9,10 @@ public class SceneSwitcher
     {
         SceneManager.LoadScene(sceneNum);
     }
+
+    static public void GoToSceneName(string name)
+    {
+        SceneManager.LoadScene(name);
+    }
 }
+
