@@ -4,9 +4,15 @@ using UnityEngine;
 
 public class Character : MonoBehaviour
 {
-    [SerializeField] protected int health = 100;
-    public int Health { get => health; }
-    [SerializeField] protected int maxHealth = 100;
-    public int MaxHealth { get => maxHealth; }
+    protected float health = 100;
+    public float Health { get => health; }
+    [SerializeField] protected float maxHealth = 100;
+    public float MaxHealth { get => maxHealth; }
     [SerializeField] protected float moveSpeed = 1;
+
+    private float damageModifier = 1f;
+
+    public virtual void takeDamage(float damage) {
+        health -= damage * damageModifier;
+    }
 }
