@@ -207,7 +207,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57138fd22d8ac9c4b9244c82595eebd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
   maxHealth: 100
   moveSpeed: 10
   dodgeRoll:
@@ -242,7 +241,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57444955ed180c34f92402b7badd411d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weapons: []
+  weapons:
+  - {fileID: 11400000, guid: a9e8a63cd0ee9f4498fc5b52b5b56ba2, type: 2}
+  - {fileID: 11400000, guid: cffde5b9599dc884f991455c41a8968a, type: 2}
   bulletSpawnPoint: {fileID: 6544244600443439129}
   weaponPickupPrefab: {fileID: 495543681614667757, guid: bd8613c3472f6d34fb78bac708a803e3, type: 3}
   fireInput:
