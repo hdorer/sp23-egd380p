@@ -1032,7 +1032,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &972881275
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1311,7 +1311,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1182218374
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1732,7 +1732,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1502789227
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1746,8 +1746,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   effectDuration: 10
-  pMovement: {fileID: 0}
-  pWeapons: {fileID: 0}
+  pMovement: {fileID: 1525245498}
+  pWeapons: {fileID: 1525245497}
 --- !u!4 &1502789228
 Transform:
   m_ObjectHideFlags: 0
@@ -1875,6 +1875,28 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b7ab3ef5024b6ae4d9d64ad12d95c694, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1525245497 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3816440743214309993, guid: 9a5aef559b35afd4497e7847f0e7a283, type: 3}
+  m_PrefabInstance: {fileID: 1525245493}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1525245494}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57444955ed180c34f92402b7badd411d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1525245498 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8028342144234513725, guid: 9a5aef559b35afd4497e7847f0e7a283, type: 3}
+  m_PrefabInstance: {fileID: 1525245493}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1525245494}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57138fd22d8ac9c4b9244c82595eebd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1526570916
@@ -3065,7 +3087,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &2042048626
 MonoBehaviour:
   m_ObjectHideFlags: 0
