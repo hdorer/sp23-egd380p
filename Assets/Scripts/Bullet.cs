@@ -20,7 +20,7 @@ public class Bullet : DeathTimer {
         }
     }
 
-    void OnCollisionEnter(Collision col) {
+    private void OnCollisionEnter(Collision col) {
         dealDamage(col);
 
         if(col.gameObject.CompareTag("Wall")) {

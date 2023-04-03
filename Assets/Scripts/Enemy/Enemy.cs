@@ -71,8 +71,6 @@ public class Enemy : Character
         else
         {
             Instantiate(projectiles[projectileType], bulletSpawnPosition.position, Quaternion.LookRotation(shootVelocity)).GetComponent<PlasmaBall>().SetVelocity(shootVelocity);
-            
-
         }
     }
     public void EndAction()
