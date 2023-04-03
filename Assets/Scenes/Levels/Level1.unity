@@ -785,8 +785,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   effectDuration: 10
-  pMovement: {fileID: 0}
-  pWeapons: {fileID: 0}
+  pMovement: {fileID: 423155592}
+  pWeapons: {fileID: 423155591}
 --- !u!4 &402422917
 Transform:
   m_ObjectHideFlags: 0
@@ -914,6 +914,28 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b7ab3ef5024b6ae4d9d64ad12d95c694, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &423155591 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3816440743214309993, guid: 9a5aef559b35afd4497e7847f0e7a283, type: 3}
+  m_PrefabInstance: {fileID: 423155587}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 423155588}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57444955ed180c34f92402b7badd411d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &423155592 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8028342144234513725, guid: 9a5aef559b35afd4497e7847f0e7a283, type: 3}
+  m_PrefabInstance: {fileID: 423155587}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 423155588}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57138fd22d8ac9c4b9244c82595eebd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &430041954
