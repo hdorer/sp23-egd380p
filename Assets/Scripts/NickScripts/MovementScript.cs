@@ -49,7 +49,7 @@ public class MovementScript : Character
 
         if(Input.GetKeyDown(KeyCode.H))
         {
-            Debug.Log("Curent Health: " + health);
+            Debug.Log("Curent Health: " + Health);
         }
     }
     private void RotatePlayer()
@@ -145,24 +145,43 @@ public class MovementScript : Character
     }
     private void OnCollisionEnter(Collision col)
     {
-        if(invincible)
-        {
+        //if(invincible)
+        //{
+        //    return;
+        //}
+        
+        //if(col.gameObject.CompareTag("Enemy Bullet")||col.gameObject.CompareTag("Enemy Melee"))
+        //{
+        //    //This need to take the damage the bullet does rather than a flat rate
+        //    health -= 25; 
+        //    //Update ui health!
+        //    Debug.Log("Damaged");
+        //    if(!col.gameObject.CompareTag("Enemy Melee"))
+        //    {
+        //        Destroy(col.gameObject);
+        //    }
+
+        //    StartCoroutine(DamageInv(damageInvin));
+        //}
+    }
+
+    public override void takeDamage(float damage) {
+        if(invincible) {
             return;
         }
-        
-        if(col.gameObject.CompareTag("Enemy Bullet")||col.gameObject.CompareTag("Enemy Melee"))
-        {
-            //This need to take the damage the bullet does rather than a flat rate
-            health -= 25; 
-            //Update ui health!
-            Debug.Log("Damaged");
-            if(!col.gameObject.CompareTag("Enemy Melee"))
-            {
-                Destroy(col.gameObject);
-            }
 
-            StartCoroutine(DamageInv(damageInvin));
+        base.takeDamage(damage);
+
+        if(Health <= 0) {
+            Debug.Log("Oh no!  I am dead");
+            // die
         }
+
+        // update health UI
+
+        Debug.Log("Damaged " + damage);
+
+        StartCoroutine(DamageInv(damageInvin));
     }
 
     public void setMoveSpeedModifier(float modifier) {

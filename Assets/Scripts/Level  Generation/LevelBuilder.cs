@@ -67,10 +67,10 @@ public class LevelBuilder : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            ReloadLevel();
-        }
+        //if (Input.GetKeyDown(KeyCode.Q))
+        //{
+        //    ReloadLevel();
+        //}
     }
 
     IEnumerator DelayLevelGen()

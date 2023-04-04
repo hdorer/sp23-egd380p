@@ -14559,7 +14559,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2465383761130801731}
   - component: {fileID: 2465383761130801728}
-  - component: {fileID: 656682651480961592}
+  - component: {fileID: 1412442864123627284}
   m_Layer: 0
   m_Name: PlasmaExplosion
   m_TagString: Enemy Melee
@@ -14598,7 +14598,7 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 2.68
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &656682651480961592
+--- !u!114 &1412442864123627284
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -14607,7 +14607,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 2465383761130801729}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 362b166b92674ab44ad05b0e5c04edc3, type: 3}
+  m_Script: {fileID: 11500000, guid: 00c1252981232b04aa3150c9fd87bb71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   lifetime: 0.3
+  damage: 20

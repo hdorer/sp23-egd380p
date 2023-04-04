@@ -80,7 +80,7 @@ public class Laser : Weapon {
         float damage = maxDamage * (charge / maxCharge);
         Debug.Log("Damage Dealt: " + damage);
 
-        float heat = maxHeatPerShot * (charge / maxCharge);
+        float heat = minHeatPerShot + (maxHeatPerShot - minHeatPerShot) * (charge / maxCharge);
         this.heat += heat;
         if(this.heat > maxHeat) {
             Player.StartCoroutine(reload());
@@ -104,7 +104,7 @@ public class Laser : Weapon {
             return;
         }
 
-        enemy.takeDamage();
+        enemy.takeDamage(damage);
     }
 
     private void chargeShot() {

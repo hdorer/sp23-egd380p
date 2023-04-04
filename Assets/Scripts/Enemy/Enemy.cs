@@ -71,8 +71,6 @@ public class Enemy : Character
         else
         {
             Instantiate(projectiles[projectileType], bulletSpawnPosition.position, Quaternion.LookRotation(shootVelocity)).GetComponent<PlasmaBall>().SetVelocity(shootVelocity);
-            
-
         }
     }
     public void EndAction()
@@ -139,19 +137,12 @@ public class Enemy : Character
         }
         return false;
     }
-    //Delete this crap later only here for prototype
-    private void OnCollisionEnter(Collision col)
-    {
-        if(col.gameObject.CompareTag("Player Bullet"))
-        {
-            Debug.Log("Hello We Reached Here");
-            Destroy(col.gameObject);
-            takeDamage();
-        }
-    }
 
-    public void takeDamage() {
-        //Take Damage
-        Destroy(gameObject);
+    public override void takeDamage(float damage) {
+        base.takeDamage(damage);
+
+        if(Health <= 0) {
+            Destroy(gameObject);
+        }
     }
 }

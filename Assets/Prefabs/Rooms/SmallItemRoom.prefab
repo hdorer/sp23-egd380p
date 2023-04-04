@@ -996,7 +996,6 @@ GameObject:
   - component: {fileID: 4126420751377781929}
   - component: {fileID: 1206839711006232348}
   - component: {fileID: 7293453858397001624}
-  - component: {fileID: 3936494383129230108}
   m_Layer: 7
   m_Name: SmallItemRoom
   m_TagString: Untagged
@@ -1082,19 +1081,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 10, y: 2.8, z: 10}
   m_Center: {x: 0, y: 1.5, z: 0}
---- !u!114 &3936494383129230108
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 817559557622800784}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2bc2fa5b98685e34faf9a648ee264ad4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemies: {fileID: 0}
 --- !u!1 &1622358425297945309
 GameObject:
   m_ObjectHideFlags: 0
@@ -3348,9 +3334,21 @@ PrefabInstance:
     m_TransformParent: {fileID: 4126420751377781929}
     m_Modifications:
     - target: {fileID: 4649796530049025654, guid: eef78b20fda78284283b7f38fe25bc78, type: 3}
+      propertyPath: weaponPickup
+      value: 
+      objectReference: {fileID: 495543681614667756, guid: bd8613c3472f6d34fb78bac708a803e3, type: 3}
+    - target: {fileID: 4649796530049025654, guid: eef78b20fda78284283b7f38fe25bc78, type: 3}
+      propertyPath: ItemList.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4649796530049025654, guid: eef78b20fda78284283b7f38fe25bc78, type: 3}
       propertyPath: ItemList.Array.data[0]
       value: 
-      objectReference: {fileID: 4988447341650480385, guid: 71edd64fe1fe3a74686a2f389fa7e861, type: 3}
+      objectReference: {fileID: 11400000, guid: d5a718e61dd80d94d8700b155f0b362d, type: 2}
+    - target: {fileID: 4649796530049025654, guid: eef78b20fda78284283b7f38fe25bc78, type: 3}
+      propertyPath: ItemList.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: cffde5b9599dc884f991455c41a8968a, type: 2}
     - target: {fileID: 4876238762777083001, guid: eef78b20fda78284283b7f38fe25bc78, type: 3}
       propertyPath: m_RootOrder
       value: 11
