@@ -11,6 +11,7 @@ TagManager:
   - Wall
   - Floor
   - Enemy
+  - Fog Camera
   layers:
   - Default
   - TransparentFX
@@ -23,7 +24,7 @@ TagManager:
   - StartingZone
   - 
   - 
-  - 
+  - Fog Layer
   - 
   - 
   - 
