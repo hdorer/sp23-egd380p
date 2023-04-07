@@ -51,6 +51,11 @@ public class LevelBuilder : MonoBehaviour
             CheckOverlap();
         else if (hallwaysGen == false && overlapChecked == true)
         {
+            hallwaysGen = true;
+
+            foreach (TileData tile in placedTiles)
+                tile.LoadEnemies();
+
             //add tiles to the parent to keep things organized
             for (int i = 1; i < placedTiles.Count; i++)
                 placedTiles[i].transform.parent = placedTilesParent.transform;
