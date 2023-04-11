@@ -1823,8 +1823,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30090c1fc0f50db40af5f9a376c6261c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  random: 1
-  seed: -1277206203
+  random: 0
+  seed: 1192603253
 --- !u!4 &872773554
 Transform:
   m_ObjectHideFlags: 0
@@ -2144,52 +2144,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1036021425}
   m_CullTransparentMesh: 1
---- !u!1 &1062162699
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1062162700}
-  - component: {fileID: 1062162701}
-  m_Layer: 0
-  m_Name: LevelManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1062162700
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1062162699}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 11
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1062162701
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1062162699}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7949d7d6feb2b5b48bd702b4dbdbed8b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  levels:
-  - TestGameOverScreen
 --- !u!1 &1095111537
 GameObject:
   m_ObjectHideFlags: 0
@@ -2550,8 +2504,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7aa659e0f5f859b4d8f54d1fab9ac518, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numRooms: 15
-  startSeperation: 6
+  numRooms: 8
+  startSeperation: 5
   tileShift: 3
   pauseDelay: 0.1
   placedTiles:
@@ -2561,12 +2515,16 @@ MonoBehaviour:
   placeableTiles:
   - {fileID: 4532993330944040418, guid: 7425a01942802744090a02ad66e9e609, type: 3}
   - {fileID: 6043388745115043020, guid: aa9ae893f5c2c9d4f92c908da0ba941f, type: 3}
-  - {fileID: 817559557622800784, guid: 7ae82a0dc0e76164ab7a4dd182431046, type: 3}
-  - {fileID: 817559557622800784, guid: c3ea894ebb534414e9a93a42c2aebe26, type: 3}
-  - {fileID: 817559557622800784, guid: 7ae82a0dc0e76164ab7a4dd182431046, type: 3}
+  - {fileID: 5540918809630485188, guid: 3ce761d8eeb5d5e4a9880036c65704b8, type: 3}
+  - {fileID: 2382284882741248557, guid: 3bd768b899be4f44fa162138dec93cfc, type: 3}
+  - {fileID: 6947761254660534654, guid: 4fc767335dba0534bab4c087c62e1884, type: 3}
   - {fileID: 3329714740037679923, guid: b08b9de07911b97408629f6ab3707c6b, type: 3}
+  - {fileID: 817559557622800784, guid: c3ea894ebb534414e9a93a42c2aebe26, type: 3}
   - {fileID: 4532993330944040418, guid: 7425a01942802744090a02ad66e9e609, type: 3}
-  - {fileID: 4532993330944040418, guid: 7425a01942802744090a02ad66e9e609, type: 3}
+  - {fileID: 817559557622800784, guid: 7ae82a0dc0e76164ab7a4dd182431046, type: 3}
+  - {fileID: 5540918809630485188, guid: 3ce761d8eeb5d5e4a9880036c65704b8, type: 3}
+  - {fileID: 6947761254660534654, guid: 4fc767335dba0534bab4c087c62e1884, type: 3}
+  - {fileID: 3329714740037679923, guid: b08b9de07911b97408629f6ab3707c6b, type: 3}
 --- !u!156049354 &1374726293
 Grid:
   m_ObjectHideFlags: 0

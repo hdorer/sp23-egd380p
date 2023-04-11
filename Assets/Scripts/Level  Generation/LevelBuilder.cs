@@ -137,7 +137,7 @@ public class LevelBuilder : MonoBehaviour
 
         } while (!validTile);
 
-        if (placeableTiles.Count <= 0)
+        if (placeableTiles.Count <= 0 || placedTiles.Count == numRooms)
         {
             pauseGen = true;
             overlapChecked = false;
