@@ -32,6 +32,14 @@ public class SlidingDoor : MonoBehaviour
             CloseDoor();
     }
 
+    public void EnableDoors()
+    {
+        foreach (Door door in doors) 
+        {
+            door.door.SetActive(true);
+        }
+    }
+
     void OpenDoor()
     {
         foreach (Door door in doors)

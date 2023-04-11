@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using UnityEngine;
 
 public enum dir { left, right, front, back };
@@ -12,44 +13,32 @@ public class Connection
     public dir direction;
     [HideInInspector]
     public Transform connection;
+    public SlidingDoor door;
 }
 
 public class TileData : MonoBehaviour
 {
-    public List<Connection> connections;
+    public List<Connection> connections = new List<Connection>();
     [HideInInspector]
     public Transform overlap = null;
     public List<GameObject> spawnableEnemies;
     public List<Transform> enemySpawns;
     private List<GameObject> enemies = new List<GameObject>();
     public BoxCollider[] boxColliders;
-    public SlidingDoor[] doors;
 
     GameObject player;
-
-    private void Awake()
-    {
-        //int enemy;
-
-        //if (spawnableEnemies.Count > 0)
-        //{
-        //    foreach (Transform pt in enemySpawns)
-        //    {
-        //        enemy = Random.Range(0, spawnableEnemies.Count);
-        //        enemies.Add(Instantiate(spawnableEnemies[enemy], pt.position, Quaternion.identity));
-        //        enemies[enemies.Count - 1].transform.parent = this.transform;
-        //        enemies[enemies.Count - 1].gameObject.SetActive(false);
-        //    }
-        //}
-    }
 
     private void Start()
     {
         player = FindObjectOfType<MovementScript>().gameObject;
-        foreach (SlidingDoor door in doors)
+
+        foreach (Connection con in connections)
         {
-            door.room = this;
-            door.player = player.transform;
+            if (con.door == null)
+                continue;
+
+            con.door.room = this;
+            con.door.player = player.transform;
         }
     }
 
@@ -60,8 +49,13 @@ public class TileData : MonoBehaviour
                 enemies.Remove(enemies[i]);
 
         if (enemies.Count <= 0)
-            foreach (SlidingDoor door in doors)
-                door.locked = false;
+            foreach (Connection con in connections)
+            {
+                if (con.door == null)
+                    continue;
+
+                con.door.locked = false;
+            }
     }
 
     private void OnDrawGizmos()
@@ -123,8 +117,8 @@ public class TileData : MonoBehaviour
 
         if (other.CompareTag("Player") && enemies.Count > 0)
         {
-            foreach (SlidingDoor door in doors)
-                door.locked = true;
+            foreach (Connection con in connections)
+                con.door.locked = true;
 
             foreach (GameObject go in enemies)
                 go.SetActive(true);
