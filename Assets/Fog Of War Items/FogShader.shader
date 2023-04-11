@@ -48,8 +48,8 @@ Shader "Custom/FogShader"
  
             half4 blurred    = (gaussianH+ gaussianV)*0.5;
  
-            o.Albedo = _Color.rgb * blurred.g;
-            o.Alpha = _Color.a - blurred.g;
+            o.Albedo = _Color.rgb * blurred.r;
+            o.Alpha = _Color.a - blurred.r;
         }
  
         ENDCG
