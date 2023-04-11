@@ -19,11 +19,29 @@ public class TileData : MonoBehaviour
     public List<Connection> connections;
     [HideInInspector]
     public Transform overlap = null;
-    public List<GameObject> enemies;
+    public List<GameObject> spawnableEnemies;
+    public List<Transform> enemySpawns;
+    private List<GameObject> enemies = new List<GameObject>();
     public BoxCollider[] boxColliders;
     public SlidingDoor[] doors;
 
     GameObject player;
+
+    private void Awake()
+    {
+        //int enemy;
+
+        //if (spawnableEnemies.Count > 0)
+        //{
+        //    foreach (Transform pt in enemySpawns)
+        //    {
+        //        enemy = Random.Range(0, spawnableEnemies.Count);
+        //        enemies.Add(Instantiate(spawnableEnemies[enemy], pt.position, Quaternion.identity));
+        //        enemies[enemies.Count - 1].transform.parent = this.transform;
+        //        enemies[enemies.Count - 1].gameObject.SetActive(false);
+        //    }
+        //}
+    }
 
     private void Start()
     {
@@ -44,9 +62,6 @@ public class TileData : MonoBehaviour
         if (enemies.Count <= 0)
             foreach (SlidingDoor door in doors)
                 door.locked = false;
-        //else
-        //    foreach (SlidingDoor door in doors)
-        //        door.locked = true;
     }
 
     private void OnDrawGizmos()
@@ -81,6 +96,22 @@ public class TileData : MonoBehaviour
         return Vector3.up;
     }
 
+    public void LoadEnemies()
+    {
+        int enemy;
+
+        if (spawnableEnemies.Count > 0)
+        {
+            foreach (Transform pt in enemySpawns)
+            {
+                enemy = Random.Range(0, spawnableEnemies.Count);
+                enemies.Add(Instantiate(spawnableEnemies[enemy], pt.position, Quaternion.identity));
+                enemies[enemies.Count - 1].transform.parent = this.transform;
+                enemies[enemies.Count - 1].gameObject.SetActive(false);
+            }
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         //Debug.Log(other.transform.parent.name + " " + gameObject.name);
@@ -91,12 +122,15 @@ public class TileData : MonoBehaviour
             tile.overlap = this.transform.root;
 
         if (other.CompareTag("Player") && enemies.Count > 0)
+        {
             foreach (SlidingDoor door in doors)
-            {
                 door.locked = true;
-                GetComponent<EnableEnemies>().enemies.SetActive(true);
-            }
+
+            foreach (GameObject go in enemies)
+                go.SetActive(true);
+        }
     }
+
     private void OnTriggerStay(Collider other)
     {
         overlap = other.transform.root;
