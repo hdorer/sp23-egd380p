@@ -343,7 +343,7 @@ MonoBehaviour:
   projectiles:
   - {fileID: 798192242076072870, guid: dd93cb722cc14614cb80c7e5b8fefb5b, type: 3}
   currentRecoveryTime: 0
-  bulletSpawnPosition: {fileID: 6174697367591282548}
+  bulletSpawnPosition: {fileID: 6174697366466256506}
   gun: {fileID: 6174697366466256505}
   isMelee: 0
   shootAccAngle: 10
