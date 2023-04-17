@@ -11,11 +11,11 @@ public class Attack : State
         {
             return combat;
         }
-        if(enemy.currentAttack != null)
+        if (enemy.currentAttack != null)
         {
-            if(enemy.distanceFromTarget < enemy.currentAttack.maxDistance)
+            if (enemy.distanceFromTarget < enemy.currentAttack.maxDistance)
             {
-                if(enemy.currentRecoveryTime <= 0 && !enemy.isActing)
+                if (enemy.currentRecoveryTime <= 0 && !enemy.isActing)
                 {
                     enemy.isActing = true;
                     enemy.currentRecoveryTime = enemy.currentAttack.recoveryTime;
@@ -23,6 +23,10 @@ public class Attack : State
                     enemy.currentAttack = null;
                     return combat;
                 }
+            }
+            else
+            {
+                return combat;
             }
         }else
         {

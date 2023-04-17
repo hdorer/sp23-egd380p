@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fd3959cf1572da248928163a5ac0740d, type: 3}
-  m_Name: JohnGrenade
+  m_Name: JohnLaserSpin
   m_EditorClassIdentifier: 
-  attackAnimation: Grenade
+  attackAnimation: LaserSpin
   animationLayer: 0
-  attackScore: 3
-  recoveryTime: 4
-  minDistance: 4
+  attackScore: 2
+  recoveryTime: 6
+  minDistance: 2
   maxDistance: 12
   pushAmount: 1

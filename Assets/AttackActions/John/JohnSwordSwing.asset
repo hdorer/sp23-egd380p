@@ -15,7 +15,7 @@ MonoBehaviour:
   attackAnimation: SwingSword
   animationLayer: 0
   attackScore: 3
-  recoveryTime: 3.5
+  recoveryTime: 2.5
   minDistance: 1
-  maxDistance: 3
+  maxDistance: 6
   pushAmount: 1

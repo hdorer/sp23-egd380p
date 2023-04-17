@@ -15,7 +15,7 @@ MonoBehaviour:
   attackAnimation: ConeFire
   animationLayer: 0
   attackScore: 3
-  recoveryTime: 3.5
+  recoveryTime: 1
   minDistance: 2
-  maxDistance: 5
+  maxDistance: 12
   pushAmount: 1
