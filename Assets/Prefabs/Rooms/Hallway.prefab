@@ -134,6 +134,7 @@ Transform:
   - {fileID: 308476084868411899}
   - {fileID: 8289667961957187689}
   - {fileID: 2367755453703972642}
+  - {fileID: 6043961454017248920}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -154,22 +155,26 @@ MonoBehaviour:
     wall: {fileID: 308476084801270458}
     direction: 2
     connection: {fileID: 0}
+    door: {fileID: 0}
   - alignPt: {fileID: 6886089138601008977}
     wall: {fileID: 308476084135286701}
     direction: 1
     connection: {fileID: 0}
+    door: {fileID: 0}
   - alignPt: {fileID: 6092048190427744218}
     wall: {fileID: 308476084930936249}
     direction: 3
     connection: {fileID: 0}
+    door: {fileID: 0}
   - alignPt: {fileID: 3354040326139661563}
     wall: {fileID: 308476084868411898}
     direction: 0
     connection: {fileID: 0}
+    door: {fileID: 0}
   overlap: {fileID: 0}
-  enemies: []
+  spawnableEnemies: []
+  enemySpawns: []
   boxColliders: []
-  doors: []
 --- !u!114 &15384642
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -583,7 +588,7 @@ GameObject:
   m_Layer: 0
   m_Name: AlignPt3
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 1206586993520771344, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -649,7 +654,7 @@ GameObject:
   m_Layer: 0
   m_Name: AlignPt2
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 1206586993520771344, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -680,7 +685,7 @@ GameObject:
   m_Layer: 0
   m_Name: AlignPt1
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 1206586993520771344, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -716,7 +721,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2367755453703972642
 Transform:
   m_ObjectHideFlags: 0
@@ -782,6 +787,66 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &8154729375325273303
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6043961454017248920}
+  - component: {fileID: 3066094658082300291}
+  - component: {fileID: 1188044453534785605}
+  m_Layer: 12
+  m_Name: HallChecker
+  m_TagString: Hallway
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6043961454017248920
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8154729375325273303}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 308476084578560957}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &3066094658082300291
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8154729375325273303}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4.1, y: 3, z: 4.1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1188044453534785605
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8154729375325273303}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3f8df6d36889524c8f401998723c747, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  revealArea: {fileID: 7525701723453270805}
+  tileData: {fileID: 1195008404584030478}
 --- !u!1 &8898313768390506323
 GameObject:
   m_ObjectHideFlags: 0
@@ -794,7 +859,7 @@ GameObject:
   m_Layer: 0
   m_Name: AlignPt4
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 1206586993520771344, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
