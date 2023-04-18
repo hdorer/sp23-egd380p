@@ -27,7 +27,7 @@ public class ExitLevel : MonoBehaviour
         for (float i = 0; i <= 1; i += Time.deltaTime)
         {
             // set color with i as alpha
-            fadeOut.color = new Color(1, 1, 1, i);
+            fadeOut.color = new Color(fadeOut.color.r, fadeOut.color.g, fadeOut.color.b, i);
             yield return null;
         }
 
