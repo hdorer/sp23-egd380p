@@ -14,10 +14,12 @@ public class PollResultManager : MonoBehaviour {
 
     private void Awake() {
         pollEffects = new IEnumerator[] {
-            PollEffects.ChangeFireRate(pWeapons, effectDuration, 0.25f),
-            PollEffects.ChangeFireRate(pWeapons, effectDuration, 2f),
-            PollEffects.ChangeMoveSpeed(pMovement, effectDuration, 0.25f),
-            PollEffects.ChangeMoveSpeed(pMovement, effectDuration, 2f)
+            PollEffects.changeFireRate(pWeapons, effectDuration, 0.25f),
+            PollEffects.changeFireRate(pWeapons, effectDuration, 2f),
+            PollEffects.changeMoveSpeed(pMovement, effectDuration, 0.25f),
+            PollEffects.changeMoveSpeed(pMovement, effectDuration, 2f),
+            PollEffects.changeDamageTaken(pMovement, effectDuration, 0.75f),
+            PollEffects.changeDamageTaken(pMovement, effectDuration, 1.25f),
         };
     }
 

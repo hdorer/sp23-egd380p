@@ -7,18 +7,27 @@ public enum PollEffectID {
     FIRE_RATE_UP,
     MOVE_SPEED_DOWN,
     MOVE_SPEED_UP,
+    DAMAGE_TAKEN_DOWN,
+    DAMAGE_TAKEN_UP,
 }
 
 public static class PollEffects {
-    public static IEnumerator ChangeFireRate(PlayerWeapon player, float duration, float modifier) {
+    public static IEnumerator changeFireRate(PlayerWeapon player, float duration, float modifier) {
         player.setFireRateModifier(modifier);
         yield return new WaitForSeconds(duration);
         player.resetFireRateModifier();
     }
 
-    public static IEnumerator ChangeMoveSpeed(MovementScript player, float duration, float modifier) {
+    public static IEnumerator changeMoveSpeed(MovementScript player, float duration, float modifier) {
         player.setMoveSpeedModifier(modifier);
         yield return new WaitForSeconds(duration);
         player.resetMoveSpeedModifier();
     }
+
+    public static IEnumerator changeDamageTaken(MovementScript player, float duration, float modifier) {
+        player.setDamageTakenModifier(modifier);
+        yield return new WaitForSeconds(duration);
+        player.resetDamageTakenModifier();
+}
+
 }
