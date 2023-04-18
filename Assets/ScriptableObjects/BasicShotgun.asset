@@ -15,7 +15,7 @@ MonoBehaviour:
   gunName: Basic Shotgun
   flavorText: It's a shotgun
   fireRate: 0.8
-  damagePerBullet: 3
+  damagePerBullet: 20
   clipSize: 5
   reloadTime: 2
   bulletPrefab: {fileID: 4127692203258555895, guid: b20e1de082063a7429b5e3ea2f8b9a03, type: 3}

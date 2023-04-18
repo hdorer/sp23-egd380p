@@ -9,6 +9,7 @@ public class Pursuit : State
     {
         if (enemy.GetAttack())
         {
+
             enemy.agent.enabled = false;
             enemy.GetComponent<Animator>().SetBool("IsWalking", false);
             return combat;
@@ -16,6 +17,7 @@ public class Pursuit : State
         else 
         {
             enemy.agent.enabled = true;
+            enemy.currentAttack = null;
             enemy.GetComponent<Animator>().SetBool("IsWalking", true);
             enemy.agent.SetDestination(enemy.target.transform.position);
         }

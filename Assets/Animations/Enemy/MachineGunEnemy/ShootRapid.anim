@@ -315,24 +315,7 @@ AnimationClip:
     path: Tracking/GunR
   m_ScaleCurves: []
   m_FloatCurves: []
-  m_PPtrCurves:
-  - curve:
-    - time: 0
-      value: {fileID: 0}
-    - time: 0.2
-      value: {fileID: 0}
-    - time: 0.3
-      value: {fileID: 0}
-    - time: 0.4
-      value: {fileID: 0}
-    - time: 0.7
-      value: {fileID: 0}
-    - time: 0.8
-      value: {fileID: 0}
-    attribute: bulletSpawnPosition
-    path: 
-    classID: 114
-    script: {fileID: 11500000, guid: 110bf3a6d2e75b440b11d62be5d6c0b1, type: 3}
+  m_PPtrCurves: []
   m_SampleRate: 60
   m_WrapMode: 0
   m_Bounds:
@@ -368,20 +351,7 @@ AnimationClip:
       typeID: 4
       customType: 4
       isPPtrCurve: 0
-    - serializedVersion: 2
-      path: 0
-      attribute: 1230637189
-      script: {fileID: 11500000, guid: 110bf3a6d2e75b440b11d62be5d6c0b1, type: 3}
-      typeID: 114
-      customType: 0
-      isPPtrCurve: 1
-    pptrCurveMapping:
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
+    pptrCurveMapping: []
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
