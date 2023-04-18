@@ -22,12 +22,16 @@ public class SlidingDoor : MonoBehaviour
     public float activationRange = 3f;
     public float speed = 1.5f;
     public Door[] doors;
+    public GameObject revealArea;
 
     // Update is called once per frame
     void Update()
     {
         if (Vector3.Distance(transform.position, player.position) <= activationRange && locked == false)
+        {
+            revealArea.SetActive(true);
             OpenDoor();
+        }
         else
             CloseDoor();
     }
