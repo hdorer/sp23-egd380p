@@ -58,21 +58,29 @@ public class PollManager : MonoBehaviour {
     [System.Serializable] public class PollEndEvent : UnityEvent<Poll> { }
     public PollEndEvent onPollEnd;
 
+    [System.Serializable] public class SetActiveEvent : UnityEvent<bool> { }
+    public SetActiveEvent onSetActive;
+
     private void OnEnable() {
         listener.onValidMessageRecieved += parseMessage;
     }
 
     private void Start() {
-        voterUsernames = new List<string>();
+        if(GameManager.UseTwitch) {
+            voterUsernames = new List<string>();
 
-        pollTimer = pollTime;
-        pollDownTimer = pollDowntime;
+            pollTimer = pollTime;
+            pollDownTimer = pollDowntime;
 
-        if(startActive) {
-            startPoll();
-        } else {
-            listener.gameObject.SetActive(false);
+            if(startActive) {
+                startPoll();
+            } else {
+                listener.gameObject.SetActive(false);
+            }
         }
+
+        onSetActive?.Invoke(GameManager.UseTwitch);
+        gameObject.SetActive(GameManager.UseTwitch);
     }
 
     private void Update() {
