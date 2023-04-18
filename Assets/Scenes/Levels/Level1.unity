@@ -337,7 +337,7 @@ MonoBehaviour:
   useAnonymousLogin: 1
   oauth: 
   username: 
-  channel: captowtest
+  channel: 
   singleton: 1
   connectOnStart: 1
   showIRCDebug: 1
@@ -970,7 +970,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -0.18003082, y: 0}
+  m_AnchoredPosition: {x: -0.1800232, y: 0}
   m_SizeDelta: {x: -0.35998535, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &494031139
@@ -1286,7 +1286,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -0.18003082, y: 0}
+  m_AnchoredPosition: {x: -0.1800232, y: 0}
   m_SizeDelta: {x: -0.35998535, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &618087289
@@ -1858,6 +1858,11 @@ MonoBehaviour:
   - Fire Rate Up
   - Move Speed Down
   - Move Speed Up
+  - Damage Taken Down
+  - Damage Taken Up
+  - Damage Dealt Down
+  - Damage Dealt Up
+  pollEffectIDs: 0000000001000000020000000300000004000000050000000600000007000000
   pollTime: 20
   pollDowntime: 20
   listener: {fileID: 1632971149}
@@ -2642,7 +2647,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -0.18003082, y: 0}
+  m_AnchoredPosition: {x: -0.1800232, y: 0}
   m_SizeDelta: {x: -0.35998535, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1517112872
@@ -3073,7 +3078,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -0.18003082, y: 0}
+  m_AnchoredPosition: {x: -0.1800232, y: 0}
   m_SizeDelta: {x: -0.35998535, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1896791225

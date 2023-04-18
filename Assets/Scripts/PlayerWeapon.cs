@@ -12,6 +12,7 @@ public class PlayerWeapon : MonoBehaviour {
     [SerializeField] private Transform bulletSpawnPoint;
 
     private float fireRateModifier = 1.0f;
+    private float damageModifier = 1.0f;
 
     [SerializeField] private WeaponPickup weaponPickupPrefab;
     private WeaponPickup nearbyPickup = null;
@@ -33,6 +34,7 @@ public class PlayerWeapon : MonoBehaviour {
     public Vector3 BulletSpawnForward { get => bulletSpawnPoint.forward; }
     public LineRenderer LineRenderer { get => bulletSpawnPoint.GetComponent<LineRenderer>(); }
     public float FireRateModifier { get => fireRateModifier; }
+    public float DamageModifier { get => damageModifier; }
 
     private void OnEnable() {
         fireInput.Enable();
@@ -81,6 +83,14 @@ public class PlayerWeapon : MonoBehaviour {
     public void resetFireRateModifier() {
         fireRateModifier = 1.0f;
         Debug.Log("Fire rate modifier is " + fireRateModifier);
+    }
+
+    public void setDamageModifier(float damageModifier) {
+        this.damageModifier = damageModifier;
+    }
+
+    public void resetDamageModifier() {
+        damageModifier = 1.0f;
     }
 
     public void setNearbyPickup(WeaponPickup pickup) {

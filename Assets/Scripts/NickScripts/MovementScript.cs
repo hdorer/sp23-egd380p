@@ -23,6 +23,7 @@ public class MovementScript : Character
     private bool onRolling = false;
 
     private float moveSpeedModifier = 1.0f;
+    private float damageTakenModifier = 1.0f;
 
     private void OnEnable()
     {
@@ -143,34 +144,13 @@ public class MovementScript : Character
 
         //Maybe, cooldown on roll?
     }
-    private void OnCollisionEnter(Collision col)
-    {
-        //if(invincible)
-        //{
-        //    return;
-        //}
-        
-        //if(col.gameObject.CompareTag("Enemy Bullet")||col.gameObject.CompareTag("Enemy Melee"))
-        //{
-        //    //This need to take the damage the bullet does rather than a flat rate
-        //    health -= 25; 
-        //    //Update ui health!
-        //    Debug.Log("Damaged");
-        //    if(!col.gameObject.CompareTag("Enemy Melee"))
-        //    {
-        //        Destroy(col.gameObject);
-        //    }
-
-        //    StartCoroutine(DamageInv(damageInvin));
-        //}
-    }
 
     public override void takeDamage(float damage) {
         if(invincible) {
             return;
         }
 
-        base.takeDamage(damage);
+        base.takeDamage(damage * damageTakenModifier);
 
         if(Health <= 0) {
             Debug.Log("Oh no!  I am dead");
@@ -179,7 +159,7 @@ public class MovementScript : Character
 
         // update health UI
 
-        Debug.Log("Damaged " + damage);
+        Debug.Log("Damaged " + damage * damageTakenModifier);
 
         StartCoroutine(DamageInv(damageInvin));
     }
@@ -190,5 +170,13 @@ public class MovementScript : Character
 
     public void resetMoveSpeedModifier() {
         moveSpeedModifier = 1.0f;
+    }
+
+    public void setDamageTakenModifier(float modifier) {
+        damageTakenModifier = modifier;
+    }
+
+    public void resetDamageTakenModifier() {
+        damageTakenModifier = 1.0f;
     }
 }
