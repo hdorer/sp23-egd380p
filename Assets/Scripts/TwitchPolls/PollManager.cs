@@ -10,13 +10,8 @@ public struct Poll {
     public string[] voteStrings;
     public int[] votes;
 
-    public Poll(string[] optionNames) {
-        effects = new PollEffectID[] {
-            PollEffectID.FIRE_RATE_DOWN,
-            PollEffectID.FIRE_RATE_UP,
-            PollEffectID.MOVE_SPEED_DOWN,
-            PollEffectID.MOVE_SPEED_UP
-        }; // temp
+    public Poll(PollEffectID[] effects, string[] optionNames) {
+        this.effects = effects;
         this.optionNames = optionNames;
         voteStrings = new string[optionNames.Length];
         votes = new int[optionNames.Length];
@@ -28,6 +23,8 @@ public struct Poll {
 }
 
 public class PollManager : MonoBehaviour {
+    const int NUM_OPTIONS = 4;
+
     [Header("General")]
     [SerializeField] private bool startActive = false;
     private bool pollActive;
@@ -36,6 +33,7 @@ public class PollManager : MonoBehaviour {
     private List<string> voterUsernames;
 
     [SerializeField] private string[] optionLabels;
+    [SerializeField] private PollEffectID[] pollEffectIDs;
 
     [Header("Timers")]
     [SerializeField] private float pollTime = 20f;
@@ -112,7 +110,7 @@ public class PollManager : MonoBehaviour {
         pollActive = true;
         pollTimer = pollTime;
 
-        activePoll = new Poll(optionLabels);
+        activePoll = generatePoll();
         
         listener.gameObject.SetActive(true);
         listener.ValidMessages = activePoll.voteStrings;
@@ -157,5 +155,23 @@ public class PollManager : MonoBehaviour {
         Debug.Log(output);
     }
 
-    // TODO: after more effects are added, create a function to generate a poll populated with randomly selected effects/effect texts
+    private Poll generatePoll() {
+        PollEffectID[] ids = new PollEffectID[NUM_OPTIONS];
+        string[] names = new string[NUM_OPTIONS];
+        List<int> invalidRolls = new List<int>();
+
+        for(int i = 0; i < NUM_OPTIONS; i++) {
+            int roll;
+            do {
+                roll = Random.Range(0, pollEffectIDs.Length);
+            } while(invalidRolls.Contains(roll));
+
+            ids[i] = pollEffectIDs[roll];
+            names[i] = optionLabels[roll];
+
+            invalidRolls.Add(roll);
+        }
+
+        return new Poll(ids, names);
+    }
 }
