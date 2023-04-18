@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -31,6 +32,10 @@ public class LevelBuilder : MonoBehaviour
     private bool wait = false;
     private bool pauseGen = false;
 
+    [Header("Canvas Components")]
+    public GameObject generatingLevelPanel;
+    public TextMeshProUGUI generatingStatusText;
+
     void Awake()
     {
         grid = GetComponent<Grid>();
@@ -52,6 +57,7 @@ public class LevelBuilder : MonoBehaviour
         else if (hallwaysGen == false && overlapChecked == true)
         {
             hallwaysGen = true;
+            UpdateGenText("Loading Hallways");
 
             foreach (TileData tile in placedTiles)
                 tile.LoadEnemies();
@@ -70,15 +76,11 @@ public class LevelBuilder : MonoBehaviour
                 player.move.enabled = true;
                 player.weapon.enabled = true;
             }
-        }
-    }
 
-    private void Update()
-    {
-        //if (Input.GetKeyDown(KeyCode.Q))
-        //{
-        //    ReloadLevel();
-        //}
+            UpdateGenText("Hallways Generated");
+            UpdateGenText("Level Loaded");
+            StartCoroutine(DisableGenPanel());
+        }
     }
 
     IEnumerator DelayLevelGen()
@@ -95,6 +97,9 @@ public class LevelBuilder : MonoBehaviour
         int loopBreak = 0;
         int connection;
         bool validTile;
+
+        if (placedTiles.Count == 1)
+            UpdateGenText("Placing Rooms");
 
         do
         {
@@ -141,6 +146,9 @@ public class LevelBuilder : MonoBehaviour
         {
             pauseGen = true;
             overlapChecked = false;
+
+            UpdateGenText("Rooms Placed");
+            UpdateGenText("Checking Overlap");
         }
     }
 
@@ -213,7 +221,7 @@ public class LevelBuilder : MonoBehaviour
                     if (path == null)
                     {
                         Debug.Log("ERROR: RELOADING LEVEL");
-                        ReloadLevel();
+                        StartCoroutine(DelayReload());
                         return false;
                     }
 
@@ -235,9 +243,18 @@ public class LevelBuilder : MonoBehaviour
         return true;
     }
 
+    IEnumerator DelayReload()
+    {
+        UpdateGenText("ERROR: Reloading Level");
+
+        yield return new WaitForSeconds(1f);
+
+        ReloadLevel();
+        generatingStatusText.text = "";
+    }
+
     void ReloadLevel()
     {
-        //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         //clear dictionary
         gridPts.Clear();
 
@@ -285,14 +302,10 @@ public class LevelBuilder : MonoBehaviour
             {
                 overlapChecked = false;
                 hallwaysGen = true;
-                Vector3Int gridPt = /*grid.WorldToCell*/Vector3Int.FloorToInt(tile.transform.position);
+                Vector3Int gridPt = Vector3Int.FloorToInt(tile.transform.position);
                 gridPt.y = 0;
 
                 int cellSize = Mathf.RoundToInt(grid.cellSize.x);
-                //Vector3Int[] neighborGridpts = new Vector3Int[8] {new Vector3Int(gridPt.x - cellSize, 0, gridPt.z + cellSize), new Vector3Int(gridPt.x, 0, gridPt.z + cellSize), new Vector3Int(gridPt.x + cellSize, 0, gridPt.z + cellSize),
-                //                                                    new Vector3Int(gridPt.x - cellSize, 0, gridPt.z), /*CENTER,*/ new Vector3Int(gridPt.x + cellSize, 0, gridPt.z),
-                //                                                    new Vector3Int(gridPt.x - cellSize, 0, gridPt.z - cellSize), new Vector3Int(gridPt.x, 0, gridPt.z - cellSize), new Vector3Int(gridPt.x + cellSize, 0, gridPt.z - cellSize)
-                //                                                    };
                 Vector3Int[] neighborGridpts = new Vector3Int[8] {new Vector3Int(-cellSize, 0, cellSize), new Vector3Int(0, 0, cellSize), new Vector3Int(cellSize, 0, cellSize),
                                                                     new Vector3Int(-cellSize, 0, 0), /*CENTER,*/ new Vector3Int(cellSize, 0, 0),
                                                                     new Vector3Int(-cellSize, 0, -cellSize), new Vector3Int(0, 0, -cellSize), new Vector3Int(cellSize, 0, -cellSize)
@@ -350,5 +363,17 @@ public class LevelBuilder : MonoBehaviour
         {
             hall.ConnectHallways();
         }
+    }
+
+    void UpdateGenText(string status)
+    {
+        generatingStatusText.text += status + "\n";
+    }
+
+    IEnumerator DisableGenPanel()
+    {
+        yield return new WaitForSeconds(0.5f);
+
+        generatingLevelPanel.SetActive(false);
     }
 }
