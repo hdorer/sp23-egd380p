@@ -339,6 +339,13 @@ MonoBehaviour:
   gun: {fileID: 5911784661497166952}
   isMelee: 0
   shootAccAngle: 0
+  requiredAngleForAttack: 4
+  grenadeSpawn: {fileID: 0}
+  bulletSpawn: {fileID: 0}
+  laserSpawn: {fileID: 0}
+  johnBullet: {fileID: 0}
+  johnLaser: {fileID: 0}
+  johnGrenade: {fileID: 0}
 --- !u!95 &3876944000881043068
 Animator:
   serializedVersion: 5
@@ -590,7 +597,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5911784660831714164}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.0756, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

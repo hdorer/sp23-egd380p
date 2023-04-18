@@ -52,7 +52,7 @@ public class Enemy : Character
     {
         Vector3 shootTarget = target.transform.position;
         shootTarget.y += 0.5f;
-        Vector3 shootVelocity = shootTarget - transform.position;
+        Vector3 shootVelocity = shootTarget - bulletSpawnPosition.position;
         if(shootAccAngle != 0)
         {
             float randAngle = Random.Range(-shootAccAngle, shootAccAngle);
