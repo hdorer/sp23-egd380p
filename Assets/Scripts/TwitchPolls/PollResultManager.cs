@@ -20,6 +20,8 @@ public class PollResultManager : MonoBehaviour {
             PollEffects.changeMoveSpeed(pMovement, effectDuration, 2f),
             PollEffects.changeDamageTaken(pMovement, effectDuration, 0.75f),
             PollEffects.changeDamageTaken(pMovement, effectDuration, 1.25f),
+            PollEffects.changeDamageDealt(pWeapons, effectDuration, 0.75f),
+            PollEffects.changeDamageDealt(pWeapons, effectDuration, 1.5f)
         };
     }
 

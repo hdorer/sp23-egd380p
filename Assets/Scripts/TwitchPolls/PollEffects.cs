@@ -9,6 +9,8 @@ public enum PollEffectID {
     MOVE_SPEED_UP,
     DAMAGE_TAKEN_DOWN,
     DAMAGE_TAKEN_UP,
+    DAMAGE_DEALT_DOWN,
+    DAMAGE_DEALT_UP,
 }
 
 public static class PollEffects {
@@ -28,6 +30,11 @@ public static class PollEffects {
         player.setDamageTakenModifier(modifier);
         yield return new WaitForSeconds(duration);
         player.resetDamageTakenModifier();
-}
+    }
 
+    public static IEnumerator changeDamageDealt(PlayerWeapon player, float duration, float modifier) {
+        player.setDamageModifier(modifier);
+        yield return new WaitForSeconds(duration);
+        player.resetDamageModifier();
+    }
 }

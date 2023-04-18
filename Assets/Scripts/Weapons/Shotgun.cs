@@ -18,7 +18,8 @@ public class Shotgun : Blaster {
             Quaternion bulletRotation = Quaternion.Euler(bulletRotationX, bulletRotationY, bulletRotationZ);
 
             Bullet bullet = Instantiate(BulletPrefab, Player.BulletSpawnPosition, bulletRotation).GetComponent<Bullet>();
-            bullet.setDamage(DamagePerBullet);
+            bullet.setDamage(DamagePerBullet * Player.DamageModifier);
+            Debug.Log("Per-bullet damage: " + (DamagePerBullet * Player.DamageModifier));
         }
     }
 }

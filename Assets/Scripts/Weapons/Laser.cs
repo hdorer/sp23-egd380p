@@ -104,11 +104,12 @@ public class Laser : Weapon {
             return;
         }
 
-        enemy.takeDamage(damage);
+        enemy.takeDamage(damage * Player.DamageModifier);
+        Debug.Log("Shot damage: " + (damage * Player.DamageModifier));
     }
 
     private void chargeShot() {
-        charge += chargeRate * Time.deltaTime;
+        charge += chargeRate * Player.FireRateModifier * Time.deltaTime;
         Debug.Log(charge);
         
         if(charge >= maxCharge) {

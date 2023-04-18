@@ -83,6 +83,14 @@ public class PlayerWeapon : MonoBehaviour {
         Debug.Log("Fire rate modifier is " + fireRateModifier);
     }
 
+    public void setDamageModifier(float damageModifier) {
+        this.damageModifier = damageModifier;
+    }
+
+    public void resetDamageModifier() {
+        damageModifier = 1.0f;
+    }
+
     public void setNearbyPickup(WeaponPickup pickup) {
         nearbyPickup = pickup;
         Debug.Log(nearbyPickup == null ? "null" : nearbyPickup.gameObject.name);
