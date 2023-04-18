@@ -16,6 +16,12 @@ public class TwitchListener : MonoBehaviour {
         twitchIrc.OnChatMessage += parseChatMessage;
     }
 
+    private void Awake() {
+        if(GameManager.UseTwitch) {
+            twitchIrc.channel = GameManager.TwitchChannel;
+        }
+    }
+
     private void OnDisable() {
         twitchIrc.OnChatMessage -= parseChatMessage;
     }
