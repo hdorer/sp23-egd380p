@@ -41,7 +41,10 @@ public class Combat : State
         {
             return pursuit;
         }
-        
+        if (!enemy.GetAttack())
+        {
+            return pursuit;
+        }
         return this;
     }
 }

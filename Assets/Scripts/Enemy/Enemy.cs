@@ -11,7 +11,6 @@ public class Enemy : Character
     public bool isActing = false;
     public List<AttackAction> possibleAttacks = new List<AttackAction>();
     Animator anim;
-    [HideInInspector]
     public float distanceFromTarget;
     public AttackAction currentAttack;
     [Header("AI Settings")]
@@ -21,6 +20,16 @@ public class Enemy : Character
     public GameObject gun;
     public bool isMelee;
     public float shootAccAngle = 0;
+    public float requiredAngleForAttack = 4;
+
+    [Header("John Stuff")]
+    public Transform grenadeSpawn;
+    public Transform bulletSpawn;
+    public Transform laserSpawn;
+
+    public GameObject johnBullet;
+    public GameObject johnLaser;
+    public GameObject johnGrenade;
 
     private void Start()
     {
@@ -66,11 +75,11 @@ public class Enemy : Character
             float randAngle = Random.Range(-shootAccAngle, shootAccAngle);
             Vector3 angledVelocity = Quaternion.AngleAxis(randAngle, Vector3.forward) * shootVelocity;
             angledVelocity.y = 0;
-            Instantiate(projectiles[projectileType], bulletSpawnPosition.position, Quaternion.LookRotation(angledVelocity)).GetComponent<PlasmaBall>().SetVelocity(shootVelocity);
+            Instantiate(projectiles[projectileType], bulletSpawnPosition.position, Quaternion.LookRotation(angledVelocity)).GetComponent<PlasmaBall>().SetVelocity(shootVelocity * 5);
         }
         else
         {
-            Instantiate(projectiles[projectileType], bulletSpawnPosition.position, Quaternion.LookRotation(shootVelocity)).GetComponent<PlasmaBall>().SetVelocity(shootVelocity);
+            Instantiate(projectiles[projectileType], bulletSpawnPosition.position, Quaternion.LookRotation(shootVelocity)).GetComponent<PlasmaBall>().SetVelocity(shootVelocity * 5);
         }
     }
     public void EndAction()
@@ -98,9 +107,8 @@ public class Enemy : Character
         forwardsVec.y = 0;
         Vector3 lookVec = target.transform.position - transform.position;
         lookVec.y = 0;
-        if (Vector3.Angle(forwardsVec, lookVec) < 4f)
+        if (gun != null && Mathf.Abs(Vector3.Angle(forwardsVec, lookVec)) < requiredAngleForAttack)
         {
-
             int maxScore = 0;
             for (int i = 0; i < possibleAttacks.Count; i++)
             {
@@ -138,11 +146,38 @@ public class Enemy : Character
         return false;
     }
 
+
+    
+
     public override void takeDamage(float damage) {
         base.takeDamage(damage);
 
         if(Health <= 0) {
             Destroy(gameObject);
         }
+    }
+
+    public void LookAtPlayer()
+    {
+        Vector3 shootTarget = target.transform.position;
+        transform.LookAt(shootTarget, transform.up);
+    }
+
+    
+    //john functions
+    public void SpawnBasicBullet()
+    {
+        Vector3 shootVelocity = -bulletSpawn.up;
+        Instantiate(johnBullet, bulletSpawn.position, Quaternion.LookRotation(shootVelocity));
+    }
+    public void SpawnGrenade()
+    {
+        Vector3 shootVelocity = grenadeSpawn.forward;
+        Instantiate(johnGrenade, grenadeSpawn.position, Quaternion.LookRotation(shootVelocity)).GetComponent<PlasmaBall>().SetVelocity(shootVelocity * 7);
+    }
+    public void SpawnLaserBeam()
+    {
+        Vector3 shootVelocity = laserSpawn.right;
+        Instantiate(johnLaser, laserSpawn.position, Quaternion.LookRotation(shootVelocity));
     }
 }

@@ -128,6 +128,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lifetime: 2
-  speed: 8
+  speed: 15
   isEnemy: 1
   explosion: {fileID: 2465383761130801729, guid: d14f0a25007bf9d4eb187e14296e6386, type: 3}
