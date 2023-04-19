@@ -449,7 +449,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5746109024541061939, guid: 08f1be92fd8a9e74e80e0b5f5bcbd7e7, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5746109024541061939, guid: 08f1be92fd8a9e74e80e0b5f5bcbd7e7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -839,6 +839,7 @@ MonoBehaviour:
   - Fire Rate Up
   - Move Speed Down
   - Move Speed Up
+  pollEffectIDs: 
   pollTime: 20
   pollDowntime: 20
   listener: {fileID: 2042048626}
@@ -1079,7 +1080,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 305608765525979781, guid: 2eca3fa99ad692541ab8f8ad270544fd, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 305608765525979781, guid: 2eca3fa99ad692541ab8f8ad270544fd, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1199,7 +1200,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5582301183447046640, guid: 9a5aef559b35afd4497e7847f0e7a283, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5582301183447046640, guid: 9a5aef559b35afd4497e7847f0e7a283, type: 3}
       propertyPath: m_LocalPosition.x

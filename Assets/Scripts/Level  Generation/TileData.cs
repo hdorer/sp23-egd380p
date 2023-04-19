@@ -55,6 +55,7 @@ public class TileData : MonoBehaviour
                     continue;
 
                 con.door.locked = false;
+                con.door.col.enabled = false;
             }
     }
 
@@ -118,7 +119,10 @@ public class TileData : MonoBehaviour
         if (other.CompareTag("Player") && enemies.Count > 0)
         {
             foreach (Connection con in connections)
+            {
                 con.door.locked = true;
+                con.door.col.enabled = true;
+            }
 
             foreach (GameObject go in enemies)
                 go.SetActive(true);

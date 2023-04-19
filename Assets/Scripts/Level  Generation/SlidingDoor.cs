@@ -18,11 +18,23 @@ public class SlidingDoor : MonoBehaviour
     public Transform player;
     [HideInInspector]
     public bool locked = false;
+    [HideInInspector]
+    public BoxCollider col;
+
+    public AudioSource doorOpen;
+    private bool doorOpened = false;
+    private bool doorClosed = true;
+
 
     public float activationRange = 3f;
     public float speed = 1.5f;
     public Door[] doors;
     public GameObject revealArea;
+
+    private void Start()
+    {
+        col = GetComponent<BoxCollider>();
+    }
 
     // Update is called once per frame
     void Update()
@@ -31,9 +43,37 @@ public class SlidingDoor : MonoBehaviour
         {
             revealArea.SetActive(true);
             OpenDoor();
+
+            if (doorClosed == true)
+            {
+                float time = doorOpen.time;
+
+                if (doorOpen.isPlaying)
+                    doorOpen.Stop();
+
+                doorOpen.PlayScheduled(time);
+
+                doorOpened = true;
+                doorClosed = false;
+            }
         }
         else
+        {
             CloseDoor();
+
+            if (doorOpened == true)
+            {
+                float time = doorOpen.time;
+
+                if (doorOpen.isPlaying)
+                    doorOpen.Stop();
+
+                doorOpen.PlayScheduled(time);
+
+                doorOpened = false;
+                doorClosed = true;
+            }
+        }
     }
 
     public void EnableDoors()
