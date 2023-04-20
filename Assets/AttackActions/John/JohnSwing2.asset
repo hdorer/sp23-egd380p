@@ -16,6 +16,6 @@ MonoBehaviour:
   animationLayer: 0
   attackScore: 3
   recoveryTime: 2
-  minDistance: 1
+  minDistance: 0
   maxDistance: 6
   pushAmount: 1
