@@ -2014,6 +2014,7 @@ MonoBehaviour:
   - Fire Rate Up
   - Move Speed Down
   - Move Speed Up
+  pollEffectIDs: 
   pollTime: 20
   pollDowntime: 20
   listener: {fileID: 1632971149}
@@ -2565,6 +2566,8 @@ MonoBehaviour:
   - {fileID: 5540918809630485188, guid: 3ce761d8eeb5d5e4a9880036c65704b8, type: 3}
   - {fileID: 6947761254660534654, guid: 4fc767335dba0534bab4c087c62e1884, type: 3}
   - {fileID: 3329714740037679923, guid: b08b9de07911b97408629f6ab3707c6b, type: 3}
+  - {fileID: 6603390066063824197, guid: b6ae1f834b63e754985d026650178fe2, type: 3}
+  maxLevelLoadTime: 10
   generatingLevelPanel: {fileID: 752825590}
   generatingStatusText: {fileID: 292298013}
 --- !u!156049354 &1374726293
