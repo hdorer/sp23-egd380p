@@ -39,6 +39,7 @@ public class Blaster : Weapon {
     }
 
     public override void startFiring() {
+
         firing = true;
     }
 
@@ -64,6 +65,10 @@ public class Blaster : Weapon {
     }
 
     protected virtual void fire() {
+        if (Player.playerMovement.onRolling)
+        {
+            return;
+        }
         Bullet bullet = Instantiate(bulletPrefab, Player.BulletSpawnPosition, Player.BulletSpawnRotation).GetComponent<Bullet>();
         bullet.setDamage(damagePerBullet * Player.DamageModifier);
         Debug.Log("Shot damage: " + (damagePerBullet * Player.DamageModifier));

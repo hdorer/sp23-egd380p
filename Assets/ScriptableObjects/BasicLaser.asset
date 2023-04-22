@@ -14,10 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gunName: Basic Laser
   flavorText: pew pew pew
+  gunIndex: 2
   passiveCooldownRate: 10
   ventingCooldownRate: 30
   maxCharge: 20
   chargeRate: 12.5
   maxDamage: 40
+  minHeatPerShot: 3
   maxHeatPerShot: 25
   maxRange: 15
