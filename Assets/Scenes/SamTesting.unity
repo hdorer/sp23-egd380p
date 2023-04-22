@@ -495,6 +495,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: FogPlane
       objectReference: {fileID: 0}
+    - target: {fileID: 5746109024541061951, guid: 08f1be92fd8a9e74e80e0b5f5bcbd7e7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 08f1be92fd8a9e74e80e0b5f5bcbd7e7, type: 3}
 --- !u!1 &652746202
@@ -1343,6 +1347,8 @@ MonoBehaviour:
   - {fileID: 6603390066063824197, guid: b6ae1f834b63e754985d026650178fe2, type: 3}
   - {fileID: 6947761254660534654, guid: 4fc767335dba0534bab4c087c62e1884, type: 3}
   - {fileID: 6043388745115043020, guid: aa9ae893f5c2c9d4f92c908da0ba941f, type: 3}
+  - {fileID: 817559557622800784, guid: c3ea894ebb534414e9a93a42c2aebe26, type: 3}
+  maxLevelLoadTime: 10
   generatingLevelPanel: {fileID: 89655000}
   generatingStatusText: {fileID: 692908889}
 --- !u!156049354 &1526570918

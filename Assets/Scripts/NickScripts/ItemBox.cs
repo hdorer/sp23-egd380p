@@ -11,6 +11,7 @@ public class ItemBox : MonoBehaviour
     [SerializeField] private GameObject boxObject;      //The actual object. will spawn the funky item in front of it
 
     private bool opened = false, isPlayer = false;
+
     private void OnEnable()
     {
         openBox.Enable();

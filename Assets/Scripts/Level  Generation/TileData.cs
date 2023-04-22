@@ -23,7 +23,8 @@ public class TileData : MonoBehaviour
     public Transform overlap = null;
     public List<GameObject> spawnableEnemies;
     public List<Transform> enemySpawns;
-    private List<GameObject> enemies = new List<GameObject>();
+    [HideInInspector]
+    public List<GameObject> enemies = new List<GameObject>();
     public BoxCollider[] boxColliders;
 
     GameObject player;
