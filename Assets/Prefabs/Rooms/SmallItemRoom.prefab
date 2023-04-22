@@ -6222,5 +6222,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70a47adf595a20048b193509bbfb67fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  activateRange: 6
+  activateRange: 2
   text: {fileID: 1890672784}

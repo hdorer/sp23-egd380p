@@ -9,6 +9,7 @@ public class MainMenuSystem : MonoBehaviour
     {
         SceneSwitcher.GoToScene(n);
     }
+
     public void QuitGame()
     {
         Application.Quit();
