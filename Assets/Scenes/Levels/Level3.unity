@@ -801,6 +801,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 855661572, guid: 9a5aef559b35afd4497e7847f0e7a283, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1082723428, guid: 9a5aef559b35afd4497e7847f0e7a283, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1780910653, guid: 9a5aef559b35afd4497e7847f0e7a283, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1938178515, guid: 9a5aef559b35afd4497e7847f0e7a283, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5582301183447046640, guid: 9a5aef559b35afd4497e7847f0e7a283, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -2080,7 +2096,7 @@ MonoBehaviour:
   onPollStart:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1692508234}
+      - m_Target: {fileID: 1568800172}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -2092,7 +2108,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 1692508238}
+      - m_Target: {fileID: 1568800173}
         m_TargetAssemblyTypeName: PollDisplay, Assembly-CSharp
         m_MethodName: updateOptionText
         m_Mode: 0
@@ -2119,7 +2135,7 @@ MonoBehaviour:
   onPollEnd:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1692508234}
+      - m_Target: {fileID: 1568800172}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -2865,6 +2881,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1517112870}
   m_CullTransparentMesh: 1
+--- !u!1 &1568800172 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1309297153, guid: 9a5aef559b35afd4497e7847f0e7a283, type: 3}
+  m_PrefabInstance: {fileID: 423155587}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1568800173 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1309297155, guid: 9a5aef559b35afd4497e7847f0e7a283, type: 3}
+  m_PrefabInstance: {fileID: 423155587}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1568800172}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 646d3f4c3aa8fea4eb17ea9e699141be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1632971148
 GameObject:
   m_ObjectHideFlags: 0
