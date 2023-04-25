@@ -32,6 +32,9 @@ public class LevelBuilder : MonoBehaviour
     private bool wait = false;
     private bool pauseGen = false;
 
+    public float maxLevelLoadTime = 10f;
+    private bool levelLoaded = false;
+
     [Header("Canvas Components")]
     public GameObject generatingLevelPanel;
     public TextMeshProUGUI generatingStatusText;
@@ -46,6 +49,8 @@ public class LevelBuilder : MonoBehaviour
 
         placedTilesParent = new GameObject("Tiles");
         hallwaysParent = new GameObject("Hallways");
+
+        StartCoroutine(LevelLoadTimer());
     }
 
     private void LateUpdate()
@@ -80,6 +85,22 @@ public class LevelBuilder : MonoBehaviour
             UpdateGenText("Hallways Generated");
             UpdateGenText("Level Loaded");
             StartCoroutine(DisableGenPanel());
+
+            levelLoaded = true;
+        }
+    }
+    
+    IEnumerator LevelLoadTimer()
+    {
+        yield return new WaitForSeconds(maxLevelLoadTime);
+
+        if (levelLoaded == false)
+        {
+            //add tiles to the parent to keep things organized
+            for (int i = 1; i < placedTiles.Count; i++)
+                placedTiles[i].transform.parent = placedTilesParent.transform;
+
+            ReloadLevel();
         }
     }
 

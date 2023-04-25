@@ -449,7 +449,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5746109024541061939, guid: 08f1be92fd8a9e74e80e0b5f5bcbd7e7, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5746109024541061939, guid: 08f1be92fd8a9e74e80e0b5f5bcbd7e7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -494,6 +494,10 @@ PrefabInstance:
     - target: {fileID: 5746109024541061951, guid: 08f1be92fd8a9e74e80e0b5f5bcbd7e7, type: 3}
       propertyPath: m_Name
       value: FogPlane
+      objectReference: {fileID: 0}
+    - target: {fileID: 5746109024541061951, guid: 08f1be92fd8a9e74e80e0b5f5bcbd7e7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 08f1be92fd8a9e74e80e0b5f5bcbd7e7, type: 3}
@@ -839,6 +843,7 @@ MonoBehaviour:
   - Fire Rate Up
   - Move Speed Down
   - Move Speed Up
+  pollEffectIDs: 
   pollTime: 20
   pollDowntime: 20
   listener: {fileID: 2042048626}
@@ -1079,7 +1084,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 305608765525979781, guid: 2eca3fa99ad692541ab8f8ad270544fd, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 305608765525979781, guid: 2eca3fa99ad692541ab8f8ad270544fd, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1199,7 +1204,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5582301183447046640, guid: 9a5aef559b35afd4497e7847f0e7a283, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5582301183447046640, guid: 9a5aef559b35afd4497e7847f0e7a283, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1342,6 +1347,8 @@ MonoBehaviour:
   - {fileID: 6603390066063824197, guid: b6ae1f834b63e754985d026650178fe2, type: 3}
   - {fileID: 6947761254660534654, guid: 4fc767335dba0534bab4c087c62e1884, type: 3}
   - {fileID: 6043388745115043020, guid: aa9ae893f5c2c9d4f92c908da0ba941f, type: 3}
+  - {fileID: 817559557622800784, guid: c3ea894ebb534414e9a93a42c2aebe26, type: 3}
+  maxLevelLoadTime: 10
   generatingLevelPanel: {fileID: 89655000}
   generatingStatusText: {fileID: 692908889}
 --- !u!156049354 &1526570918

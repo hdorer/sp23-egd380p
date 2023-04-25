@@ -19,5 +19,6 @@ public class GameManager : MonoBehaviour {
         }
 
         DontDestroyOnLoad(gameObject);
+        Cursor.lockState = CursorLockMode.Confined;
     }
 }

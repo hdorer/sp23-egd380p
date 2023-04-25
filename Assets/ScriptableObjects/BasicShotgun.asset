@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gunName: Basic Shotgun
   flavorText: It's a shotgun
+  gunIndex: 1
   fireRate: 0.8
   damagePerBullet: 20
   clipSize: 5

@@ -15,7 +15,7 @@ MonoBehaviour:
   attackAnimation: Grenade
   animationLayer: 0
   attackScore: 3
-  recoveryTime: 4
+  recoveryTime: 3
   minDistance: 4
   maxDistance: 12
   pushAmount: 1

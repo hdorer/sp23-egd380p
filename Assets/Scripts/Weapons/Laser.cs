@@ -50,7 +50,11 @@ public class Laser : Weapon {
     }
 
     public override void startFiring() {
-        if(venting) {
+        if (Player.playerMovement.onRolling)
+        {
+            return;
+        }
+        if (venting) {
             return;
         }
 

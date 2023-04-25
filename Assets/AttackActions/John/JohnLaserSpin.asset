@@ -15,7 +15,7 @@ MonoBehaviour:
   attackAnimation: LaserSpin
   animationLayer: 0
   attackScore: 2
-  recoveryTime: 6
+  recoveryTime: 3
   minDistance: 2
   maxDistance: 12
   pushAmount: 1

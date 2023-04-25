@@ -23,7 +23,8 @@ public class TileData : MonoBehaviour
     public Transform overlap = null;
     public List<GameObject> spawnableEnemies;
     public List<Transform> enemySpawns;
-    private List<GameObject> enemies = new List<GameObject>();
+    [HideInInspector]
+    public List<GameObject> enemies = new List<GameObject>();
     public BoxCollider[] boxColliders;
 
     GameObject player;
@@ -55,6 +56,7 @@ public class TileData : MonoBehaviour
                     continue;
 
                 con.door.locked = false;
+                con.door.col.enabled = false;
             }
     }
 
@@ -118,7 +120,10 @@ public class TileData : MonoBehaviour
         if (other.CompareTag("Player") && enemies.Count > 0)
         {
             foreach (Connection con in connections)
+            {
                 con.door.locked = true;
+                con.door.col.enabled = true;
+            }
 
             foreach (GameObject go in enemies)
                 go.SetActive(true);

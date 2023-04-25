@@ -5,19 +5,21 @@ using UnityEngine.UI;
 
 public class ExitLevel : MonoBehaviour
 {
-    public int playerLayer;
+    private GameObject player;
+
     private LevelLoading loader;
     private Image fadeOut;
 
     private void Awake()
     {
+        player = FindObjectOfType<MovementScript>().gameObject;
         loader = FindObjectOfType<LevelLoading>();
         fadeOut = FindObjectOfType<FadeOut>().fadeImage;
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer == playerLayer)
+        if (other.gameObject == player)
             StartCoroutine(FadeOut());
     }
 

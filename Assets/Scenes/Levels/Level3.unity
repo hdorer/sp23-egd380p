@@ -1860,7 +1860,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30090c1fc0f50db40af5f9a376c6261c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  random: 0
+  random: 1
   seed: 1192603253
 --- !u!4 &872773554
 Transform:
@@ -2599,7 +2599,6 @@ MonoBehaviour:
   hallway: {fileID: 308476084578560956, guid: 4b9b37cbe626a4b4680348af68c14ea2, type: 3}
   placeableTiles:
   - {fileID: 4532993330944040418, guid: 7425a01942802744090a02ad66e9e609, type: 3}
-  - {fileID: 6043388745115043020, guid: aa9ae893f5c2c9d4f92c908da0ba941f, type: 3}
   - {fileID: 5540918809630485188, guid: 3ce761d8eeb5d5e4a9880036c65704b8, type: 3}
   - {fileID: 2382284882741248557, guid: 3bd768b899be4f44fa162138dec93cfc, type: 3}
   - {fileID: 6947761254660534654, guid: 4fc767335dba0534bab4c087c62e1884, type: 3}
@@ -2610,6 +2609,8 @@ MonoBehaviour:
   - {fileID: 5540918809630485188, guid: 3ce761d8eeb5d5e4a9880036c65704b8, type: 3}
   - {fileID: 6947761254660534654, guid: 4fc767335dba0534bab4c087c62e1884, type: 3}
   - {fileID: 3329714740037679923, guid: b08b9de07911b97408629f6ab3707c6b, type: 3}
+  - {fileID: 6603390066063824197, guid: b6ae1f834b63e754985d026650178fe2, type: 3}
+  maxLevelLoadTime: 10
   generatingLevelPanel: {fileID: 752825590}
   generatingStatusText: {fileID: 292298013}
 --- !u!156049354 &1374726293

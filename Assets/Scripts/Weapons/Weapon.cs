@@ -11,6 +11,7 @@ public abstract class Weapon : ScriptableObject {
 
     protected PlayerWeapon Player { get => player; }
     public string Name { get => gunName; }
+    public int gunIndex;
 
     public void setPlayer(PlayerWeapon player) {
         if(this.player == null) {

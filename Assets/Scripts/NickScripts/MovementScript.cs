@@ -20,7 +20,7 @@ public class MovementScript : Character
     private float vert;
     private bool invincible = false;
     private bool onCooldown = false;
-    private bool onRolling = false;
+    public bool onRolling = false;
 
     private float moveSpeedModifier = 1.0f;
     private float damageTakenModifier = 1.0f;
@@ -55,15 +55,18 @@ public class MovementScript : Character
     }
     private void RotatePlayer()
     {
-        Ray cameraRay = Camera.main.ScreenPointToRay(Input.mousePosition);
-        Plane ground = new Plane(Vector3.up, Vector3.zero);
-        float rayLength;
- 
-        if(ground.Raycast(cameraRay, out rayLength))
+        if (!onRolling)
         {
-            Vector3 pointToLook = cameraRay.GetPoint(rayLength);
-            Debug.DrawLine(cameraRay.origin, pointToLook, Color.blue);
-            transform.LookAt(new Vector3(pointToLook.x, transform.position.y, pointToLook.z));
+            Ray cameraRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+            Plane ground = new Plane(Vector3.up, Vector3.zero);
+            float rayLength;
+
+            if (ground.Raycast(cameraRay, out rayLength))
+            {
+                Vector3 pointToLook = cameraRay.GetPoint(rayLength);
+                Debug.DrawLine(cameraRay.origin, pointToLook, Color.blue);
+                transform.LookAt(new Vector3(pointToLook.x, transform.position.y, pointToLook.z));
+            }
         }
     }
     private void GetInputs() //Where you would put player input checks
@@ -96,6 +99,8 @@ public class MovementScript : Character
         onRolling = true;
         //Burst character in direction of movement
         Vector3 dir = Vector3.zero;
+        //animate the roll
+        GetComponent<Animator>().Play("Roll");
 
         if(rb.velocity.magnitude == 0)
         {
@@ -118,7 +123,7 @@ public class MovementScript : Character
         yield return new WaitForSeconds(duration);
         invincible = false;
         onRolling = false;
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(0.3f);
         onCooldown = false;
         
         StopCoroutine("DodgeRoll");

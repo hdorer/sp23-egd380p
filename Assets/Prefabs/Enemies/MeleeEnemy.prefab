@@ -404,6 +404,13 @@ MonoBehaviour:
   gun: {fileID: 5496354240097584024}
   isMelee: 1
   shootAccAngle: 0
+  requiredAngleForAttack: 4
+  grenadeSpawn: {fileID: 0}
+  bulletSpawn: {fileID: 0}
+  laserSpawn: {fileID: 0}
+  johnBullet: {fileID: 0}
+  johnLaser: {fileID: 0}
+  johnGrenade: {fileID: 0}
 --- !u!1 &4942439137570325311
 GameObject:
   m_ObjectHideFlags: 0
@@ -1033,7 +1040,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8280337986247006402}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.002, y: 0.014853977, z: 0.05347308}
@@ -1050,3 +1057,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 441636338eae78040be0044a48a04533, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 10

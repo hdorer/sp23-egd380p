@@ -2160,7 +2160,7 @@ MonoBehaviour:
   levels:
   - Level2
   - Level3
-  - TestGameOverScreen
+  - MainMenu
 --- !u!1 &1095111537
 GameObject:
   m_ObjectHideFlags: 0
@@ -2538,6 +2538,7 @@ MonoBehaviour:
   - {fileID: 3329714740037679923, guid: b08b9de07911b97408629f6ab3707c6b, type: 3}
   - {fileID: 4532993330944040418, guid: 7425a01942802744090a02ad66e9e609, type: 3}
   - {fileID: 4532993330944040418, guid: 7425a01942802744090a02ad66e9e609, type: 3}
+  maxLevelLoadTime: 10
   generatingLevelPanel: {fileID: 634467248}
   generatingStatusText: {fileID: 57414903}
 --- !u!156049354 &1374726293

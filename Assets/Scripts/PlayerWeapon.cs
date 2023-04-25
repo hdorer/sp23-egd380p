@@ -23,6 +23,8 @@ public class PlayerWeapon : MonoBehaviour {
     [SerializeField] private InputAction changeWeaponInput;
     [SerializeField] private InputAction pickUpWeaponInput;
 
+    public MovementScript playerMovement;
+
     [System.Serializable] public class UiUpdateEvent : UnityEvent<string, int, int> { }
     public UiUpdateEvent onUiUpdate;
 
@@ -35,6 +37,8 @@ public class PlayerWeapon : MonoBehaviour {
     public LineRenderer LineRenderer { get => bulletSpawnPoint.GetComponent<LineRenderer>(); }
     public float FireRateModifier { get => fireRateModifier; }
     public float DamageModifier { get => damageModifier; }
+
+    public GameObject[] guns;
 
     private void OnEnable() {
         fireInput.Enable();
@@ -60,6 +64,7 @@ public class PlayerWeapon : MonoBehaviour {
             weapons[i].setPlayer(this);
             weapons[i].start();
         }
+        playerMovement = GetComponent<MovementScript>();
 
         weapons[currentWeapon].equip();
         onWeaponSwitch?.Invoke(weapons, currentWeapon);
@@ -142,5 +147,13 @@ public class PlayerWeapon : MonoBehaviour {
 
         weapons[currentWeapon].equip();
         onWeaponSwitch?.Invoke(weapons, currentWeapon);
+
+        //cheating a bit
+        foreach(GameObject go in guns)
+        {
+            go.SetActive(false);
+        }
+
+        guns[weapons[currentWeapon].gunIndex].SetActive(true);
     }
 }
