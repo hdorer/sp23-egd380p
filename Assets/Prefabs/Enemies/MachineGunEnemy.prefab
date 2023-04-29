@@ -172,6 +172,37 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &3374203639627591382
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5971635386151554438}
+  m_Layer: 0
+  m_Name: spawn
+  m_TagString: Untagged
+  m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5971635386151554438
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3374203639627591382}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.885, z: 0.788}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6174697366466256506}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4150579595310482607
 GameObject:
   m_ObjectHideFlags: 0
@@ -343,10 +374,17 @@ MonoBehaviour:
   projectiles:
   - {fileID: 798192242076072870, guid: dd93cb722cc14614cb80c7e5b8fefb5b, type: 3}
   currentRecoveryTime: 0
-  bulletSpawnPosition: {fileID: 6174697366466256506}
+  bulletSpawnPosition: {fileID: 5971635386151554438}
   gun: {fileID: 6174697366466256505}
   isMelee: 0
   shootAccAngle: 10
+  requiredAngleForAttack: 4
+  grenadeSpawn: {fileID: 0}
+  bulletSpawn: {fileID: 0}
+  laserSpawn: {fileID: 0}
+  johnBullet: {fileID: 0}
+  johnLaser: {fileID: 0}
+  johnGrenade: {fileID: 0}
 --- !u!95 &4434164153672867223
 Animator:
   serializedVersion: 5
@@ -751,6 +789,7 @@ Transform:
   - {fileID: 935597569808214880}
   - {fileID: 4141582693788108877}
   - {fileID: 6630838874840466863}
+  - {fileID: 5971635386151554438}
   m_Father: {fileID: 3945857379471542060}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
