@@ -151,7 +151,9 @@ public class PlayerWeapon : MonoBehaviour {
         //cheating a bit
         foreach(GameObject go in guns)
         {
-            go.SetActive(false);
+            if(go != null) {
+                go.SetActive(false);
+            }
         }
 
         guns[weapons[currentWeapon].gunIndex].SetActive(true);
