@@ -1477,7 +1477,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 110bf3a6d2e75b440b11d62be5d6c0b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 600
+  maxHealth: 2000
   moveSpeed: 4
   currentState: {fileID: 8289776444330856681}
   agent: {fileID: 8289776443440552997}
