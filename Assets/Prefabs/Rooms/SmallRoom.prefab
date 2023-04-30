@@ -585,6 +585,7 @@ MonoBehaviour:
   enemySpawns:
   - {fileID: 406103582}
   - {fileID: 64354657}
+  enemies: []
   boxColliders:
   - {fileID: 7293453858397001624}
 --- !u!65 &7293453858397001624

@@ -620,7 +620,7 @@ GameObject:
   - component: {fileID: 826622613220523609}
   m_Layer: 7
   m_Name: Walls
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2050,6 +2050,7 @@ MonoBehaviour:
   - {fileID: 23625229}
   - {fileID: 1591512931}
   - {fileID: 367939855}
+  enemies: []
   boxColliders:
   - {fileID: 5738555080038510213}
 --- !u!65 &5738555080038510213
